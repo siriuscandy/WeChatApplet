@@ -37,28 +37,93 @@
                     </div>
                 </div>
         </div>
+            <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab">
+            <div class="t-line">
+                <a data-bind="click:function(){goIndex()}" class="aui-tab-item">
+                    <span class="mui-icon iconHover mui-icon-home"></span>
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a data-bind="click:function(){goProList()}" class="aui-tab-item " >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                    <span class="mui-tab-label">购物</span>
+                </a>
+                 <a data-bind="click:function(){goOrder()}" class="aui-tab-item" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                    <span class="mui-tab-label">订单</span>
+                </a>
+                <a data-bind="click:function(){goME()}" class="aui-tab-item mui-active" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </div>
+        </nav>
     </div>
-<script src="js/mui.min.js"></script>
-<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
-<script>
-$(function(){
-	    var $div_li =$(".tuxx span");
-	    $div_li.click(function(){
-			$(this).addClass("dq_hover")            //当前<li>元素高亮
-				   .siblings().removeClass("dq_hover");  //去掉其他同辈<li>元素的高亮
-            var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
-			$("div.tb_nr_A > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
-					.eq(index).show()   //显示 <li>元素对应的<div>元素
-					.siblings().hide(); //隐藏其他几个同辈的<div>元素
-		}).hover(function(){
-			$(this).addClass("hover");
-		},function(){
-			$(this).removeClass("hover");
-		});
-		var tbWidth = $(".xxsj").width();
-		$("#tb_tub2").width(tbWidth);
-		$("#tb_tubpie").width(tbWidth);
-})
+<script src="/web/js/unit.js"></script>
+<script src="/web/trd/requirejs/require.js"></script>
+<script src="/web/js/require.config.js"></script>
+<script type="text/javascript" charset="utf-8">
+    require([ 'jquery', 'knockout','dialogmin','ajaxCom'
+    ], function($, ko,dialogmin,ajaxCom) {
+        var listUrl  =  '/goodsAPI/goodsList';
+        var viewModel = {
+            data : {
+                list : ko.observableArray([]),
+                title:ko.observable(""),
+            },
+
+        };
+        viewModel.goIndex = function(){
+            window.location.href = "../tmp"+GetQueryString("tmp")+"/index.html";
+        };
+        viewModel.goProList = function(){
+            window.location.href = "spList.html?tmp="+GetQueryString("tmp");
+        };
+         viewModel.goOrder = function(){
+            window.location.href = "myOrder.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goME = function(){
+            window.location.href = "me.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goDetail = function(id){
+            window.location.href = "../product/productDetails.html?goodsId="+id +"&tmp="+GetQueryString("tmp");
+        };
+        viewModel.goList = function(id){
+            window.location.href = "flList.html?tmp="+GetQueryString("tmp")+"&classId=" + id;
+        };
+        
+        viewModel.load=function(){
+          $(function(){
+                    var $div_li =$(".tuxx span");
+                    $div_li.click(function(){
+                        $(this).addClass("dq_hover")            //当前<li>元素高亮
+                            .siblings().removeClass("dq_hover");  //去掉其他同辈<li>元素的高亮
+                        var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
+                        $("div.tb_nr_A > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
+                                .eq(index).show()   //显示 <li>元素对应的<div>元素
+                                .siblings().hide(); //隐藏其他几个同辈的<div>元素
+                    }).hover(function(){
+                        $(this).addClass("hover");
+                    },function(){
+                        $(this).removeClass("hover");
+                    });
+                    var tbWidth = $(".xxsj").width();
+                    $("#tb_tub2").width(tbWidth);
+                    $("#tb_tubpie").width(tbWidth);
+            })
+        }
+
+        viewModel.load();
+        ko.applyBindings(viewModel);
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        };
+
+    })
 </script>
+
 </body>
 </html>

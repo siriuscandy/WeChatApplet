@@ -46,6 +46,9 @@ em{font-style:normal;}
 	.aui-cell-img{width:50px; height:50px;}
 	.djqList li{line-height:100px;}
 }
+.mui-icon.mui-icon-extra-cart{background: url(../img/a05.png) no-repeat  0 2px; background-size:100%;}
+.mui-active .mui-icon.mui-icon-extra-cart{background: url(../img/b06.png) no-repeat  0 2px; background-size:100%;}
+
 .mui-media-body .scIcon{width:16px; height:14px; margin-top:5px; float:right; background:url(../img/icon1-3.png) no-repeat; background-size:100%; cursor:pointer;}
 .mui-media-body p{width:80%; float:left; text-align:left; color:#000;}
 .goods_info.jgys{text-align:left;color:#000; }

@@ -72,27 +72,30 @@
         <div style="height:50px"></div>
         <nav class="mui-bar mui-bar-tab">
             <div class="t-line">
-                <a href="index.html" class="aui-tab-item mui-active">
+                <a data-bind="click:function(){goIndex()}" class="aui-tab-item mui-active">
                     <span class="mui-icon iconHover mui-icon-home"></span>
                     <span class="mui-tab-label">首页</span>
                 </a>
-                <a href="../product/spList.html?tmp=6" class="aui-tab-item" >
+                <a data-bind="click:function(){goProList()}" class="aui-tab-item " >
                     <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
                     <span class="mui-tab-label">购物</span>
                 </a>
-                <a class="aui-tab-item" href="../product/me.html?tmp=6">
+                <a data-bind="click:function(){goOrder()}" class="aui-tab-item" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+                    <span class="mui-tab-label">订单</span>
+                </a>
+                <a data-bind="click:function(){goME()}" class="aui-tab-item" >
                     <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
                     <span class="mui-tab-label">我的</span>
                 </a>
             </div>
         </nav>
     </div>
-<script>
-	window.$ctx = "http://rapapi.org/mockjsdata/22525";
-</script>
+<script src="/web/js/unit.js"></script>
 <script src="/web/trd/requirejs/require.js"></script>
 <script src="/web/js/require.config.js"></script>
 <script src="js/index.js"></script>
+
 
 </body>
 </html>

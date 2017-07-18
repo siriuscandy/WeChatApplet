@@ -4,23 +4,34 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
   var bannerUrl  =  '/goodsAPI/goodsList';
   var listUrl  =  '/goodsAPI/goodsList2';
   var list3Url  =  '/goodsAPI/goodsList3';
-  var attrsUrl = '/userModule/getUserModuleDetail';
+  var attrsUrl = '/userModule/gettmp8';
   var viewModel = {
     data : {
       banner : ko.observableArray([]),
       list : ko.observableArray([]),
       list3 : ko.observableArray([]),
       attrs:ko.observable({}),
-      firstClass:ko.observable(""),
-      secondClass:ko.observable(""),
+      bannerMid:ko.observable(""),
     },
 
   };
+   viewModel.goIndex = function(){
+      window.location.href = "../tmp8/index.html";
+  };
+  viewModel.goProList = function(){
+      window.location.href = "../product/spList.html?tmp=8";
+  };
+  viewModel.goOrder = function(){
+      window.location.href = "../product/myOrder.html?tmp=8";
+  };
+  viewModel.goME = function(){
+      window.location.href = "../product/me.html?tmp=8";
+  };
   viewModel.getlist = function(){
     var queryData = {
-      pagesize: 3,     //page size Ã¿Ò³ÏÔÊ¾ÌõÊý
-      pageNum: 0,    //page num µ±Ç°Ò³Êý
-      classId: "list",   //page num µ±Ç°Ò³Êý
+      pagesize: 3,     //page size Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+      pageNum: 0,    //page num ï¿½ï¿½Ç°Ò³ï¿½ï¿½
+      classId: "list",   //page num ï¿½ï¿½Ç°Ò³ï¿½ï¿½
       userid:viewModel.userId
     };
     ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
@@ -28,14 +39,14 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 
     },function(error){
 
-      dialogmin("ÍøÂç´íÎó");
+      dialogmin("ç½‘ç»œé”™è¯¯");
     })
   };
   viewModel.getlist3 = function(){
     var queryData = {
-      pagesize: 4,     //page size Ã¿Ò³ÏÔÊ¾ÌõÊý
-      pageNum: 0,    //page num µ±Ç°Ò³Êý
-      classId: "list3",   //page num µ±Ç°Ò³Êý
+      pagesize: 4,     //page size Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+      pageNum: 0,    //page num ï¿½ï¿½Ç°Ò³ï¿½ï¿½
+      classId: "list3",   //page num ï¿½ï¿½Ç°Ò³ï¿½ï¿½
       userid:viewModel.userId
     };
     ajaxCom.Loadajax('GET',list3Url,queryData,function(res){
@@ -43,14 +54,14 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 
     },function(error){
 
-      dialogmin("ÍøÂç´íÎó");
+      dialogmin("ç½‘ç»œé”™è¯¯");
     })
   };
   viewModel.getbanner = function(){
     var queryData = {
-      pagesize: 4,     //page size Ã¿Ò³ÏÔÊ¾ÌõÊý
-      pageNum: 0,    //page num µ±Ç°Ò³Êý
-      classId: "banner",   //page num µ±Ç°Ò³Êý
+      pagesize: 4,     //page size Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+      pageNum: 0,    //page num ï¿½ï¿½Ç°Ò³ï¿½ï¿½
+      classId: "banner",   //page num ï¿½ï¿½Ç°Ò³ï¿½ï¿½
       userid:viewModel.userId
     };
     ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
@@ -63,7 +74,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       });
     },function(error){
 
-      dialogmin("ÍøÂç´íÎó");
+      dialogmin("ç½‘ç»œé”™è¯¯");
     })
   };
   viewModel.getattrs = function(){
@@ -72,12 +83,11 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
     };
     ajaxCom.Loadajax('GET',attrsUrl,queryData,function(res){
       viewModel.data.attrs(res.attrs);
-      viewModel.data.secondClass(res.attrs.secondClass);
-      viewModel.data.firstClass(res.attrs.firstClass);
+      viewModel.data.bannerMid(res.attrs.banner);
       console.log(viewModel.data.attrs())
     },function(error){
 
-      dialogmin("ÍøÂç´íÎó");
+      dialogmin("ç½‘ç»œé”™è¯¯");
     })
   };
   viewModel.goDetail = function(id){
@@ -94,12 +104,12 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
     $(function(){
       var $div_li =$(".tuxx span");
       $div_li.click(function(){
-        $(this).addClass("dq_hover")            //µ±Ç°<li>ÔªËØ¸ßÁÁ
-            .siblings().removeClass("dq_hover");  //È¥µôÆäËûÍ¬±²<li>ÔªËØµÄ¸ßÁÁ
-        var index =  $div_li.index(this);  // »ñÈ¡µ±Ç°µã»÷µÄ<li>ÔªËØ ÔÚ È«²¿liÔªËØÖÐµÄË÷Òý¡£
-        $("div.tb_nr_A > div")   	//Ñ¡È¡×Ó½Úµã¡£²»Ñ¡È¡×Ó½ÚµãµÄ»°£¬»áÒýÆð´íÎó¡£Èç¹ûÀïÃæ»¹ÓÐdiv
-            .eq(index).show()   //ÏÔÊ¾ <li>ÔªËØ¶ÔÓ¦µÄ<div>ÔªËØ
-            .siblings().hide(); //Òþ²ØÆäËû¼¸¸öÍ¬±²µÄ<div>ÔªËØ
+        $(this).addClass("dq_hover")            //ï¿½ï¿½Ç°<li>Ôªï¿½Ø¸ï¿½ï¿½ï¿½
+            .siblings().removeClass("dq_hover");  //È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½<li>Ôªï¿½ØµÄ¸ï¿½ï¿½ï¿½
+        var index =  $div_li.index(this);  // ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½<li>Ôªï¿½ï¿½ ï¿½ï¿½ È«ï¿½ï¿½liÔªï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        $("div.tb_nr_A > div")   	//Ñ¡È¡ï¿½Ó½Úµã¡£ï¿½ï¿½Ñ¡È¡ï¿½Ó½Úµï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ»¹ï¿½ï¿½div
+            .eq(index).show()   //ï¿½ï¿½Ê¾ <li>Ôªï¿½Ø¶ï¿½Ó¦ï¿½ï¿½<div>Ôªï¿½ï¿½
+            .siblings().hide(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½<div>Ôªï¿½ï¿½
       }).hover(function(){
         $(this).addClass("hover");
       },function(){

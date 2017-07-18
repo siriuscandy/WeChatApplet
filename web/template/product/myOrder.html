@@ -136,25 +136,27 @@
         <div style="height:50px"></div>
         <nav class="mui-bar mui-bar-tab">
             <div class="t-line">
-                <a href="index.html" class="aui-tab-item ">
-                    <span class="mui-icon  mui-icon-home"></span>
+                <a data-bind="click:function(){goIndex()}" class="aui-tab-item">
+                    <span class="mui-icon iconHover mui-icon-home"></span>
                     <span class="mui-tab-label">首页</span>
                 </a>
-                <a href="spList.html" class="aui-tab-item" >
+                <a data-bind="click:function(){goProList()}" class="aui-tab-item " >
                     <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
                     <span class="mui-tab-label">购物</span>
                 </a>
-                <a class="aui-tab-item mui-active" href="me.html">
-                    <span class="mui-icon iconHover mui-icon-extra mui-icon-extra-people"></span>
+                <a data-bind="click:function(){goOrder()}" class="aui-tab-item mui-active" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+                    <span class="mui-tab-label">订单</span>
+                </a>
+                <a data-bind="click:function(){goME()}" class="aui-tab-item" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
                     <span class="mui-tab-label">我的</span>
                 </a>
             </div>
         </nav>
     </div>
 <script src="js/mui.min.js"></script>
-<script>
-    window.$ctx = "http://rapapi.org/mockjsdata/22525";
-</script>
+<script src="/web/js/unit.js"></script>
 <script src="/web/trd/requirejs/require.js"></script>
 <script src="/web/js/require.config.js"></script>
 <script type="text/javascript" charset="utf-8">
@@ -170,7 +172,21 @@
             },
 
         };
-
+        viewModel.goIndex = function(){
+            window.location.href = "../tmp"+GetQueryString("tmp")+"/index.html";
+        };
+        viewModel.goProList = function(){
+            window.location.href = "spList.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goOrder = function(){
+            window.location.href = "myOrder.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goME = function(){
+            window.location.href = "me.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goList = function(id,name){
+            window.location.href = "flList.html?tmp="+GetQueryString("tmp")+"&cateId=" + id+"&catename="+name;;
+        };
         viewModel.getbanner = function(){
             var queryData = {
                 pageNum:1,

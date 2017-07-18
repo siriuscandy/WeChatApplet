@@ -32,7 +32,7 @@
 		</ul>
 	</div>
         <div class="lineCon t-line">
-             <img src="img/pic.jpg" alt="">
+             <img data-bind="attr:{'src':data.bannerMid()}"  alt="">
         </div>
 		<div class="aui-week t-line">
             <ul class="mui-table-view mui-grid-view"  data-bind="foreach: data.list3()">
@@ -71,9 +71,7 @@
 
         </nav>
     </div>
-<script>
-    window.$ctx = "http://rapapi.org/mockjsdata/22525";
-</script>
+<script src="/web/js/unit.js"></script>
 <script src="/web/trd/requirejs/require.js"></script>
 <script src="/web/js/require.config.js"></script>
 <script src="js/index.js"></script>

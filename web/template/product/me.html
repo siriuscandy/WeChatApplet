@@ -20,9 +20,9 @@
         </div>
         <div class="yhLine">
         	<ul class="myLine">
-            	<li><a href="myOrder.html"><em></em>我的订单</a></li>
-                <li><a href="couponList1.html"><em class="yhjIcon"></em>优惠券</a></li>
-                <li><a href="aboutUs.html"><em class="gywmIcon"></em>关于我们</a></li>
+            	<li><a data-bind="click:function(){goOrder()}"><em></em>我的订单</a></li>
+                <li><a data-bind="click:function(){gocouponlist()}"><em class="yhjIcon"></em>优惠券</a></li>
+                <li><a data-bind="click:function(){goaboutus()}"><em class="gywmIcon"></em>关于我们</a></li>
             </ul>
         </div>
         <div style="height:50px"></div>
@@ -35,6 +35,10 @@
                 <a data-bind="click:function(){goProList()}" class="aui-tab-item " >
                     <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
                     <span class="mui-tab-label">购物</span>
+                </a>
+                <a data-bind="click:function(){goOrder()}" class="aui-tab-item " >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+                    <span class="mui-tab-label">订单</span>
                 </a>
                 <a data-bind="click:function(){goME()}" class="aui-tab-item mui-active" >
                     <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
@@ -64,9 +68,7 @@
 <script>
     mui.init();
 </script>
-<script>
-    window.$ctx = "http://rapapi.org/mockjsdata/22525";
-</script>
+<script src="/web/js/unit.js"></script>
 <script src="/web/trd/requirejs/require.js"></script>
 <script src="/web/js/require.config.js"></script>
 <script type="text/javascript" charset="utf-8">
@@ -82,16 +84,24 @@
             },
 
         };
-        viewModel.goIndex = function(){
+         viewModel.goIndex = function(){
             window.location.href = "../tmp"+GetQueryString("tmp")+"/index.html";
         };
         viewModel.goProList = function(){
             window.location.href = "spList.html?tmp="+GetQueryString("tmp");
         };
+        viewModel.goOrder = function(){
+            window.location.href = "myOrder.html?tmp="+GetQueryString("tmp");
+        };
         viewModel.goME = function(){
             window.location.href = "me.html?tmp="+GetQueryString("tmp");
-        }
-
+        };
+        viewModel.gocouponlist = function(){
+            window.location.href = "couponlist1.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goaboutus = function(){
+            window.location.href = "aboutUs.html?tmp="+GetQueryString("tmp");
+        };
 
         viewModel.load=function(){
 
