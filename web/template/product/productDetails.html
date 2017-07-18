@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>服装类</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/jquery.spinner.css" />
+</head>
+
+<body>
+	<div class="content posRel">
+    	<div class="gwcBnt"><div data-bind="click:function(){goback()}" class="mui-icon mui-icon-back"></div><a href="#" class="bugIcon"><img src="img/icon1-5.png"></a></div>
+    	<div class="cpPic"><img data-bind="attr:{'src':data.attrs().images}"></div>
+        <div class="aui-nav xqTitle">
+            <div class="titLine">
+            	<h1 class="titTxt" data-bind="text:data.attrs().name">简约新款</h1>
+                <div class="jgLine">
+                	<span class="price">￥<d data-bind="text:data.attrs().price"></d></span>
+                    <span class="sales">销量：<d data-bind="text:data.attrs().number"></d></span>
+                </div>
+            </div>
+            <div class="qtxxLine">
+            	<span>运费：免运费</span>
+                <span>库存：<d data-bind="text:data.attrs().attrValue"></d></span>
+            </div>
+        </div>
+    	<div class="devider t-line"></div>
+        <!--产品评价-->
+        <div class="aui-hot t-line">
+            <h2 class="cpplTitle">
+            	产品评价
+                <a data-bind="click:function(){goevaluateList()}" class="morePl">查看产品全部评论 ></a>
+            </h2>
+            <ul class="plList" data-bind="foreach:data.commentList()">
+            	<li>
+                	<h3 class="mjxx">
+                    	<span class="mjxxLeft" data-bind="text:name">买家甲</span>
+                        <span class="timeRight" data-bind="text:createTime">2017/1/13</span>
+                    </h3>
+                    <p class="plxq" data-bind="html:content"></p>
+                    <div class="picList">
+                    	<span><img data-bind="attr:{'src':images}"></span>
+
+                    </div>
+                </li>
+
+            </ul>
+            <h2 class="cpplTitle cpxqTitle">产品详情</h2>
+            <div class="cpxqCon" data-bind="html:data.attrs().goodsBrief">
+            	<!--<span><img src="img/pic1-1.jpg"></span>-->
+                <!--<span><img src="img/pic1-1.jpg"></span>-->
+            </div>
+        </div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab buyBar">
+            <div class="buyBntList">
+            	<span class="buyBnt jrgwc"><a data-bind="click:toshare" href="#">加入购物车</a></span>
+                <span class="buyBnt ljgm"><a data-bind="click:toshareB" href="#">立即购买</a></span>
+            </div>
+        </nav>
+        <!--加入购物车 弹层-->
+        <div class="am-share am-shareA">
+          <div class="cpxx">
+                <div class="cpxqLine">
+                    <div class="xqLeft">
+                        <div class="xqPic"><img data-bind="attr:{'src':data.attrs().images}"></div>
+                        <div class="titPice">
+                            <span class="cpxqTitA" data-bind="text:data.attrs().name"></span>
+                            <span class="jgLineA">￥ <d data-bind="text:data.attrs().price"></d> </span>
+                        </div>
+                    </div>
+                    <i class="clooseBnt"><img src="img/icon3.png"></i>
+                </div>
+                <div class="slkc" id="tab">
+                	<span class="slLeft">购买数量：</span>
+                    <div class="sljj">
+                    	<input type="text" class="spinnerExample"/>
+                    </div>
+                </div>
+            </div>
+          <div class="am-share-footer"><button class="share_btn" data-bind="click:function(){addCart()}">确定</button></div>
+        </div>
+        <!--立即购买 弹层-->
+        <div class="am-share am-shareB">
+          <div class="cpxx">
+                <div class="cpxqLine">
+                    <div class="xqLeft">
+                        <div class="xqPic"><img data-bind="attr:{'src':data.attrs().images}"></div>
+                        <div class="titPice">
+                            <span class="cpxqTitA" data-bind="text:data.attrs().name"></span>
+                            <span class="jgLineA">￥ <d data-bind="text:data.attrs().price"></d> </span>
+                        </div>
+                    </div>
+                    <i class="clooseBnt"><img src="img/icon3.png"></i>
+                </div>
+                <div class="slkc" id="tab">
+                	<span class="slLeft">购买数量：</span>
+                    <div class="sljj">
+                    	<input type="text" class="spinnerExample"/>
+                    </div>
+                </div>
+            </div>
+          <div class="am-share-footer"><button class="share_btn" data-bind="click:function(){buyProduct()}">确定</button></div>
+        </div>
+    </div>
+    
+<script src="js/mui.min.js"></script>
+<script>
+    window.$ctx = "http://rapapi.org/mockjsdata/22525";
+</script>
+<script src="/web/trd/requirejs/require.js"></script>
+<script src="/web/js/require.config.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    require([ 'jquery', 'knockout','dialogmin','ajaxCom','jquery.spinner'
+    ], function($, ko,dialogmin,ajaxCom) {
+        $('.spinnerExample').spinner({});
+        var listUrl  =  '/goodsAPI/getGoodsDetail';
+        var addCart = '/goodsAPI/addCart';
+        var getCommentListUrl = '/goodsAPI/getCommentList';
+        var viewModel = {
+            data : {
+                commentList : ko.observableArray([]),
+                attrs:ko.observable({}),
+                firstClass:ko.observable(""),
+                secondClass:ko.observable(""),
+            },
+
+        };
+        viewModel.goback = function(){
+            window.history.go(-1);
+        };
+        viewModel.getbanner = function(){
+            var queryData = {
+                goodsId:viewModel.goodsId
+            };
+            ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+                viewModel.data.attrs(res.data.list);
+                viewModel.getCommentList(res.data.list.id);
+                $(".fkList li").show();
+            },function(error){
+
+                dialogmin("网络错误");
+            })
+        };
+        viewModel.getCommentList = function(id){
+            var queryData = {
+                pageNum:1,
+                pageSize:10,
+                goodsId:id
+            };
+            ajaxCom.Loadajax('GET',getCommentListUrl,queryData,function(res){
+                viewModel.data.commentList(res.list);
+                $(".plList li").show();
+            },function(error){
+
+                dialogmin("网络错误");
+            })
+        };
+        viewModel.goevaluateList = function(){
+            window.location.href = "evaluateList.html?tmp="+GetQueryString("tmp")+"&goodsId=" + viewModel.goodsId;
+        };
+        viewModel.buyProduct = function(){
+            var queryData = {
+                goodsId:viewModel.data.attrs().id,
+                goodsNumber:$(".am-shareA .spinnerExample").val(),
+                userId:viewModel.userId || 1
+            };
+            window.location.href = ""
+        }
+        viewModel.addCart = function(){
+            var queryData = {
+                goodsId:viewModel.data.attrs().id,
+                goodsNumber:$(".am-shareA .spinnerExample").val(),
+                goodsId:viewModel.goodsId
+            };
+            if(queryData.goodsNumber<1){
+                dialogmin("请选择数量")
+                return false
+            }
+            ajaxCom.Loadajax('GET',addCart,JSON.stringify(queryData),function(res){
+                if(res){
+                    dialogmin("加入成功")
+                }
+            },function(error){
+
+                dialogmin("网络错误");
+            })
+        }
+        viewModel.toshare = function(){
+            $(".am-shareA").addClass("am-modal-active");
+            if($(".sharebg").length>0){
+                $(".sharebg").addClass("sharebg-active");
+            }else{
+                $("body").append('<div class="sharebg"></div>');
+                $(".sharebg").addClass("sharebg-active");
+            }
+            $(".sharebg-active,.share_btn,.clooseBnt").click(function(){
+                $(".am-shareA").removeClass("am-modal-active");
+                setTimeout(function(){
+                    $(".sharebg-active").removeClass("sharebg-active");
+                    $(".sharebg").remove();
+                },300);
+            })
+        }
+        <!--弹层效果-->
+        viewModel.toshareB= function(){
+            $(".am-shareB").addClass("am-modal-active");
+            if($(".sharebg").length>0){
+                $(".sharebg").addClass("sharebg-active");
+            }else{
+                $("body").append('<div class="sharebg"></div>');
+                $(".sharebg").addClass("sharebg-active");
+            }
+            $(".sharebg-active,.share_btn,.clooseBnt").click(function(){
+                $(".am-shareB").removeClass("am-modal-active");
+                setTimeout(function(){
+                    $(".sharebg-active").removeClass("sharebg-active");
+                    $(".sharebg").remove();
+                },300);
+            })
+        }
+        viewModel.load=function(){
+            viewModel.goodsId = GetQueryString("goodsId");
+            viewModel.getbanner();
+
+
+        }
+
+        viewModel.load();
+        ko.applyBindings(viewModel);
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        };
+
+    })
+</script>
+
+</body>
+</html>

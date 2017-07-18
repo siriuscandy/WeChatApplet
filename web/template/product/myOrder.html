@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>服装类</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="content">
+        <div class="gwcBnt"><div onclick="window.history.go(-1);" class="mui-icon mui-icon-back"></div><a href="#" class="bugIcon"><img src="img/icon1-5.png"></a></div>
+
+        <div class="nr_tjhd_con">
+        	<h1 class="tuxx">
+                	<span class="dq_hover">全部</span>
+                    <span>待付款</span>
+                    <span>待收货</span>
+                    <span>待评价</span>
+                </h1>
+                <div class="tb_nr_A">
+                	<div class="tb_nr_a">
+                        <ul class="fkList" data-bind="foreach: data.list()">
+                            <li data-bind="attr:{'data-id':orderNum}">
+                            	<div class="timeLine">
+                                	<span data-bind="text:createTime"></span>
+                                    <p data-bind="visible:status==-3">已关闭</p>
+                                    <p data-bind="visible:status==0">待付款</p>
+                                    <p data-bind="visible:status==2">待评价</p>
+                                    <p data-bind="visible:status==3">待收货</p>
+                                    <p data-bind="visible:status==-2">已退款</p>
+                                    <p data-bind="visible:status==-1">退款中</p>
+                                    <p data-bind="visible:status==1">已支付</p>
+                                </div>
+                                <div class="cpxqLineA">
+                                	<div class="cppictxt">
+                                    	<span><img data-bind="attr:{'src':image}"></span>
+                                        <p data-bind="text:name"></p>
+                                    </div>
+                                    <div class="jgsl">￥ <d data-bind="text:price"></d><br>x<em data-bind="text:number"></em></div>
+                                </div>
+                                <div class="jzLine">
+                                	<div class="jzLineLeft"><span >共<d data-bind="text:number"></d>件</span> <span>实付：<em class="orange" data-bind="text:actualAmount"></em></span></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==0"><a href="payment.html">付款</a></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==2"><a href="evaluate.html">评价</a></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==3"><a href="payment.html">收货</a></div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="tb_nr_a hide">
+                        <ul class="fkList" data-bind="foreach: data.list()">
+                            <li data-bind="attr:{'data-id':orderNum},if:status==1,visible:status==1">
+                                <div class="timeLine">
+                                    <span data-bind="text:createTime">2017-05-10 09：18：23</span>
+                                    <p data-bind="visible:status==-3">已关闭</p>
+                                    <p data-bind="visible:status==0">待付款</p>
+                                    <p data-bind="visible:status==2">待评价</p>
+                                    <p data-bind="visible:status==3">待收货</p>
+                                </div>
+                                <div class="cpxqLineA">
+                                    <div class="cppictxt">
+                                        <span><img data-bind="attr:{'src':image}"></span>
+                                        <p data-bind="text:name">欧美新款欧美新款欧美新款欧美新款欧美新款欧美新款</p>
+                                    </div>
+                                    <div class="jgsl">￥ <d data-bind="text:price">58.00</d><br>x<em data-bind="text:number">1</em></div>
+                                </div>
+                                <div class="jzLine">
+                                    <div class="jzLineLeft"><span >共<d data-bind="text:number"></d>件</span> <span>实付：<em class="orange" data-bind="text:actualAmount">57.80</em></span></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==0"><a href="payment.html">付款</a></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==2"><a href="evaluate.html">评价</a></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==3"><a href="payment.html">收货</a></div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="tb_nr_a hide">
+                        <ul class="fkList" data-bind="foreach: data.list()">
+                            <li data-bind="attr:{'data-id':orderNum},if:status==3,visible:status==3">
+                                <div class="timeLine">
+                                    <span data-bind="text:createTime">2017-05-10 09：18：23</span>
+                                    <p data-bind="visible:status==-3">已关闭</p>
+                                    <p data-bind="visible:status==0">待付款</p>
+                                    <p data-bind="visible:status==2">待评价</p>
+                                    <p data-bind="visible:status==3">待收货</p>
+                                </div>
+                                <div class="cpxqLineA">
+                                    <div class="cppictxt">
+                                        <span><img data-bind="attr:{'src':image}"></span>
+                                        <p data-bind="text:name">欧美新款欧美新款欧美新款欧美新款欧美新款欧美新款</p>
+                                    </div>
+                                    <div class="jgsl">￥ <d data-bind="text:price">58.00</d><br>x<em data-bind="text:number">1</em></div>
+                                </div>
+                                <div class="jzLine">
+                                    <div class="jzLineLeft"><span >共<d data-bind="text:number"></d>件</span> <span>实付：<em class="orange" data-bind="text:actualAmount">57.80</em></span></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==0"><a href="payment.html">付款</a></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==2"><a href="evaluate.html">评价</a></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==3"><a href="payment.html">收货</a></div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="tb_nr_a hide">
+                        <ul class="fkList" data-bind="foreach: data.list()">
+                            <li data-bind="attr:{'data-id':orderNum},if:status==2,visible:status==2">
+                                <div class="timeLine">
+                                    <span data-bind="text:createTime">2017-05-10 09：18：23</span>
+                                    <p data-bind="visible:status==-3">已关闭</p>
+                                    <p data-bind="visible:status==0">待付款</p>
+                                    <p data-bind="visible:status==2">待评价</p>
+                                    <p data-bind="visible:status==3">待收货</p>
+                                </div>
+                                <div class="cpxqLineA">
+                                    <div class="cppictxt">
+                                        <span><img data-bind="attr:{'src':image}"></span>
+                                        <p data-bind="text:name">欧美新款欧美新款欧美新款欧美新款欧美新款欧美新款</p>
+                                    </div>
+                                    <div class="jgsl">￥ <d data-bind="text:price">58.00</d><br>x<em data-bind="text:number">1</em></div>
+                                </div>
+                                <div class="jzLine">
+                                    <div class="jzLineLeft"><span >共<d data-bind="text:number"></d>件</span> <span>实付：<em class="orange" data-bind="text:actualAmount">57.80</em></span></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==0"><a href="payment.html">付款</a></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==2"><a href="evaluate.html">评价</a></div>
+                                    <div class="jzLineBnt" data-bind="visible:status==3"><a href="#">收货</a></div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab">
+            <div class="t-line">
+                <a href="index.html" class="aui-tab-item ">
+                    <span class="mui-icon  mui-icon-home"></span>
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a href="spList.html" class="aui-tab-item" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                    <span class="mui-tab-label">购物</span>
+                </a>
+                <a class="aui-tab-item mui-active" href="me.html">
+                    <span class="mui-icon iconHover mui-icon-extra mui-icon-extra-people"></span>
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+<script src="js/mui.min.js"></script>
+<script>
+    window.$ctx = "http://rapapi.org/mockjsdata/22525";
+</script>
+<script src="/web/trd/requirejs/require.js"></script>
+<script src="/web/js/require.config.js"></script>
+<script type="text/javascript" charset="utf-8">
+    require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
+    ], function($, ko,dialogmin,ajaxCom) {
+        var listUrl  =  '/goodsAPI/getOrderList';
+        var viewModel = {
+            data : {
+                list : ko.observableArray([]),
+                attrs:ko.observable({}),
+                firstClass:ko.observable(""),
+                secondClass:ko.observable(""),
+            },
+
+        };
+
+        viewModel.getbanner = function(){
+            var queryData = {
+                pageNum:1,
+                pageSize:10,
+                status:-10,
+                userId:viewModel.userId
+            };
+            ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+                viewModel.data.list(res.list);
+                $(".fkList li").css("display","block");
+            },function(error){
+
+                dialogmin("网络错误");
+            })
+        };
+
+        viewModel.load=function(){
+            viewModel.getbanner();
+            $(function(){
+                var $div_li =$(".tuxx span");
+                $div_li.click(function(){
+                    $(this).addClass("dq_hover")            //当前<li>元素高亮
+                            .siblings().removeClass("dq_hover");  //去掉其他同辈<li>元素的高亮
+                    var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
+                    $("div.tb_nr_A > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div
+                            .eq(index).show()   //显示 <li>元素对应的<div>元素
+                            .siblings().hide(); //隐藏其他几个同辈的<div>元素
+                }).hover(function(){
+                    $(this).addClass("hover");
+                },function(){
+                    $(this).removeClass("hover");
+                });
+                var tbWidth = $(".xxsj").width();
+                $("#tb_tub2").width(tbWidth);
+                $("#tb_tubpie").width(tbWidth);
+            })
+        }
+
+        viewModel.load();
+        ko.applyBindings(viewModel);
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        };
+
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>服装类</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="content bgfff">
+    	<div class="nr_tjhd_con">
+        	<h1 class="tuxx">
+                	<span class="dq_hover">未使用</span>
+                    <span>已过期</span>
+                    <span>已使用</span>
+                </h1>
+                <div class="tb_nr_A">
+                	<div class="tb_nr_a">
+                        <ul class="djqList">
+                            <li class="wsy"><a href="couponDetails.html">¥ <em>10</em> 元</a></li>
+                            <li class="wsy">¥ <em>3</em> 元</li>
+                        </ul>
+                    </div>
+                    <div class="tb_nr_a hide">
+                    	<ul class="djqList">
+                            <li>¥ <em>3</em> 元</li>
+                        </ul>
+                    </div>
+                    <div class="tb_nr_a hide">
+                    	<ul class="djqList">
+                            <li>¥ <em>3</em> 元</li>
+                            <li>¥ <em>3</em> 元</li>
+                            <li>¥ <em>3</em> 元</li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    </div>
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script>
+$(function(){
+	    var $div_li =$(".tuxx span");
+	    $div_li.click(function(){
+			$(this).addClass("dq_hover")            //当前<li>元素高亮
+				   .siblings().removeClass("dq_hover");  //去掉其他同辈<li>元素的高亮
+            var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
+			$("div.tb_nr_A > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
+					.eq(index).show()   //显示 <li>元素对应的<div>元素
+					.siblings().hide(); //隐藏其他几个同辈的<div>元素
+		}).hover(function(){
+			$(this).addClass("hover");
+		},function(){
+			$(this).removeClass("hover");
+		});
+		var tbWidth = $(".xxsj").width();
+		$("#tb_tub2").width(tbWidth);
+		$("#tb_tubpie").width(tbWidth);
+})
+</script>
+</body>
+</html>

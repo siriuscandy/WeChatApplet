@@ -1,0 +1,9 @@
+{
+  "window":{
+    "navigationBarBackgroundColor": "#288ed1",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "天下互联",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light"
+  }
+}

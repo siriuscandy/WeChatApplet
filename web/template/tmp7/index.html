@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>家具电商</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="content">
+    	<div class="adLine">
+            <div class="swiper-container" id="swiper-container">
+                <div class="swiper-wrapper" data-bind="foreach: data.banner()">
+                    <div class="swiper-slide"  data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
+                        <img  data-bind="attr:{'src':images}"/>
+                    </div>
+
+                </div>
+                <div class="swiper-pagination pagination1"></div>
+            </div>
+        </div>
+        <div class="aui-list t-line">
+            <ul class="mui-table-view mui-grid-view"  data-bind="foreach: data.list()">
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
+                    <a href="#">
+                        <img class="mui-media-object" data-bind="attr:{'src':images}">
+                        <div class="mui-media-body ljxqBnt" >了解详细</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="aboutUsLine">
+        	<div class="aboutUsCon">
+            	<h1 class="abusTitle">
+                	<span>About us</span><br>
+                    关于我们
+                </h1>
+                <div class="abusCon">
+                	宜家家居是来自瑞典的全球知名家具和家居零售商,互为和谐的产品系列在功能和风格上可谓种类繁多。
+                </div>
+            </div>
+        </div>
+        <!--产品列表-->
+        <div class="aui-list t-line">
+            <h2 class="titleLine"><span>来自IKEA FURNITURE MALL</span>产品列表</h2>
+            <ul class="mui-table-view mui-grid-view cpLine" data-bind="foreach: data.list3()">
+                <li class="mui-table-view-cell mui-media mui-col-xs-6" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
+                    <a href="page.html">
+                        <img class="mui-media-object" data-bind="attr:{'src':images}">
+                        <div class="cpxq">
+                            <div class="mui-media-body" style="text-align: left" data-bind="text:name"></div>
+                            <div class="mui-media-body jgPice">￥ <d data-bind="text:price"></d></div>
+                        </div>
+                    </a>
+                </li>
+
+             </ul>
+        </div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab">
+            <div class="t-line">
+                <a href="index.html" class="aui-tab-item mui-active">
+                    <span class="mui-icon iconHover mui-icon-home"></span>
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a href="../product/spList.html?tmp=7" class="aui-tab-item" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                    <span class="mui-tab-label">品牌</span>
+                </a>
+                <a class="aui-tab-item" href="#">
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+                    <span class="mui-tab-label">购物车</span>
+                </a>
+                <a class="aui-tab-item" href="../product/me.html?tmp=7">
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </div>
+        </nav>
+
+    </div>
+<script>
+    window.$ctx = "http://rapapi.org/mockjsdata/22525";
+</script>
+<script src="/web/trd/requirejs/require.js"></script>
+<script src="/web/js/require.config.js"></script>
+<script src="js/index.js"></script>
+<script src="js/mui.min.js"></script>
+
+</body>
+</html>

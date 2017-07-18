@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>名牌奢侈品代购</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="content">
+        <div class="lineConD">
+        	<h2 class="lineTitle">列表</h2>
+            <ul class="mui-table-view mui-grid-view lineConB" data-bind="foreach: data.content">
+            	<li data-bind="click:function(){$parent.godetail(did)}" class="mui-table-view-cell mui-media mui-col-xs-6">
+                	<a href="#">
+                    	<img class="mui-media-object" data-bind="attr:{'src':fpic}">
+                        <div class="mui-media-body"  data-bind="text:dname"></div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab footerMeun">
+            <div class="t-line" data-bind="foreach:data.Footcon">
+                <a data-bind="attr:{'href':Url+'.html?uid='+$parent.userModuleId(),'data-id':did,'data-url':Url},if($index()==1),visible($index()==1)" class="aui-tab-item mui-active">
+                    <span class="" data-bind="attr:{'class':'mui-icon iconHover img'+did}"><img data-bind="attr:{'src':fpic}"/></span>
+                    <span data-bind="attr:{'class':'mui-tab-label dname'+did},text:dname" class=""></span>
+                </a>
+                <a data-bind="attr:{'href':Url+'.html?uid='+$parent.userModuleId(),'data-id':did,'data-url':Url},if($index()!=1),visible($index()!=1)" class="aui-tab-item" >
+                    <span class="" data-bind="attr:{'class':'mui-icon mui-icon-extra img'+did}"><img data-bind="attr:{'src':fpic2}"/></span>
+                    <span data-bind="attr:{'class':'mui-tab-label dname'+did},text:dname" class=""></span>
+
+                </a>
+            </div>
+        </nav>
+    </div>
+<script src="js/mui.min.js"></script>
+    <script>
+        window.$ctx = "/WeChatApplet";
+    </script>
+    <script src="/WeChatApplet/web/trd/requirejs/require.js"></script>
+    <script src="/WeChatApplet/web/js/require.config.js"></script>
+    <script>
+
+        require([ 'jquery', 'knockout','dialogmin','ajaxCom','dropload'
+        ], function($, ko,dialogmin,ajaxCom,bootstrap,uui) {
+            var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+            var UpdataUrl = '/userModule/updateUserModule'; //修改模板信息
+            var viewModel = {
+                data : {
+                    content : ko.observableArray([]),
+                    totalPages : ko.observable(),
+                    number : ko.observable(),
+                    totalElements : ko.observable(),
+                    Footcon : ko.observableArray([]),
+                },
+                searchText : ko.observable(),
+                setData : function(res) {
+                    this.data.content(res);
+                    this.data.totalPages(res.pages);
+                    this.data.number(res.pageNum);
+                    this.data.totalElements(res.total);
+                },
+                setDataFoot : function(res) {
+                    this.data.Footcon(res);
+                },
+                userModuleId:ko.observable()
+            };
+            viewModel.userModuleId(GetQueryString("uid"));
+            viewModel.getUserIdload = function(){
+
+                $.ajax({
+                    type : 'get',
+                    dataType : 'json',
+                    url :$ctx+ GetUrl+'?userModuleId='+GetQueryString("uid"),
+                    success : function(res) {
+                        if(res){
+                            viewModel.userId = res.data.list.userId;
+                            viewModel.applyName = res.data.list.applyName;
+                            viewModel.applyDescription = res.data.list.applyDescription;
+                            if(res.data.list.attrs ==null || res.data.list.attrs ==""){
+                                var  attrs = {"data":{"titimg":"img/H2.png","list1":[{"dname":"共赢","fpic":"img/ico01.png","did":"c01","detail":"联合小程序开发和应用企业，共同加入到组织中来"},{"dname":"支持","fpic":"img/ico02.png","did":"c02","detail":"为小程序开发和应用提供理论和技术支持"},{"dname":"品牌","fpic":"img/ico03.png","did":"c03","detail":"快速提高小程序公司的品牌信誉度以及品牌形象"},{"dname":"信任","fpic":"img/ico04.png","did":"c04","detail":"确保解决企业以及网民最大的担忧：信任"}],"list2":[{"dname":"优势","fpic":"img/b01.png","fpic2":"img/b02.png","did":"f01","Url":"index"},{"dname":"案例","fpic":"img/b03.png","fpic2":"img/b04.png","did":"f02","Url":"case"},{"dname":"新闻","fpic":"img/b05.png","fpic2":"img/b06.png","did":"f03","Url":"news"},{"dname":"联系我们","fpic":"img/b07.png","fpic2":"img/b08.png","did":"f04","Url":"contact"}]}}
+
+                                viewModel.setDataFoot(attrs.data.list2);
+                            }else{
+                                var attrs = JSON.parse(res.data.list.attrs);
+                                viewModel.setDataFoot(attrs.list2);
+                            }
+                            document.title = viewModel.applyName
+                            $("head").append("<meta content='"+viewModel.applyDescription+"' name='description'/>")
+                            $(".weixinLOGO").append("<img src='"+res.data.list.logo+"' >")
+                            droploadFun();
+
+                        }
+                    },
+                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                        //dialogmin("调用服务报错!!");
+                    }
+                });
+            };
+            viewModel.godetail = function(id){
+                window.location.href="../infoDetail/xq.html?did="+id;
+            }
+            var listUrl  =  '/api/showDetailList'
+            var ishasdata =false
+            viewModel.load = function(pageIndex,me){
+
+                var queryData = {
+                    pageSize: viewModel.pagesize||10,     //page size 每页显示条数
+                    pageNum: pageIndex,    //page num 当前页数
+                    zid: 0,   //page num 当前页数
+                    uid:viewModel.userId
+                };
+
+                ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+                    if(res.data.list.length<1 && ishasdata==false || GetQueryString("uid")=="0" ){
+                        res = {"data":{"total":9,"lastPage":1,"nextPage":1,"hasNextPage":true,"pages":2,"pageSize":10,"navigatePages":8,"list":[
+                            {
+                                dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                                fpic:"img/pic.jpg",
+                                did:"0",
+                                createtime:"2017-6-22"
+                            },
+                            {
+                                dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                                fpic:"img/pic.jpg",
+                                did:"0",
+                                createtime:"2017-6-22"
+                            },
+                            {
+                                dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                                fpic:"img/pic.jpg",
+                                did:"0",
+                                createtime:"2017-6-22"
+                            },
+                            {
+                                dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                                fpic:"img/pic.jpg",
+                                did:"0",
+                                createtime:"2017-6-22"
+                            }
+                        ],"hasPreviousPage":false,"navigatepageNums":[1,2],"size":10,"pageNum":1,"prePage":0,"endRow":10,"isLastPage":false,"startRow":1,"firstPage":1,"isFirstPage":true}}
+                        setTimeout(function(){
+                            me.resetload();
+                        },1000)
+                    }else if(res.data.list.length>1){
+                        ishasdata =true
+                        $(".newsLine .newsPic").find("img").attr('src',res.data.list[0].fpic)
+                        $(".newsLine .newTime").html("<em></em>"+res.data.list[0].createtime);
+                        setTimeout(function(){
+                            me.resetload();
+                        },1000)
+                    }else if(res.data.list.length<1 && ishasdata ==true) {
+                        me.lock();
+                        me.noData();
+                    }
+
+                    DataArray =  DataArray.concat(res.data.list)
+                    viewModel.setData(DataArray);
+
+                },function(error){
+
+                    dialogmin("网络错误");
+                })
+            }
+            viewModel.getUserIdload();
+
+            var droploadFun =function(){
+                // 页数
+                var page = 0;
+
+                // dropload
+                $('.content').dropload({
+                    scrollArea : $('.content'),
+                    loadDownFn : function(me){
+                        page++;
+                        // 拼接HTML
+                        var result = '';
+                        viewModel.load(page,me);
+
+                    }
+                });
+            }
+            viewModel.checknum = function(num){
+                if(num % 2 ===0){
+                    return 2
+                }else{
+                    return 1
+                }
+            }
+            ko.applyBindings(viewModel);
+
+            function GetQueryString(name)
+            {
+                var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if(r!=null)return  unescape(r[2]); return null;
+            };
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>天下新闻</title>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="weixinLOGO" style="display:none"></div>
+	<div class="content">
+    	<ul class="newsList" data-bind="foreach: data.content" >
+    		<li>
+           	    <div class="aui-he-con b-line" data-bind="if:$parent.checknum($index())==2">
+                    <a data-bind="attr:{href:'/WeChatApplet/web/template/infoDetail/xq.html?did='+did}">
+                        <h2 data-bind="text:dname">当地时间2017年3月28日，法国巴黎，亚裔群体在巴黎19区警察局外集会抗议。据悉，当地时间26日晚，一名旅法华侨在巴黎家中被法国便衣警察开枪射杀</h2>
+                        <div class="aui-h-cn">
+                           <span><img data-bind="attr:{'src':vxpicl}"></span>
+                            <span><img data-bind="attr:{'src':vxpicm}"></span>
+                            <span><img data-bind="attr:{'src':vxpivr}"></span>
+                        </div>
+                        <div class="aui-fix-zi" data-bind="text:createtime">818体育</div>
+                    </a>
+                </div>
+       		    <div class="" style="position:relative; width:100%" data-bind="if:$parent.checknum($index())==1">
+                    <a data-bind="attr:{href:'/WeChatApplet/web/template/infoDetail/xq.html?did='+did}" class="aui-content-fix">
+                        <div class="aui-i-title">
+                            <span><img data-bind="attr:{'src':fpic}"></span>
+                        </div>
+                        <div class="aui-f-title">
+                            <h2 data-bind="text:dname">钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍！</h2>
+                            <div class="aui-fix-zi" data-bind="text:createtime">818体育</div>
+                        </div>
+                    </a>
+                </div>
+        	</li>
+            
+        </ul>
+        
+        <div style="height:48px"></div>
+        <div class="tab-bar tab-bottom" style="background:#f5f5f5; position:fixed">
+            <a class="tab-button active tab-buttonN" href="javascript:;"><i class="tab-button-icon icon icon-home"></i><span class="tab-button-txt">要闻</span></a>
+            <a class="tab-button cached tab-buttonx" href="javascript:;"><i class="tab-button-icon icon icon-exhibition icon-exhibition-x"></i><span class="tab-button-txt">独家</span></a>
+        </div>
+    </div>
+</body>
+<script>
+window.$ctx = "/WeChatApplet";
+</script>
+<script src="/WeChatApplet/web/trd/requirejs/require.js"></script>
+<script src="/WeChatApplet/web/js/require.config.js"></script>
+<script>
+
+require([ 'jquery', 'knockout','dialogmin','ajaxCom','dropload'
+], function($, ko,dialogmin,ajaxCom,bootstrap,uui) {
+    var viewModel = {
+        data : {
+            content : ko.observableArray([]),
+            totalPages : ko.observable(),
+            number : ko.observable(),
+            totalElements : ko.observable()
+        },
+        searchText : ko.observable(),
+        setData : function(res) {
+            this.data.content(res);
+            this.data.totalPages(res.pages);
+            this.data.number(res.pageNum);
+            this.data.totalElements(res.total);
+        },
+      
+        
+    };
+   
+    var listUrl  =  '/api/showDetailListByZnameAndUid';
+    var Stopload =false;
+    var DataArray= new Array();
+   var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+    viewModel.load = function(){
+        
+        $.ajax({
+            type : 'get',
+            dataType : 'json',
+            url :$ctx+ GetUrl+'?userModuleId='+GetQueryString("uid"),
+            success : function(res) {
+                if(res){
+                   viewModel.userId = res.data.list.userId;
+                   viewModel.applyName = res.data.list.applyName;
+                   viewModel.applyDescription = res.data.list.applyDescription;
+                   document.title = viewModel.applyName
+                   $("head").append("<meta content='"+viewModel.applyDescription+"' name='description'/>")
+                   $(".weixinLOGO").append("<img src='"+res.data.list.logo+"' >")
+                   droploadFun();
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
+    };
+    viewModel.getiList = function(pageIndex){
+    	
+        var queryData = {
+            pageSize: viewModel.pagesize||10,     //page size 每页显示条数
+            pageNum: pageIndex,    //page num 当前页数
+            zname: "要闻",   //page num 当前页数
+            userid:viewModel.userId
+        };
+        
+        ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+                if(res.list.length<1 || GetQueryString("uid")=="0"){
+                    res = {"total":9,"lastPage":2,"nextPage":2,"hasNextPage":true,"pages":2,"pageSize":10,"navigatePages":8,"list":[
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22"
+                        },
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22"
+                        },
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22"
+                        },
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22"
+                        }
+                        ],"hasPreviousPage":false,"navigatepageNums":[1,2],"size":10,"pageNum":1,"prePage":0,"endRow":10,"isLastPage":false,"startRow":1,"firstPage":1,"isFirstPage":true}
+                      
+                }
+                   
+                    DataArray =  DataArray.concat(res.list)
+                    viewModel.setData(DataArray);
+                    
+                
+            },function(error){
+             Stopload =true
+                dialogmin("网络错误");
+        })
+    }
+    
+    //viewModel.data(res);
+    //viewModel.load(1);
+    viewModel.load(); 
+    var droploadFun = function(){
+        // 页数
+        var page = 0;
+
+        // dropload
+        $('.content').dropload({
+            scrollArea : window,
+            loadDownFn : function(me){
+                page++;
+                // 拼接HTML
+                var result = '';
+                 if(Stopload){ return false}
+                viewModel.getiList(page);
+                setTimeout(function(){
+                me.resetload();
+                    
+                },1000) 
+            }
+        });
+    };
+
+    viewModel.checknum = function(num){
+        if(num % 2 ===0){
+            return 2
+        }else{
+            return 1
+        }
+    }
+    ko.applyBindings(viewModel);
+    $(".tab-buttonx").click(function(){
+        window.location.href = "dj.html?uid="+GetQueryString("uid")
+    })
+    $(".tab-buttonN").click(function(){
+        window.location.href = "index.html?uid="+GetQueryString("uid")
+    })
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    };
+
+})
+</script>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>天下新闻</title>
+<link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+    <div class="weixinLOGO" style="display:none"></div>
+	<div class="content" style="position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;">
+    	<div class="newsLine">
+        	<span class="newsPic"><img src=""></span>
+            <div class="newTime"></div>
+        </div>
+        <div class="newsLineA">
+        	<h1 class="rmspTitle"><em></em>热门视频</h1>
+            <ul class="rmspLine" data-bind="foreach: data.content" >
+            	<li data-bind="click:function(){$parent.godetail(did)},if:$index()!=0">
+                	<a href="javascript:;" >
+                        <div  class="spPic"><img data-bind="attr:{'src':fpic}"></div>
+                        <h2 class="spTitle" data-bind="text:dname">中国公司晒美军基地高清卫星图：战机清晰可见</h2>
+                        <p class="spTime" data-bind="text:createtime"><em></em>2017-05-22</p>
+                    </a>
+                </li>
+               
+            </ul>
+           
+        </div>
+    </div>
+</body>
+<script>
+window.$ctx = "/WeChatApplet";
+</script>
+<script src="/WeChatApplet/web/trd/requirejs/require.js"></script>
+<script src="/WeChatApplet/web/js/require.config.js"></script>
+<script>
+
+require([ 'jquery', 'knockout','dialogmin','ajaxCom','dropload'
+], function($, ko,dialogmin,ajaxCom,dropload) {
+    var viewModel = {
+        data : {
+            content : ko.observableArray([]),
+            totalPages : ko.observable(),
+            number : ko.observable(),
+            totalElements : ko.observable()
+        },
+        searchText : ko.observable(),
+        setData : function(res) {
+            this.data.content(res);
+            this.data.totalPages(res.pages);
+            this.data.number(res.pageNum);
+            this.data.totalElements(res.total);
+        }
+        
+    };
+    var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+    viewModel.getUserIdload = function(){
+        
+        $.ajax({
+            type : 'get',
+            dataType : 'json',
+            url :$ctx+ GetUrl+'?userModuleId='+GetQueryString("uid"),
+            success : function(res) {
+                if(res){
+                   viewModel.userId = res.data.list.userId;
+                   viewModel.applyName = res.data.list.applyName;
+                   viewModel.applyDescription = res.data.list.applyDescription;
+                   document.title = viewModel.applyName
+                   $("head").append("<meta content='"+viewModel.applyDescription+"' name='description'/>")
+                   $(".weixinLOGO").append("<img src='"+res.data.list.logo+"' >")
+                   droploadFun();
+                   
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
+    };
+   viewModel.godetail = function(id){
+       window.location.href="../infoDetail/xq.html?did="+id;
+   }
+    var listUrl  =  '/api/showDetailList'
+    var DataArray= new Array();
+    var ishasdata =false
+    viewModel.load = function(pageIndex,me){
+    	
+        var queryData = {
+            pageSize: viewModel.pagesize||10,     //page size 每页显示条数
+            pageNum: pageIndex,    //page num 当前页数
+            zid: 0,   //page num 当前页数
+            uid:viewModel.userId
+        };
+        
+        ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+            if(res.data.list.length<1 && ishasdata==false || GetQueryString("uid")=="0" ){
+                    res = {"data":{"total":9,"lastPage":1,"nextPage":1,"hasNextPage":true,"pages":2,"pageSize":10,"navigatePages":8,"list":[
+                       {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22"
+                        },
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22"
+                        },
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22"
+                        },
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22"
+                        }
+                        ],"hasPreviousPage":false,"navigatepageNums":[1,2],"size":10,"pageNum":1,"prePage":0,"endRow":10,"isLastPage":false,"startRow":1,"firstPage":1,"isFirstPage":true}}
+                       setTimeout(function(){
+                            me.resetload();
+                        },1000) 
+                }else if(res.data.list.length>1){
+                    ishasdata =true
+                     $(".newsLine .newsPic").find("img").attr('src',res.data.list[0].fpic)
+                     $(".newsLine .newTime").html("<em></em>"+res.data.list[0].createtime);
+                     setTimeout(function(){
+                     me.resetload();
+                },1000) 
+                }else if(res.data.list.length<1 && ishasdata ==true) {
+                        me.lock();
+                        me.noData();
+                }
+               
+                DataArray =  DataArray.concat(res.data.list)
+                viewModel.setData(DataArray);
+                
+            },function(error){
+            
+                dialogmin("网络错误");
+        })
+    }
+    viewModel.getUserIdload();
+    
+  var droploadFun =function(){
+        // 页数
+        var page = 0;
+
+        // dropload
+        $('.content').dropload({
+            scrollArea : $('.content'),
+            loadDownFn : function(me){
+                page++;
+                // 拼接HTML
+                var result = '';
+                viewModel.load(page,me);
+                
+            }
+        });
+    }
+    viewModel.checknum = function(num){
+        if(num % 2 ===0){
+            return 2
+        }else{
+            return 1
+        }
+    }
+    ko.applyBindings(viewModel);
+         
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    };
+
+})
+</script>
+</html>

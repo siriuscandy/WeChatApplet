@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>服装类</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="content">
+    	<!--banner start-->
+		<div class="swiper-container" id="swiper-container">
+			<div class="swiper-wrapper" data-bind="foreach: data.banner()">
+				<div class="swiper-slide"  data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
+					<img  data-bind="attr:{'src':images}"/>
+				</div>
+
+			</div>
+			<div class="swiper-pagination pagination1"></div>
+		</div>
+
+    	<!--banner end-->
+        <div class="devider t-line"></div>
+        <div class="aui-nav">
+		<ul class="mui-table-view mui-grid-view mui-grid-9" data-bind="foreach: data.attrs().nav">
+			<li class="mui-table-view-cell mui-media mui-col-sm-3 " data-bind="attr:{'data-id':cateId},click:function(){$parent.goList(cateId,name)}">
+				<a href="#">
+					<span class="aui-cell-img"><img data-bind="attr:{'src':img}" alt=""></span>
+					<div class="mui-media-body" data-bind="text:name">优选</div>
+				</a>
+			</li>
+
+		</ul>
+	</div>
+    	<div class="devider t-line"></div>
+        <div class="aui-hot t-line">
+            <div>
+                <a href="#"><img src="img/pic.jpg" alt=""></a>
+            </div>
+            <h2>男神女神们读书忙 你还在继续做文盲？松茸部长</h2>
+        </div>
+        <div class="devider t-line"></div>
+        <!--潮流搭配-->
+		<div class="aui-list t-line">
+		<h2 data-bind="text:data.firstClass">潮流搭配</h2>
+		<ul class="mui-table-view mui-grid-view"   data-bind="foreach: data.banner()">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
+				<a href="#">
+					<img class="mui-media-object" data-bind="attr:{'src':images}">
+					<div class="mui-media-body" data-bind="text:name">入夏套装新品</div>
+				</a>
+			</li>
+        </ul>
+	</div>
+    	<div class="devider t-line"></div>
+        <!--推荐列表-->
+		<div class="aui-week t-line">
+            <h2 data-bind="text:data.secondClass">推荐列表</h2>
+            <ul class="mui-table-view mui-grid-view"  data-bind="foreach: data.banner()">
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
+                    <a href="productDetails.html">
+                        <img class="mui-media-object"  data-bind="attr:{'src':images}">
+                        <div class="mui-media-body" data-bind="text:name">入夏套装新品入夏套装新品</div>
+                    </a>
+                </li>
+
+             </ul>
+        </div>
+        <div class="devider t-line"></div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab">
+            <div class="t-line">
+                <a href="index.html" class="aui-tab-item mui-active">
+                    <span class="mui-icon iconHover mui-icon-home"></span>
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a href="../product/spList.html?tmp=6" class="aui-tab-item" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                    <span class="mui-tab-label">购物</span>
+                </a>
+                <a class="aui-tab-item" href="../product/me.html?tmp=6">
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+<script>
+	window.$ctx = "http://rapapi.org/mockjsdata/22525";
+</script>
+<script src="/web/trd/requirejs/require.js"></script>
+<script src="/web/js/require.config.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>

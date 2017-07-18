@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>天下新闻</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/WeChatApplet/web/css/main.css">
+
+</head>
+
+<body>
+	<div class="content">
+    	<div class="newsLine">
+        	<span class="newsPic"><img src="img/pic1.jpg"></span>
+            <div class="newTime"><em></em>2017-05-22</div>
+        </div>
+        <div class="newsLineA">
+        	<h1 class="rmspTitle"><em></em>热门视频</h1>
+            <ul class="rmspLine" data-bind="foreach: data.content" >
+            	<li data-bind="click:function(){$parent.godetail(did)}">
+                	<a href="javascript:;" >
+                        <div  class="spPic"><img data-bind="attr:{'src':fpic}"></div>
+                        <h2 class="spTitle" data-bind="text:dname">中国公司晒美军基地高清卫星图：战机清晰可见</h2>
+                        <p class="spTime" data-bind="text:createtime"><em></em>2017-05-22</p>
+                    </a>
+                </li>
+               
+            </ul>
+
+        </div>
+    </div>
+</body>
+<script>
+window.$ctx = "/WeChatApplet";
+</script>
+<script src="/WeChatApplet/web/trd/requirejs/require.js"></script>
+<script src="/WeChatApplet/web/js/require.config.js"></script>
+<script>
+
+require([ 'jquery', 'knockout','dialogmin','ajaxCom','bootstrap','uui'
+], function($, ko,dialogmin,ajaxCom,bootstrap,uui) {
+    var viewModel = {
+        data : {
+            content : ko.observableArray([]),
+            totalPages : ko.observable(),
+            number : ko.observable(),
+            totalElements : ko.observable()
+        },
+        searchText : ko.observable(),
+        setData : function(res) {
+            this.data.content(res.list);
+            this.data.totalPages(res.pages);
+            this.data.number(res.pageNum);
+            this.data.totalElements(res.total);
+        }
+        
+    };
+   viewModel.godetail = function(id){
+       window.location.href="../infoDetail/xq.html?did="+id;
+   }
+    var listUrl  =  '/api/showDetailList'
+    viewModel.load = function(pageIndex){
+    	
+        var queryData = {
+            pageSize: viewModel.pagesize||10,     //page size 每页显示条数
+            pageNum: pageIndex,    //page num 当前页数
+            zid: 0,   //page num 当前页数
+            uid:GetQueryString("uid")
+        };
+        
+
+        var    res = {"data":{"total":9,"lastPage":1,"nextPage":1,"hasNextPage":true,"pages":2,"pageSize":10,"navigatePages":8,"list":[
+                {
+                    dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                    fpic:"img/pic.jpg",
+                    did:"0",
+                    createtime:"2017-6-22"
+                },
+                {
+                    dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                    fpic:"img/pic.jpg",
+                    did:"0",
+                    createtime:"2017-6-22"
+                },
+                {
+                    dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                    fpic:"img/pic.jpg",
+                    did:"0",
+                    createtime:"2017-6-22"
+                },
+                {
+                    dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                    fpic:"img/pic.jpg",
+                    did:"0",
+                    createtime:"2017-6-22"
+                }
+                ],"hasPreviousPage":false,"navigatepageNums":[1,2],"size":10,"pageNum":1,"prePage":0,"endRow":10,"isLastPage":false,"startRow":1,"firstPage":1,"isFirstPage":true}}
+
+
+
+
+            viewModel.setData(res.data);
+
+
+    }
+    
+    //viewModel.data(res);
+    viewModel.load(1);
+
+    ko.applyBindings(viewModel);
+         
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    };
+
+})
+</script>
+</html>

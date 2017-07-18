@@ -1,0 +1,49 @@
+<div class="xxbjCon">
+        	<div class="jbLine">
+            	<dl class="jbxx">
+                	<dt><em></em> 基本信息</dt>
+                    <dd>
+                    	<span class="jbxxTit">客户姓名：</span>
+                        <span><input type="text" class="srkA" placeholder="" data-bind="value:data().customername"></span>
+                        <span><em>*</em> 请填写用户名称</span>
+                    </dd>
+                    <dd>
+                    	<span class="jbxxTit">联系方式：</span>
+                        <span><input type="text" class="srkA" placeholder="" data-bind="value:data().telephone" maxlength="11"></span>
+                        <span><em>*</em> 请填写联系方式</span>
+                    </dd>
+                    <dd>
+                    	<span class="jbxxTit">合同编号：</span>
+                        <span><input type="text" class="srkA" placeholder="" data-bind="value:data().orderid"></span>
+                        <span><em>*</em> 请填写合同编号</span>
+                    </dd>
+                    <dd>
+                    	<span class="jbxxTit">合同年限：</span>
+                        <span><input type="text" class="srkA w64" placeholder="" data-bind="value:data().num"></span>
+                        <span>年</span>
+                    </dd>
+                </dl>
+                <dl class="jbxx mt32">
+                	<dt><em></em> 开通管理</dt>
+                    <dd>
+                    	<span class="jbxxTit">项目名称：</span>
+                        <span><input type="text" class="srkA" placeholder="" data-bind="value:data().keyword"></span>
+                        <span><em>*</em> 请填写项目名称</span>
+                    </dd>
+                    <dd>
+                    	<span class="jbxxTit">后台账号：</span>
+                        <span><input type="text" class="srkA" placeholder="" data-bind="value:data().username"></span>
+                        <span><em>*</em> 请填写后台账号</span>
+                    </dd>
+                    <dd>
+                    	<span class="jbxxTit">后台密码：</span>
+                        <span><input type="text" class="srkA" placeholder="" data-bind="value:data().password"></span>
+                        <span><em>*</em> 请填写后台密码</span>
+                    </dd>
+                </dl>
+            </div>
+            <div class="bntLine">
+            	<span data-bind="click:submit">确定</span>
+                <span class="backBntA" data-bind="click:goback">返回</span>
+            </div>
+        </div>

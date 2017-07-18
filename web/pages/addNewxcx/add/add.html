@@ -1,0 +1,34 @@
+
+    	<div class="flCon">
+        	<ul class="flLine">
+            	<li data-id="0"><a href="javascript:;" >全部</a></li>
+                <li data-id="1"><a href="javascript:;" >资讯</a></li>
+                <li data-id="2"><a href="javascript:;" >电商</a></li>
+                
+            </ul>
+        </div>
+    	<ul class="xcxLista" id="widget-box" data-bind="foreach: data.content">
+            <li>
+            	<div class="pic_zs">
+                	<!--<a class="brand_name" href="#"><img data-bind="attr:{'src':logo}"></a>-->
+                    <a class="brand_name" href="#"><img src="/WeChatApplet/web/img/pic.jpg"></a>
+                    <div class="bghs"></div>
+                    <div class="brand_detail">
+                    	<span class="ewmLine" >
+                            <!--<img data-bind="attr:{'src':filePath}">-->
+                        
+                        </span>
+                        <div class="bntList">
+                        	<span class="ylBnt" data-bind="click:function(){$parent.preview(id)}">预 览</span>
+                            <span class="syBnt" data-bind="click:function(){$parent.useModule(id)}">开通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tt_all">
+                	<span class="x_hover" data-bind="text:moduleName">杂志封面设计</span>
+                </div>
+            </li>
+            
+        </ul>
+        <!-- 分页区域  -->
+        <div style="text-align: right" id='pagination' class='u-pagination'></div>

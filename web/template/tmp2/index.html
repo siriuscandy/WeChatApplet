@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>天下新闻</title>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="weixinLOGO" style="display:none"></div>
+	<div class="content">
+    	<div class="find_nav">
+            <div class="find_nav_left">
+                <div class="find_nav_list" id="pagenavi1">
+                    <ul data-bind="foreach: CateId">
+                        <li data-bind="css:{'active':$index()==0}"><a href="#"  data-bind="text:zname,attr:{'data-id':zid}">要闻</a></li>
+                        
+                    </ul>
+        
+                </div>
+            </div>
+        </div>
+    	<div id="slider1" class="swipe">
+          <ul class="box01_list" data-bind="foreach:ArtList">
+            <li class="li_list" data-bind="foreach:list">
+            	<div class="newsLineA" data-bind="if:$index() % 5===0,visible:$index() % 5===0">
+                	<a data-bind="attr:{'href':'../infoDetail/xq.html?did='+did}" >
+                        <h2 class="newsTitA" data-bind="text:dname">资管通道业务被全面封杀 股市楼市影响几何?</h2>
+                        <p class="newsTxtA" data-bind="html:content">提起杭州的知名企业家，大家脑海里首先浮现出的就是马云、宗庆后等一批浙商前辈。但江山代有才人出</p>
+                    </a>
+                </div>
+                <ul class="newsLineB" data-bind="visible:$index() % 5===1 || $index() % 5===2 || $index() % 5===3" >
+                    <li data-bind="if:$index() % 5===1,visible:$index() % 5===1">
+                        <a data-bind="attr:{'href':'../infoDetail/xq.html?did='+did}" class="aui-content-fix">
+                            <div class="aui-i-title">
+                                <span><img data-bind="attr:{'src':fpic}"></span>
+                            </div>
+                            <div class="aui-f-title">
+                                <h2 data-bind="text:dname">资管通道业务被全面封杀</h2>
+                                <div class="aui-fix-zi" data-bind="html:content">提起杭州的知名企业家，大家脑海里首先浮现出的就是马云</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li data-bind="if:$index() % 5===2,visible:$index() % 5===2">
+                        <a data-bind="attr:{'href':'../infoDetail/xq.html?did='+did}" class="aui-content-fix">
+                            <div class="aui-i-title">
+                                <span><img data-bind="attr:{'src':fpic}"></span>
+                            </div>
+                            <div class="aui-f-title">
+                                <h2 data-bind="text:dname">资管通道业务被全面封杀</h2>
+                                <div class="aui-fix-zi" data-bind="html:content">提起杭州的知名企业家，大家脑海里首先浮现出的就是马云</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li data-bind="if:$index() % 5===3,visible:$index() % 5===3">
+                        <a data-bind="attr:{'href':'../infoDetail/xq.html?did='+did}" class="aui-content-fix">
+                            <div class="aui-i-title">
+                                <span><img data-bind="attr:{'src':fpic}"></span>
+                            </div>
+                            <div class="aui-f-title">
+                                <h2 data-bind="text:dname">资管通道业务被全面封杀</h2>
+                                <div class="aui-fix-zi" data-bind="html:content">提起杭州的知名企业家，大家脑海里首先浮现出的就是马云</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="newsLineC" data-bind="if:$index() % 5===4,visible:$index() % 5===4">
+                	<a data-bind="attr:{'href':'../infoDetail/xq.html?did='+did}">
+                        <h2 data-bind="text:dname">中国向美国开放四千亿的市场，吃货们有福了，可澳大利亚人急了</h2>
+                        <div class="aui-h-cn">
+                            <span><img data-bind="attr:{'src':vxpicl}"></span>
+                            <span><img data-bind="attr:{'src':vxpicm}"></span>
+                            <span><img data-bind="attr:{'src':vxpivr}"></span>
+                        </div>
+                    </a>
+                </div>
+                
+            </li>
+           
+          </ul>
+        </div>
+    </div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/touchslider.js"></script>
+
+<script>
+window.$ctx = "/WeChatApplet";
+</script>
+<script src="/WeChatApplet/web/trd/requirejs/require.js"></script>
+<script src="/WeChatApplet/web/js/require.config.js"></script>
+<script>
+
+require([ 'jquery', 'knockout','dialogmin','ajaxCom','bootstrap','uui'
+], function($, ko,dialogmin,ajaxCom,bootstrap,uui) {
+    var getCateIdUrl = '/api/showZixunList';
+    var listUrl  =  '/api/showDetailList';
+    var viewModel = {
+        data : {
+            content : ko.observableArray([]),
+            totalPages : ko.observable(),
+            number : ko.observable(),
+            totalElements : ko.observable()
+        },
+        searchText : ko.observable(),
+        setData : function(res) {
+            this.data.content(res.list);
+            this.data.totalPages(res.pages);
+            this.data.number(res.pageNum);
+            this.data.totalElements(res.total);
+        },
+        CateId:ko.observable(),
+        ArtList:ko.observable([]),
+        loadnum:0,
+        isLoadbasic:false
+        
+    };
+    var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+    viewModel.getUserIdload = function(){
+        
+        $.ajax({
+            type : 'get',
+            dataType : 'json',
+            url :$ctx+ GetUrl+'?userModuleId='+GetQueryString("uid"),
+            success : function(res) {
+                if(res){
+                   viewModel.userId = res.data.list.userId;
+                   viewModel.applyName = res.data.list.applyName;
+                   viewModel.applyDescription = res.data.list.applyDescription;
+                   document.title = viewModel.applyName
+                   $("head").append("<meta content='"+viewModel.applyDescription+"' name='description'/>")
+                   $(".weixinLOGO").append("<img src='"+res.data.list.logo+"' >")
+                  
+                   viewModel.getCateId();
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
+    };
+   viewModel.getCateId =function(){
+        var queryData = {
+            pageSize: 10,     //page size 每页显示条数
+            pageNum:1,    //page num 当前页数
+            uid: viewModel.userId,
+           
+            
+        };
+       ajaxCom.Loadajax('GET',getCateIdUrl,queryData,function(res){
+           if(res.data.list.length<1 || GetQueryString("uid")=="0"){
+                    res = {"data":{"total":9,"lastPage":2,"nextPage":2,"hasNextPage":true,"pages":2,"pageSize":10,"navigatePages":8,"list":[
+                        {
+                            zname:"要闻",
+                            zid:"0",
+                            createtime:"2017-6-22"
+                        },
+                         {
+                            zname:"娱乐",
+                            zid:"0",
+                            createtime:"2017-6-22"
+                        },
+                         {
+                            zname:"科技",
+                            zid:"0",
+                            createtime:"2017-6-22"
+                        },
+                         {
+                            zname:"财经",
+                            zid:"0",
+                            createtime:"2017-6-22"
+                        },
+                         {
+                            zname:"体育",
+                            zid:"0",
+                            createtime:"2017-6-22"
+                        },
+                        ],"hasPreviousPage":false,"navigatepageNums":[1,2],"size":10,"pageNum":1,"prePage":0,"endRow":10,"isLastPage":false,"startRow":1,"firstPage":1,"isFirstPage":true}}
+                      
+                }
+            viewModel.CateId(res.data.list);
+            viewModel.arrayList = [];
+           setTimeout(function(){
+               $(".find_nav_list li").each(function(e){
+                   var zid = $(this).find("a").attr("data-id");
+                   viewModel.load(1,zid)
+               });
+           },500)
+           
+       })
+   }
+    
+    viewModel.load = function(pageIndex,Zid){
+
+        var queryData = {
+            pageSize: viewModel.pagesize||10,     //page size 每页显示条数
+            pageNum: pageIndex,    //page num 当前页数
+            zid: Zid,   //分类id
+            uid: viewModel.userId
+        };
+        
+        ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+            viewModel.loadnum =   viewModel.loadnum+1
+            if($(".find_nav_list li").length == viewModel.loadnum) {
+                viewModel.isLoadbasic =true;
+            }
+            if(res.data.list.length<1 || GetQueryString("uid")=="0"){
+                    res = {"data":{"total":9,"lastPage":1,"nextPage":1,"hasNextPage":true,"pages":2,"pageSize":10,"navigatePages":8,"list":[
+                       {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22",
+                            content:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍"
+                        },
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22",
+                            content:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍"
+
+                        },
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22",
+                            content:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍"
+                        },
+                        {
+                            dname:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            createtime:"2017-6-22",
+                            content:"钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍钓鱼岛南海还不够，日本又在台湾问题上挑衅，怎能容忍"
+                        }
+                        ],"hasPreviousPage":false,"navigatepageNums":[1,2],"size":10,"pageNum":1,"prePage":0,"endRow":10,"isLastPage":false,"startRow":1,"firstPage":1,"isFirstPage":true}}
+                       
+                }
+                    viewModel.arrayList.push(res.data)
+                    viewModel.ArtList(viewModel.arrayList)
+                    if(viewModel.isLoadbasic==true){
+                        setTimeout(function(){viewModel.basicFun();},300)
+                        
+                    }
+                
+            },function(error){
+            
+                dialogmin("网络错误");
+        })
+    }
+    viewModel.basicFun =function(){
+        $(".find_nav_list").css("left",0);
+
+        $(".find_nav_list li").each(function(){
+                $(".sideline").css({left:0});
+                $(".find_nav_list li").eq(0).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+        });
+        var nav_w=$(".find_nav_list li").first().width();
+        $(".sideline").width(nav_w);
+        
+        $(".find_nav_list li").on('click', function(){
+            
+            nav_w=$(this).width();
+            $(".sideline").stop(true);
+            $(".sideline").animate({left:$(this).position().left},300);
+            $(".sideline").animate({width:nav_w});
+            $(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+            var fn_w = ($(".find_nav").width() - nav_w) / 2;
+            var fnl_l;
+            var fnl_x = parseInt($(this).position().left);
+            if (fnl_x <= fn_w) {
+                fnl_l = 0;
+            } else if (fn_w - fnl_x <= flb_w - fl_w) {
+                fnl_l = flb_w - fl_w;
+            } else {
+                fnl_l = fn_w - fnl_x;
+            }
+            $(".find_nav_list").animate({
+                "left" : fnl_l
+            }, 300);
+            
+        });
+        var fl_w=$(".find_nav_list").width();
+        var flb_w=$(".find_nav_left").width();
+        $(".find_nav_list").on('touchstart', function (e) {
+            var touch1 = e.originalEvent.targetTouches[0];
+            x1 = touch1.pageX;
+            y1 = touch1.pageY;
+            ty_left = parseInt($(this).css("left"));
+        });
+        $(".find_nav_list").on('touchmove', function (e) {
+            var touch2 = e.originalEvent.targetTouches[0];
+            var x2 = touch2.pageX;
+            var y2 = touch2.pageY;
+            if(ty_left + x2 - x1>=0){
+                $(this).css("left", 0);
+            }else if(ty_left + x2 - x1<=flb_w-fl_w){
+                $(this).css("left", flb_w-fl_w);
+            }else{
+                $(this).css("left", ty_left + x2 - x1);
+            }
+            if(Math.abs(y2-y1)>0){
+                e.preventDefault();
+            }
+        });
+
+
+            var n=1;
+            var page='pagenavi'+n;
+            var mslide='slider'+n;
+            var mtitle='emtitle'+n;
+            arrdiv = 'arrdiv' + n;
+            var as=document.getElementById(page).getElementsByTagName('a');
+            var tt=new TouchSlider({id:mslide,'auto':'-1',fx:'ease-out',direction:'left',speed:600,timeout:5000,'before':function(index){
+                var as=document.getElementById(this.page).getElementsByTagName('a');
+                as[this.p].className='';
+                this.p=index;
+                
+                fnl_x =  parseInt($(".find_nav_list li").eq(this.p).position().left);
+                
+                nav_w=$(".find_nav_list li").eq(this.p).width();
+                $(".sideline").stop(true);
+                $(".sideline").animate({left:$(".find_nav_list li").eq(this.p).position().left},300);
+                $(".sideline").animate({width:nav_w},100);
+                $(".find_nav_list li").eq(this.p).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+                var fn_w = ($(".find_nav").width() - nav_w) / 2;
+                var fnl_l;
+                if (fnl_x <= fn_w) {
+                    fnl_l = 0;
+                } else if (fn_w - fnl_x <= flb_w - fl_w) {
+                    fnl_l = flb_w - fl_w;
+                } else {
+                    fnl_l = fn_w - fnl_x;
+                }
+                $(".find_nav_list").animate({
+                    "left" : fnl_l
+                }, 300);
+            }});
+            tt.page = page;
+            tt.p = 0;
+            //console.dir(tt); console.dir(tt.__proto__);
+
+            for(var i=0;i<as.length;i++){
+                (function(){
+                    var j=i;
+                    as[j].tt = tt;
+                    as[j].onclick=function(){
+                        this.tt.slide(j);
+                        return false;
+                    }
+                })();
+            }
+                     
+    }
+    //viewModel.data(res);
+    viewModel.getUserIdload();
+    
+    viewModel.checknum = function(num){
+        if(num % 2 ===0){
+            return 2
+        }else{
+            return 1
+        }
+    }
+    ko.applyBindings(viewModel);
+         
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    };
+
+})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>产品列表</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/styleLIST.css">
+</head>
+
+<body>
+	<div class="content">
+        <div class="gwcBnt"><div onclick="window.history.go(-1);" class="mui-icon mui-icon-back"></div><a href="#" class="bugIcon"><img src="img/icon1-5.png"></a></div>
+
+        <div class="find_nav">
+    <div class="find_nav_left">
+        <div class="find_nav_list" id="pagenavi1">
+            <ul>
+                <li><a href="#" class="active" data-bind="text:data.title()">鲜花订阅</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        <div id="slider1" class="swipe">
+              <ul class="box01_list">
+                <li class="li_list">
+                	<div class="mui-table-view mui-grid-view" data-bind="foreach: data.list()">
+                        <div class="mui-table-view-cell mui-media mui-col-xs-6" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
+                            <a >
+                                <img class="mui-media-object"data-bind="attr:{'src':images}">
+                                <div class="mui-media-body" data-bind="text:name">上门保洁-房间彻底清理</div>
+                                <div class="mui-media-body jgPice">¥<d data-bind="text:price"></d>/次</div>
+                            </a>
+                        </div>
+
+                     </div>
+                </li>
+
+              </ul>
+        
+            </div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab">
+            <div class="t-line">
+                <a data-bind="click:function(){goIndex()}" class="aui-tab-item">
+                    <span class="mui-icon iconHover mui-icon-home"></span>
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a data-bind="click:function(){goProList()}" class="aui-tab-item mui-active" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                    <span class="mui-tab-label">购物</span>
+                </a>
+                <a data-bind="click:function(){goME()}" class="aui-tab-item" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+<script>
+    window.$ctx = "http://rapapi.org/mockjsdata/22525";
+</script>
+<script src="/web/trd/requirejs/require.js"></script>
+<script src="/web/js/require.config.js"></script>
+<script type="text/javascript" charset="utf-8">
+    require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
+    ], function($, ko,dialogmin,ajaxCom) {
+        var listUrl  =  '/goodsAPI/goodsList';
+        var viewModel = {
+            data : {
+                list : ko.observableArray([]),
+                title:ko.observable(""),
+            },
+
+        };
+        viewModel.goIndex = function(){
+            window.location.href = "../tmp"+GetQueryString("tmp")+"/index.html";
+        };
+        viewModel.goProList = function(){
+            window.location.href = "spList.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goME = function(){
+            window.location.href = "me.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goDetail = function(id){
+            window.location.href = "../product/productDetails.html?goodsId="+id +"&tmp="+GetQueryString("tmp");
+        };
+        viewModel.goList = function(id){
+            window.location.href = "flList.html?tmp="+GetQueryString("tmp")+"&classId=" + id;
+        };
+        viewModel.getbanner = function(){
+            var queryData = {
+                pagesize: 4,     //page size 每页显示条数
+                pageNum: 0,    //page num 当前页数
+                classId: viewModel.cateId,   //page num 当前页数
+                userModuleId:viewModel.userModuleId
+            };
+            ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+                viewModel.data.list(res.list);
+                var swiper = new Swiper('#swiper-container', {
+                    autoplay:3000,
+                    pagination: '.pagination1',
+                    paginationClickable: true,
+                    mode: 'vertical'
+                });
+            },function(error){
+
+                dialogmin("网络错误");
+            })
+        };
+
+        viewModel.load=function(){
+            viewModel.cateId = GetQueryString("cateId");
+            viewModel.data.title(GetQueryString("catename"));
+            viewModel.getbanner();
+        }
+
+        viewModel.load();
+        ko.applyBindings(viewModel);
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        };
+
+    })
+</script>
+
+</body>
+</html>

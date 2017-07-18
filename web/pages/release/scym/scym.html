@@ -1,0 +1,53 @@
+<div class="header bjHeader">
+    <div class="top_logo"><a href="#/product/list/list"><em><img src="/WeChatApplet/web/img/icon2.png"></em><span>页面管理</span></a></div>
+    <div class="topRight mt32">
+        <ul class="topRBnt">
+            <!--<li class="green"><a href="#"><em class="bcBnt"></em>保存</a></li> -->
+            <li class="white"><a href="javascript:;" data-bind="click:goback"><em class="backBnt"></em>返回</a></li>
+           
+        </ul>
+    </div>
+</div>
+<div class="content content_help">
+    <div style="transform: scale(0.8);">
+        <div class="scLeftCon">
+            <div class="phone-component">
+                <div class="phoneCon">
+                    <div class="phoneConInn">
+                    <iframe src=""  frameborder="0" scrolling="yes" style="width:100%; height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scRightCon">
+            <h1>基本设置</h1>
+            <div class="publish-detail-item">
+                <div class="change-img-wrap cover-wrap">
+                    <img class="publish-app-cover img-responsive"  data-bind="attr:{src:data().logo}" >
+                    <p class="text up" >更换封面</p>
+                </div>
+                <div style="display:inline-block;position:relative;width:235px; float:right;">
+                    <label>*</label>
+                    <input class="publish-title-input" placeholder="我的应用" data-bind="value:data().applyName" type="text">
+                    <textarea class="publish-desc-input" placeholder="应用描述" data-bind="value:data().applyDescription" ></textarea>
+                </div>
+            </div>
+            <!--<div class="publish-detail-item">
+                <div class="publish-upload-logo cover-wrap">
+                    <img class="publish-app-logo" src="http://1251027630.cdn.myqcloud.com/1251027630/zhichi_frontend/static/invitation/images/logo.png">
+                    <p class="text">更换Logo</p>
+                </div>
+                <div style="display:inline-block; width:235px; vertical-align:top; color:#888; padding-top:40px;float:right;">
+                    <p style="font-size:13px;">Logo用于二维码及登录页面</p>
+                    <p style="font-size:12px; margin-top:5px;">建议图片尺寸 32*32</p>
+                </div>
+            </div>-->
+            <div style="color:#888;">
+                <div style="text-align:center; margin-top:20px;margin-bottom:15px;">
+                    <a class="publish-return-btn publish-btn" data-bind="click:goback">关闭</a>
+                    <span class="publish-sure-publish publish-btn"><a data-bind="click:submit" href="javascript:;">打包</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

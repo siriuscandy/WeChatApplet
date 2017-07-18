@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>名牌奢侈品代购</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="content">
+    	<div class="adLine"><img src="img/pic.png" ></div>
+        <div class="lineCon">
+        	<h1 class="titleCon"><span><img data-bind="attr:{'src':data.topImg()},click:function(){changeImg(data.topImg(),'titleCon')}"></span></h1>
+            <ul class="jsCon" data-bind="foreach:data.content">
+            	<li data-bind="attr:{'data-id':did}">
+                	<em data-bind="attr:{'class':'img'+did}"><img  data-bind="attr:{'src':fpic},click:function(){$parent.changeImg(fpic,'img'+did)}"></em>
+                    <span data-bind="attr:{'class':'dname'+did},text:dname,click:function(){$parent.changeText(dname,'dname'+did)}">共赢</span>
+                    <p data-bind="attr:{'class':'detail'+did},text:detail,click:function(){$parent.changeText(detail,'detail'+did)}">联合小程序开发和应用企业，共同加入到组织中来</p>
+                </li>
+                <!--<li>
+                	<em><img src="img/cio02.png"></em>
+                    <span>支持</span>
+                    <p>为小程序开发和应用提供理论和技术支持；</p>
+                </li>
+                <li>
+                	<em><img src="img/ico03.png"></em>
+                    <span>品牌</span>
+                    <p>快速提高小程序公司的品牌信誉度以及品牌形象</p>
+                </li>
+                <li class="lineR">
+                	<em><img src="img/ico04.png"></em>
+                    <span>信任</span>
+                    <p>确保解决企业以及网民最大的担忧：信任</p>
+                </li>-->
+            </ul>
+        </div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab footerMeun">
+            <div class="t-line" data-bind="foreach:data.Footcon">
+                <a data-bind="attr:{'href':Url+'.html?uid='+$parent.userModuleId(),'data-id':did,'data-url':Url},if($index()==0),visible($index()==0)" class="aui-tab-item mui-active">
+                    <span class="" data-bind="attr:{'class':'mui-icon iconHover img'+did}"><img data-bind="attr:{'src':fpic},click:function(){$parent.changeImg(fpic,'img'+did),Url}"/></span>
+                    <span data-bind="attr:{'class':'mui-tab-label dname'+did},text:dname,click:function(){$parent.changeText(dname,'dname'+did)}" class=""></span>
+                </a>
+                <a data-bind="attr:{'href':Url+'.html?uid='+$parent.userModuleId(),'data-id':did,'data-url':Url},if($index()!=0),visible($index()!=0)" class="aui-tab-item" >
+                    <span class="" data-bind="attr:{'class':'mui-icon mui-icon-extra img'+did}"><img data-bind="attr:{'src':fpic2},click:function(){$parent.changeImg(fpic,'img'+did,Url)}"/></span>
+                    <span data-bind="attr:{'class':'mui-tab-label dname'+did},text:dname,click:function(){$parent.changeText(dname,'dname'+did)}" class=""></span>
+
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div id="GoupdateModule" data-bind="click:GoupdateModule" style="position:absolute;z-index:0; height:1px;width:1px;"></div>
+<script src="js/mui.min.js"></script>
+<script>
+window.$ctx = "/WeChatApplet";
+</script>
+<script src="/WeChatApplet/web/trd/requirejs/require.js"></script>
+<script src="/WeChatApplet/web/js/require.config.js"></script>
+<script>
+
+require([ 'jquery', 'knockout','dialogmin','ajaxCom'
+], function($, ko,dialogmin,ajaxCom) {
+    var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+    var UpdataUrl = '/userModule/updateUserModule'; //修改模板信息
+    var viewModel = {
+        data : {
+            topImg:ko.observableArray(),
+            content : ko.observableArray([]),
+            Footcon : ko.observableArray([]),
+        },
+        searchText : ko.observable(),
+        setData : function(res) {
+            this.data.content(res);
+        },
+        setDataFoot : function(res) {
+            this.data.Footcon(res);
+        },
+        userModuleId:ko.observable()
+        
+    };
+    viewModel.userModuleId(GetQueryString("uid"));
+    viewModel.GoupdateModule =function(){
+        var  data = {
+                     "titimg":$(".titleCon").find("img").attr("src"),
+                     "list1":[],
+                     "list2":[]
+                    }
+        $(".jsCon").find("li").each(function(e){
+            var list1data = {
+                    "dname":$(this).find("span").html(),
+                    "fpic":$(this).find("img").attr("src"),
+                    "did":$(this).attr("data-id"),
+                    "detail":$(this).find("p").html(),
+                }
+            data.list1.push(list1data)
+        })
+        $(".t-line").find("a").each(function(e){
+            if($(this).css("display")!='none'){
+                var list1data = {
+                        "dname":$(this).find(".mui-tab-label").html(),
+                        "fpic":$(this).find("img").attr("src"),
+                        "fpic2":$(this).find("img").attr("src"),
+                        "did":$(this).attr("data-id"),
+                        "Url":$(this).attr("data-url")
+                    }
+                data.list2.push(list1data)
+            }
+            })
+       
+           
+            $.ajax({
+                type : 'POST',
+                dataType : 'json',
+                async : false,
+                // headers: {
+                //     'Content-Type': 'application/x-www-form-urlencoded'
+                // },
+                data:{
+                    userModuleId:GetQueryString("uid"),
+                    attrs:JSON.stringify(data)
+                },
+                // url :$ctx+ UpdataUrl+"?userModuleId="+GetQueryString("uid")+"&attrs="+JSON.stringify(data),
+                url :$ctx+ UpdataUrl,
+                success : function(res) {
+                    if(res){
+                        dialogmin("ok")
+                    }
+                },
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    //dialogmin("调用服务报错!!");
+                }
+            });
+    }
+    viewModel.changeImg =function(i,id,url){
+        if(GetQueryString("isedit")){
+            $(".picLine",parent.document).find("img").attr("src",i).attr("data-id",id);
+
+        }else{
+            window.location.href = url+'.html?uid='+viewModel.userModuleId()
+        }
+    }
+    viewModel.changeText =function(i,id){
+        if(GetQueryString("isedit")){
+            $(".xgtxt",parent.document).val(i).attr("data-id",id);
+            window.location.href = url+'.html?uid='+viewModel.userModuleId()
+        }else{
+
+        }
+    }
+    viewModel.getUserIdload = function(){
+        
+        $.ajax({
+            type : 'get',
+            dataType : 'json',
+            url :$ctx+ GetUrl+'?userModuleId='+GetQueryString("uid"),
+            success : function(res) {
+                if(res){
+                    viewModel.userId = res.data.list.userId;
+                    viewModel.applyName = res.data.list.applyName;
+                    viewModel.applyDescription = res.data.list.applyDescription;
+                    document.title = viewModel.applyName
+                    $("head").append("<meta content='"+viewModel.applyDescription+"' name='description'/>")
+                    $(".weixinLOGO").append("<img src='"+res.data.list.logo+"' >")
+                    if(res.data.list.attrs ==null || res.data.list.attrs ==""){
+                        var  attrs = {"data":{"titimg":"img/H2.png","list1":[{"dname":"共赢","fpic":"img/ico01.png","did":"c01","detail":"联合小程序开发和应用企业，共同加入到组织中来"},{"dname":"支持","fpic":"img/ico02.png","did":"c02","detail":"为小程序开发和应用提供理论和技术支持"},{"dname":"品牌","fpic":"img/ico03.png","did":"c03","detail":"快速提高小程序公司的品牌信誉度以及品牌形象"},{"dname":"信任","fpic":"img/ico04.png","did":"c04","detail":"确保解决企业以及网民最大的担忧：信任"}],"list2":[{"dname":"优势","fpic":"img/b01.png","fpic2":"img/b02.png","did":"f01","Url":"index"},{"dname":"案例","fpic":"img/b03.png","fpic2":"img/b04.png","did":"f02","Url":"case"},{"dname":"新闻","fpic":"img/b05.png","fpic2":"img/b06.png","did":"f03","Url":"news"},{"dname":"联系我们","fpic":"img/b07.png","fpic2":"img/b08.png","did":"f04","Url":"contact"}]}}
+                        
+                
+                    viewModel.data.topImg(attrs.data.titimg)
+                    viewModel.setData(attrs.data.list1);
+                    viewModel.setDataFoot(attrs.data.list2);
+                    }else{
+                    var attrs = JSON.parse(res.data.list.attrs);
+                        viewModel.data.topImg(attrs.titimg)
+                        viewModel.setData(attrs.list1);
+                        viewModel.setDataFoot(attrs.list2);
+                    }
+                  
+                   
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
+    };
+   viewModel.godetail = function(id){
+       window.location.href="../infoDetail/xq.html?did="+id;
+   }
+   
+    viewModel.getUserIdload();
+
+    viewModel.checknum = function(num){
+        if(num % 2 ===0){
+            return 2
+        }else{
+            return 1
+        }
+    }
+    ko.applyBindings(viewModel);
+         
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    };
+
+})
+</script>
+</body>
+</html>

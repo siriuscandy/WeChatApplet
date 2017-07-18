@@ -1,0 +1,102 @@
+<ul class="xcxList" id="widget-box">
+        	<li class="first_list">
+            	<a href="#/addNewxcx/add/add">
+                	<span><img src="/WeChatApplet/web/img/icon.jpg"></span>
+                    <p>创建新小程序</p>
+                </a>
+            </li>
+            <div data-bind="foreach: data.content" >
+            <li>
+            	<div class="pic_zs">
+                	<a class="brand_name" href="#"><img data-bind="attr:{'src':logo}"></a>
+                    <em class="yfb" data-bind="visible:status==1"></em>
+                    <em class="wfb" data-bind="visible:status==0"></em>
+                    <div class="bghs"></div>
+                    <div class="brand_detail">
+                    	<div class="xxList">
+                        	<span><a href="javascript:;" data-bind="click:function(){$parent.preview(moduleId,id)}">预 览</a></span>
+                            <span><a href="http://v.tixaapp.com/WeChatApplet/">管 理</a></span>
+                            <span><a href="javascript:;" data-bind="click:function(){$parent.edit(moduleId,userId,id)}">编 辑</a></span>
+                        </div>
+                        <div id="list">
+                       	 <div class="cdList">
+                                <span class="fzxcx" data-bind="click:function(){$parent.goadduser(userId,id)}"></span>
+                                <div class="fzIconCon">
+                                    <em></em>
+                                    用户资料
+                                </div>
+                          </div>
+                          <div class="cdLista" data-bind="click:function(){$parent.del(id)}">
+                          	   <span class="scIcon"></span>
+                            	<div class="scIconCon" >
+                                    <em></em>
+                                    删除应用
+                                </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tt_all">
+                	<span class="x_hover" data-bind="text:applyName">杂志封面设计</span>
+                    <span class="time_cj" data-bind="text:createTime">2015-07-09</span>
+                </div>
+            </li>
+           </div>
+           
+            <!--<li>
+            	<div class="pic_zs">
+                	<a class="brand_name" href="#"><img src="img/pic.jpg"></a>
+                    <em class="wfb"></em>
+                    <div class="bghs"></div>
+                    <div class="brand_detail">
+                    	<div class="xxList">
+                        	<span><a href="#">预 览</a></span>
+                            <span><a href="#">管 理</a></span>
+                            <span><a href="#">编 辑</a></span>
+                        </div>
+                        <div id="list">
+                       	 <div class="cdList">
+                                <span class="fzxcx"></span>
+                                <div class="fzIconCon">
+                                    <em></em>
+                                    复制小程序
+                                </div>
+                          </div>
+                          <div class="cdLista">
+                          	   <span class="scIcon"></span>
+                            	<div class="scIconCon">
+                                    <em></em>
+                                    删除应用
+                                </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tt_all">
+                	<span class="x_hover">杂志封面设计</span>
+                    <span class="time_cj">2015-07-09</span>
+                </div>
+            </li>-->
+            
+</ul>
+    <!-- 分页区域  -->
+        <div style="text-align: right" id='pagination' class='u-pagination'></div>
+    <!--弹出框-->
+    <!--<div class="blackbg"></div>
+    <div class="tanchu">
+        <div class="tc_con">
+            <div class="gbCon">是否复制小程序？</div>
+            <span class="addsjdx"><a href="#">确定</a></span>
+            <span class="gbBnt">关 闭</span>
+        </div>
+    </div>
+    弹出框2
+    <div class="blackbgA"></div>
+    <div class="tanchuA">
+        <div class="tc_con">
+            <div class="gbCon">是否确认删除？</div>
+            <span class="addsjdx"><a href="#">确定</a></span>
+            <span class="gbBnt">关 闭</span>
+        </div>
+    </div>-->
+  

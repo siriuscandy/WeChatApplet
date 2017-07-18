@@ -1,0 +1,9 @@
+{
+  "window":{
+    "navigationBarBackgroundColor": "#1c9deb",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "天下新闻",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light"
+  }
+}

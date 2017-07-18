@@ -1,0 +1,130 @@
+@charset "utf-8";
+/* CSS Document */
+html {
+  -webkit-touch-callout: none;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+body {
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  -webkit-backface-visibility: hidden;
+  -webkit-user-drag: none;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+html,body{height:100%;}
+* {margin: 0;padding: 0;}
+a {text-decoration: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);color: #646464;}
+ul,li{padding:0; margin:0; display:block;}
+em, i {font-style: normal;}
+/******首页*****/
+.aui-he-con {padding: 10px 10px 5px 10px;}
+.b-line {position: relative;}
+.aui-he-con h2 {color: #333;font-size: 15px;font-weight: normal;width: 100%;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;padding-bottom: 7px;}
+.aui-h-cn {position: relative;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;}
+.aui-h-cn span {width: 33.333333%;height: 86px;padding-right: 5px;}
+.aui-h-cn span img {width: 100%;height: 100%;display: block;border: none;}
+.aui-h-cn span:nth-child(3) {padding-right: 0;}
+.aui-fix-zi {padding-top: 4px;font-size: 12px;color: #ccc;}
+.aui-content-fix {
+  margin: 15px 10px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding-bottom: 4px;
+}
+.aui-f-title {display: block;flex: 1;position: relative;}
+.aui-f-title h2 {
+    height: 62px;
+    color: #222222;
+    font-size: 15px;
+    font-weight: normal;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.aui-fix-zi {padding-top: 4px;font-size: 12px;color: #888;}
+.aui-i-title {padding-right: 10px;}
+.aui-i-title img {width: 115px;height: 80px;display: block;}
+.newsList li{  border-top:1px solid #edeff3;}
+.newsList li:first-child{border-top:0;}
+.tab-button {-webkit-box-flex: 1;-webkit-flex: 1;flex: 1;display: block;max-width: 150px;height: 100%;white-space: nowrap;font-weight: 400;font-size: 11px;text-overflow: ellipsis;text-align: center;color: inherit;}
+.tab-bar {display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-direction: normal;-webkit-box-orient: horizontal;-webkit-flex-direction: horizontal;flex-direction: horizontal;-webkit-box-pack: center;-webkit-justify-content: center;justify-content: center;position: absolute;z-index: 3;width: 100%;height: 49px;padding-top: 4px;color: #929292;}
+.tab-bottom {bottom: 0;}
+.active.tab-button {color: #ff480a;}
+.icon {display: block;margin: 0 auto;width: 21px;height: 25px;background-position: center center;background-repeat: no-repeat;-webkit-background-size: 32px;background-size: 32px;margin-top:3px;}
+.icon-home {background-image: url(../img/icon1-1.png);}
+.tab-button .tab-button-icon {height: 25px;-webkit-background-size: 32px;background-size: 100%;}
+.active .icon-home {background-image: url(../img/icon1-1a.png);}
+.active.tab-button {color: #ff480a;}
+.tab-button .icon-exhibition-x {background-image: url(../img/icon1-2.png);background-size: 20px;width: 20px;}
+.active .icon-exhibition-x {background-image: url(../img/icon1-2a.png);}
+/******独家*****/
+.djCon{height:100%; width:100%; background:#ebebeb;}
+.djNewsList{width:100%; float:left; background:#ebebeb;}
+.djNewsList li{margin:15px 15px 7px 15px; background:#fff;}
+.djTitle{height:35px; text-align:center; font-size:16px; color:#888; line-height:35px; font-weight:normal; width:100%; float:left;}
+.djPic{width:100%; float:left;}
+.djPic img{width:100%;}
+.djTxt{ padding:5px 10px; display:block; font-size:14px; color:#333; line-height:25px; height:35px; overflow:hidden;}
+/******详情*****/
+.xqPage{padding:5%;}
+.xqTitle{font-size:18px; color:#000; font-weight:normal;}
+.xqCon{margin-top:20px; font-size:14px; line-height:25px; color:#333;}
+.xqCon img{width:100%; margin:15px 0;}
+
+.dialogmin {z-index:9999; position: fixed; width: 15%; top:30%; background: rgba(0,0,0,.5);
+    color: #fff; padding: 10px 5px; left:40%; text-align: center; border-radius: 10px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

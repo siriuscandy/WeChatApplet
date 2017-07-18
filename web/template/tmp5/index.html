@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>天下互联</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="content">
+    	<div class="adLine"><img data-bind="attr:{'src':data.topCom().topimg},click:function(){changeImg(data.topImg(),'topCon')}"></div>
+        <div class="jsCon">
+        	<h1 data-bind="attr:{'class':'tmp5_dname'},text:data.topCom().tmp5_dname,click:function(){$parent.changeText(dname,'tmp5_dname')}"></h1>
+            <p data-bind="attr:{'class':'tmp5_detail'},text:data.topCom().tmp5_detail,click:function(){$parent.changeText(detail,'tmp5_detail')}">
+
+            </p>
+        </div>
+        <ul class="xmList" data-bind="foreach:data.content">
+        	<li>
+            	<span><img src="img/icon.jpg"></span>
+                <div class="mui-media-body">天象客户端</div>
+            </li>
+            <!--<li>-->
+            	<!--<span style="margin-top:-20px;"><img src="img/icon1.jpg"></span>-->
+                <!--<div class="mui-media-body">商业电讯</div>-->
+            <!--</li>-->
+            <!--<li>-->
+            	<!--<span><img src="img/icon2.jpg"></span>-->
+                <!--<div class="mui-media-body">情景传播</div>-->
+            <!--</li>-->
+        </ul>
+        <div style="height:50px"></div>
+        <div class="tab-bar tab-bottom" style="background:#fff; position:fixed; border-top:1px solid #e8e8e8;">
+            <a class="tab-button active" href="inedx.html"><i class="tab-button-icon icon icon-home"></i><span class="tab-button-txt">首页</span></a>
+            <a class="tab-button cached" href="news.html"><i class="tab-button-icon icon icon-exhibition icon-exhibition-x"></i><span class="tab-button-txt">新闻</span></a>
+            <a class="tab-button cached" href="cpjs.html"><i class="tab-button-icon icon icon-exhibition cpjsIcon"></i><span class="tab-button-txt">产品介绍</span></a>
+            <a class="tab-button cached" href="lxwm.html"><i class="tab-button-icon icon icon-exhibition lxwmIcon"></i><span class="tab-button-txt">联系我们</span></a>
+        </div>
+    </div>
+    <script>
+        window.$ctx = "/WeChatApplet";
+    </script>
+    <script src="/WeChatApplet/web/trd/requirejs/require.js"></script>
+    <script src="/WeChatApplet/web/js/require.config.js"></script>
+    <script>
+
+        require([ 'jquery', 'knockout','dialogmin','ajaxCom'
+        ], function($, ko,dialogmin,ajaxCom) {
+            var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+            var UpdataUrl = '/userModule/updateUserModule'; //修改模板信息
+            var listUrl  =  '/api/showDetailListByZnameAndUid';
+
+            var viewModel = {
+                data : {
+                    topCom:ko.observable({}),
+                    content : ko.observableArray([]),
+                    Footcon : ko.observableArray([]),
+                },
+                setTopData : function(res) {
+                    this.data.topCom(res);
+                },
+                setData : function(res) {
+                    this.data.content(res);
+                },
+                setDataFoot : function(res) {
+                    this.data.Footcon(res);
+                },
+                userModuleId:ko.observable()
+
+            };
+            viewModel.userModuleId(GetQueryString("uid"));
+            viewModel.GoupdateModule =function(){
+                var  data = {
+                    "topimg":$(".adLine").find("img").attr("src"),
+                    "tmp5_dname":$(".tmp5_dname").html(),
+                    "tmp5_detail":$(".tmp5_detail").html()
+                }
+
+                $.ajax({
+                    type : 'POST',
+                    dataType : 'json',
+                    async : false,
+                    // headers: {
+                    //     'Content-Type': 'application/x-www-form-urlencoded'
+                    // },
+                    data:{
+                        userModuleId:GetQueryString("uid"),
+                        attrs:JSON.stringify(data)
+                    },
+                    // url :$ctx+ UpdataUrl+"?userModuleId="+GetQueryString("uid")+"&attrs="+JSON.stringify(data),
+                    url :$ctx+ UpdataUrl,
+                    success : function(res) {
+                        if(res){
+                            dialogmin("ok")
+                        }
+                    },
+                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                        //dialogmin("调用服务报错!!");
+                    }
+                });
+            }
+            viewModel.changeImg =function(i,id,url){
+                if(GetQueryString("isedit")){
+                    $(".adLine",parent.document).find("img").attr("src",i).attr("data-id",id);
+
+                }else{
+                    window.location.href = url+'.html?uid='+viewModel.userModuleId()
+                }
+            }
+            viewModel.changeText =function(i,id){
+                if(GetQueryString("isedit")){
+                    $(".xgtxt",parent.document).val(i).attr("data-id",id);
+                    window.location.href = url+'.html?uid='+viewModel.userModuleId()
+                }else{
+
+                }
+            }
+            viewModel.getUserIdload = function(){
+
+                $.ajax({
+                    type : 'get',
+                    dataType : 'json',
+                    url :$ctx+ GetUrl+'?userModuleId='+GetQueryString("uid"),
+                    success : function(res) {
+                        if(res){
+                            viewModel.userId = res.data.list.userId;
+                            viewModel.applyName = res.data.list.applyName;
+                            viewModel.applyDescription = res.data.list.applyDescription;
+                            document.title = viewModel.applyName;
+                            viewModel.getiList();
+
+                            $("head").append("<meta content='"+viewModel.applyDescription+"' name='description'/>")
+                            $(".weixinLOGO").append("<img src='"+res.data.list.logo+"' >")
+                           // if(res.data.list.attrs ==null || res.data.list.attrs ==""){
+                                var  attrs = {"data":{"topimg":"img/ad.jpg","tmp5_dname":"天下互联：“互联网+”时代 以不变应万变","tmp5_detail":"天下互联是领先的个性化、" +
+                                "智能化网络信息和网络广告服务商。CEO张向宁曾在2000年底成立了非常易公司(VeryE)。2004年3月，VeryE公司得到日本三井住友保险公司的风险投资，" +
+                                "重组为“天下互联”。2006年7月下旬，公司完成了由三井住友保险公司、JAIC（日本亚洲投资有限公司）和MIH（米拉德控股集团公司）联合提供的次轮融资，" +
+                                "进一步加速了公司的发展。商业电讯（prnews.cn）：于2004年5月推出。商业电讯是上市公司的财经资讯平台。商业电讯是促进投资者关系发展的一个重要财经平台。"
+                                }};
+
+                                viewModel.setTopData(attrs.data)
+//                            }else{
+//                                var attrs = JSON.parse(res.data.list.attrs);
+//                                viewModel.setTopData(attrs)
+//
+//                            }
+
+
+                        }
+                    },
+                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                        //dialogmin("调用服务报错!!");
+                    }
+                });
+            };
+            viewModel.getiList = function(pageIndex){
+
+                var queryData = {
+                    pageSize: viewModel.pagesize||3,     //page size 每页显示条数
+                    pageNum: pageIndex,    //page num 当前页数
+                    zname: "产品",   //page num 当前页数
+                    userid:viewModel.userId
+                };
+
+                ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+                    if(res.list.length<1 || GetQueryString("uid")=="0"){
+                        res = {"total":9,"lastPage":2,"nextPage":2,"hasNextPage":true,"pages":2,"pageSize":10,"navigatePages":8,"list":[
+                            {
+                                dname:"天象客户端",
+                                fpic:"img/icon.jpg",
+                                did:"0",
+                            },
+                            {
+                                dname:"天象客户端",
+                                fpic:"img/icon.jpg",
+                                did:"0",
+                            },
+                            {
+                                dname:"天象客户端",
+                                fpic:"img/icon.jpg",
+                                did:"0",
+                            }
+                        ],"hasPreviousPage":false,"navigatepageNums":[1,2],"size":10,"pageNum":1,"prePage":0,"endRow":10,"isLastPage":false,"startRow":1,"firstPage":1,"isFirstPage":true}
+
+                    }
+
+                    viewModel.setData(res.list);
+
+
+                },function(error){
+                    dialogmin("网络错误");
+                })
+            }
+            viewModel.godetail = function(id){
+                window.location.href="../infoDetail/xq.html?did="+id;
+            }
+
+            viewModel.getUserIdload();
+
+            viewModel.checknum = function(num){
+                if(num % 2 ===0){
+                    return 2
+                }else{
+                    return 1
+                }
+            }
+            ko.applyBindings(viewModel);
+
+            function GetQueryString(name)
+            {
+                var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if(r!=null)return  unescape(r[2]); return null;
+            };
+
+        })
+    </script>
+</body>
+</html>

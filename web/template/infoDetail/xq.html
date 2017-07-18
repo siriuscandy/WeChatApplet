@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>资讯详情</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="content">
+    	<div class="xqPage">
+        	<h1 class="xqTitle" data-bind="html:data().dname"></h1>
+            <div class="xqCon" data-bind="html:data().content">
+            	在国金策略团队组织的电话会议上，某大型券商机构金融董事总经理分析称，标准意义上的通道业务绝大部分投向非标，故限制之后对股债两市的影响是有限的；房地产、政府融资平台将融资困难，若未来模式降低银行存款规模，进而影响贷款规模，是否提高社会融资成本值得思考。<br>
+                在国金策略团队组织的电话会议上，某大型券商机构金融董事总经理分析称，标准意义上的通道业务绝大部分投向非标，故限制之后对股债两市的影响是有限的；房地产、政府融资平台将融资困难，若未来模式降低银行存款规模，进而影响贷款规模，是否提高社会融资成本值得思考。<br>
+                在国金策略团队组织的电话会议上，某大型券商机构金融董事总经理分析称，标准意义上的通道业务绝大部分投向非标，故限制之后对股债两市的影响是有限的；房地产、政府融资平台将融资困难，若未来模式降低银行存款规模，进而影响贷款规模，是否提高社会融资成本值得思考。<br>
+                
+            </div>
+            <img data-bind="attr:{'src':data().fpic}" />
+        </div>
+    </div>
+</body>
+<script>
+window.$ctx = "/WeChatApplet";
+</script>
+<script src="/WeChatApplet/web/trd/requirejs/require.js"></script>
+<script src="/WeChatApplet/web/js/require.config.js"></script>
+<script>
+
+require([ 'jquery', 'knockout','dialogmin','ajaxCom'
+], function($, ko,dialogmin,ajaxCom) {
+    var viewModel = {
+        data :  ko.observable({}),
+        
+    };
+    var listUrl = '/api/showDetail'
+    viewModel.load = function(id){
+    	
+        var queryData = {
+            did: id,     
+           
+            
+        };
+        
+        ajaxCom.Loadajax('post',listUrl+"?did="+id,queryData,function(res){
+                if(res.data==null){
+                    var res = 
+                    {data:{
+                        fpic:"img/pic.jpg",
+                        dname:"中国公司晒美军基地高清卫星图：战机清晰可见",
+                        createtime:"2017-05-22",
+                        content:"在国金策略团队组织的电话会议上，某大型券商机构金融董事总经理分析称，标准意义上的通道业务绝大部分投向非标，故限制之后对股债两市的影响是有限的；房地产、政府融资平台将融资困难，若未来模式降低银行存款规模，进而影响贷款规模，是否提高社会融资成本值得思考。</br>在国金策略团队组织的电话会议上，某大型券商机构金融董事总经理分析称，标准意义上的通道业务绝大部分投向非标，故限制之后对股债两市的影响是有限的；房地产、政府融资平台将融资困难，若未来模式降低银行存款规模，进而影响贷款规模，是否提高社会融资成本值得思考。</br>在国金策略团队组织的电话会议上，某大型券商机构金融董事总经理分析"
+                    }}
+                }
+                    viewModel.data(res.data);
+                    
+                
+            },function(error){
+            
+                dialogmin("网络错误");
+        })
+    }
+    // var res = 
+    //     {
+    //         fpic:"img/pic.jpg",
+    //         dname:"中国公司晒美军基地高清卫星图：战机清晰可见",
+    //         createtime:"2017-05-22",
+    //         content:"在国金策略团队组织的电话会议上，某大型券商机构金融董事总经理分析称，标准意义上的通道业务绝大部分投向非标，故限制之后对股债两市的影响是有限的；房地产、政府融资平台将融资困难，若未来模式降低银行存款规模，进而影响贷款规模，是否提高社会融资成本值得思考。</br>在国金策略团队组织的电话会议上，某大型券商机构金融董事总经理分析称，标准意义上的通道业务绝大部分投向非标，故限制之后对股债两市的影响是有限的；房地产、政府融资平台将融资困难，若未来模式降低银行存款规模，进而影响贷款规模，是否提高社会融资成本值得思考。</br>在国金策略团队组织的电话会议上，某大型券商机构金融董事总经理分析"
+    //     }
+        
+    
+    // viewModel.data(res)
+    
+    viewModel.load(GetQueryString("did"))
+    ko.applyBindings(viewModel);
+
+    
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    };
+
+})
+</script>
+</html>
