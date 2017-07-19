@@ -24,10 +24,10 @@
     	<!--banner end-->
         <div class="devider t-line"></div>
         <div class="aui-nav">
-		<ul class="mui-table-view mui-grid-view mui-grid-9" data-bind="foreach: data.attrs().nav">
-			<li class="mui-table-view-cell mui-media mui-col-sm-3 " data-bind="attr:{'data-id':cateId},click:function(){$parent.goList(cateId,name)}">
+		<ul class="mui-table-view mui-grid-view mui-grid-9" data-bind="foreach: data.attrs()">
+			<li  class="mui-table-view-cell mui-media mui-col-sm-3 " data-bind="visible:$index()<4,if:$index()<4,attr:{'data-id':cateId},click:function(){$parent.goList(cateId,name)}">
 				<a href="#">
-					<span class="aui-cell-img"><img data-bind="attr:{'src':img}" alt=""></span>
+					<span class="aui-cell-img"><img data-bind="attr:{'src':images}" alt=""></span>
 					<div class="mui-media-body" data-bind="text:name">优选</div>
 				</a>
 			</li>
@@ -35,16 +35,16 @@
 		</ul>
 	</div>
     	<div class="devider t-line"></div>
-        <div class="aui-hot t-line">
+        <div class="aui-hot t-line" data-bind="attr:{'data-id':data.homenews().did}">
             <div>
-                <a href="#"><img src="img/pic.jpg" alt=""></a>
+                <a data-bind="attr:{href:'/WeChatApplet/web/template/infoDetail/xq.html?did='+data.homenews().did}"><img data-bind="attr:{'src':data.homenews().fpic}" alt=""></a>
             </div>
-            <h2>男神女神们读书忙 你还在继续做文盲？松茸部长</h2>
+            <h2 data-bind="text:data.homenews().dname">男神女神们读书忙 你还在继续做文盲？松茸部长</h2>
         </div>
         <div class="devider t-line"></div>
         <!--潮流搭配-->
 		<div class="aui-list t-line">
-		<h2 data-bind="text:data.firstClass">潮流搭配</h2>
+		<h2 data-bind="text:data.firstClass().name,attr:{'data-id':data.firstClass().cateId}">潮流搭配</h2>
 		<ul class="mui-table-view mui-grid-view"   data-bind="foreach: data.banner()">
 			<li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
 				<a href="#">
@@ -57,7 +57,7 @@
     	<div class="devider t-line"></div>
         <!--推荐列表-->
 		<div class="aui-week t-line">
-            <h2 data-bind="text:data.secondClass">推荐列表</h2>
+            <h2 data-bind="text:data.secondClass().name,attr:{'data-id':data.firstClass().cateId}">推荐列表</h2>
             <ul class="mui-table-view mui-grid-view"  data-bind="foreach: data.banner()">
                 <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
                     <a href="productDetails.html">
