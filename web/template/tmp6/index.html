@@ -27,8 +27,8 @@
 		<ul class="mui-table-view mui-grid-view mui-grid-9" data-bind="foreach: data.attrs()">
 			<li  class="mui-table-view-cell mui-media mui-col-sm-3 " data-bind="visible:$index()<4,if:$index()<4,attr:{'data-id':cateId},click:function(){$parent.goList(cateId,name)}">
 				<a href="#">
-					<span class="aui-cell-img"><img data-bind="attr:{'src':images}" alt=""></span>
-					<div class="mui-media-body" data-bind="text:name">优选</div>
+					<span class="aui-cell-img" data-bind="attr:{'class':'aui-cell-img images'+cateId}"><img data-bind="attr:{'src':images,click:function(){$parent.changeImg(images,'images'+cateId)}}" alt=""></span>
+					<div class="mui-media-body" data-bind="attr:{'class':'mui-media-body name'+cateId}" data-bind="text:name,click:function(){$parent.changeText(name,'name'+cateId)}">优选</div>
 				</a>
 			</li>
 

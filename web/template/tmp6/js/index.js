@@ -32,7 +32,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
     var queryData = {
       pageSize: 4,     //page size ÿҳ��ʾ����
       pageNum: 0,    //page num ��ǰҳ��
-      cateId: "banner",   //page num ��ǰҳ��
+      name: "banner",   //page num ��ǰҳ��
       userModuleId:viewModel.userModuleId
     };
     ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
@@ -108,6 +108,22 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
             },function(error){
               dialogmin("网络错误");
         })
+    };
+   viewModel.changeImg =function(i,id,url){
+        if(GetQueryString("isedit")){
+            $(".picLine",parent.document).find("img").attr("src",i).attr("data-id",id);
+
+        }else{
+            window.location.href = url+'.html?uid='+viewModel.userModuleId()
+        }
+    }
+    viewModel.changeText =function(i,id){
+        if(GetQueryString("isedit")){
+            $(".xgtxt",parent.document).val(i).attr("data-id",id);
+            window.location.href = url+'.html?uid='+viewModel.userModuleId()
+        }else{
+
+        }
     }
   viewModel.goDetail = function(id){
     window.location.href = "../product/productDetails.html?goodsId="+id+"&tmp="+GetQueryString("tmp");;

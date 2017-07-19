@@ -1,7 +1,7 @@
 require.config({
-	//baseUrl: $ctx+"/web/",
+	baseUrl: $ctx+"/web/",
     //urlArgs:'v=0170530',
-    baseUrl: "/web/",
+    //baseUrl: "/web/",
 	paths: {
 		text: "trd/requirejs/text",
 		css: "trd/requirejs/css",

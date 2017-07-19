@@ -11,7 +11,7 @@
 
 <body>
 	<div class="content posRel">
-    	<div class="gwcBnt"><div data-bind="click:function(){goback()}" class="mui-icon mui-icon-back"></div><a href="#" class="bugIcon"><img src="img/icon1-5.png"></a></div>
+    	<div class="gwcBnt"><div data-bind="click:function(){goback()}" class="mui-icon mui-icon-back"></div><a data-bind="click:function(){gocart()}" class="bugIcon"><img src="img/icon1-5.png"></a></div>
     	<div class="cpPic"><img data-bind="attr:{'src':data.attrs().images}"></div>
         <div class="aui-nav xqTitle">
             <div class="titLine">
@@ -129,6 +129,9 @@
         };
         viewModel.goback = function(){
             window.history.go(-1);
+        };
+        viewModel.gocart = function(){
+           window.location.href = "cart.html?tmp="+GetQueryString("tmp");
         };
         viewModel.getbanner = function(){
             var queryData = {
