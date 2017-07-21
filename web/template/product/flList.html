@@ -24,9 +24,9 @@
               <ul class="box01_list">
                 <li class="li_list">
                 	<div class="mui-table-view mui-grid-view" data-bind="foreach: data.list()">
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
+                        <div class="mui-table-view-cell mui-media mui-col-xs-6" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
                             <a >
-                                <img class="mui-media-object"data-bind="attr:{'src':images}">
+                                <img class="mui-media-object"data-bind="attr:{'src':cover}">
                                 <div class="mui-media-body" data-bind="text:name">上门保洁-房间彻底清理</div>
                                 <div class="mui-media-body jgPice">¥<d data-bind="text:price"></d>/次</div>
                             </a>

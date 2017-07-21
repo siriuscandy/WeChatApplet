@@ -124,7 +124,9 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
         $.ajax({
             type : 'post',
             dataType : 'json',
-            data:JSON.stringify(updataD),
+            data:{
+              attrs:JSON.stringify(updataD)
+            },
             url :$ctx+ UpdataUrl,
             success : function(res) {
                 if(res){
