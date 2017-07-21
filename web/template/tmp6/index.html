@@ -25,7 +25,7 @@
         <div class="devider t-line"></div>
         <div class="aui-nav">
 		<ul class="mui-table-view mui-grid-view mui-grid-9" data-bind="foreach: data.attrs()">
-			<li  class="mui-table-view-cell mui-media mui-col-sm-3 " data-bind="visible:$index()<4,if:$index()<4,attr:{'data-id':id},click:function(){$parent.goList(id,name)}">
+			<li  class="mui-table-view-cell mui-media mui-col-sm-3 " data-bind="visible:$index()<4,if:$index()<4,attr:{'data-id':id}">
 				<a href="javascript:;">
 					<span class="aui-cell-img" data-bind="attr:{'class':'aui-cell-img logo'+id}"><img data-bind="attr:{'src':logo},click:function(){$parent.changeImg(cover,'cover'+id,id)}" alt=""></span>
 					<div class="mui-media-body" data-bind="attr:{'class':'mui-media-body name'+id},text:name,click:function(){$parent.changeText(name,'name'+id,id)}"></div>
