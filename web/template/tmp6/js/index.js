@@ -36,7 +36,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       pageSize: 4,     //page size ÿҳ��ʾ����
       pageNum: 0,    //page num ��ǰҳ��
       name: "banner",   //page num ��ǰҳ��
-      userModuleId:viewModel.userModuleId
+      userid:viewModel.userId
     };
     ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
       viewModel.data.banner(res.list);
@@ -56,7 +56,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       pageSize: 4,     //page size ÿҳ��ʾ����
       pageNum: 0,    //page num ��ǰҳ��
       cateId: Id,   //page num ��ǰҳ��
-      userModuleId:viewModel.userModuleId
+      userid:viewModel.userId
     };
     ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
       viewModel.data.list1(res.list);
@@ -71,7 +71,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       pageSize: 4,     //page size ÿҳ��ʾ����
       pageNum: 0,    //page num ��ǰҳ��
       cateId: Id,   //page num ��ǰҳ��
-      userModuleId:viewModel.userModuleId
+      userid:viewModel.userId
     };
     ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
       viewModel.data.list2(res.list);
@@ -90,6 +90,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       viewModel.data.attrs(res.list);
       viewModel.data.secondClass(res.list[4]);
       viewModel.data.firstClass(res.list[5]);
+      viewModel.getbanner();
       viewModel.getGoodsList1(res.list[4].id)
       viewModel.getGoodsList2(res.list[5].id)
       console.log(viewModel.data.attrs())
@@ -204,7 +205,6 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
   viewModel.load=function(){
     viewModel.userModuleId = GetQueryString('uid');
     viewModel.getuserInfo();
-    viewModel.getbanner();
     viewModel.getattrs();
   }
 
