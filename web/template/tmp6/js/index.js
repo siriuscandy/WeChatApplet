@@ -2,9 +2,10 @@
 require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 ], function($, ko,dialogmin,ajaxCom) {
   var bannerUrl  =  '/goodsAPI/goodsList';
-  var attrsUrl = '/goodsAPI/goodsClassListnav';
+  var attrsUrl = '/goodsAPI/goodsClassList';
   var listUrl  =  '/api/showDetailListByZnameAndUid'; //首页资讯
   var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+  var UpdataUrl = '/goodsAPI/updateGoodsCate';//修改
   var viewModel = {
     data : {
       banner : ko.observableArray([]),
@@ -45,7 +46,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       });
     },function(error){
 
-      dialogmin("�������");
+      dialogmin("网络错误");
     })
   };
   viewModel.getattrs = function(){
@@ -60,10 +61,42 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       console.log(viewModel.data.attrs())
     },function(error){
 
-      dialogmin("�������");
+      dialogmin("网络错误");
     })
   };
- 
+ viewModel.GoupdateModule =function(){
+        var  UParray = [];
+        $(".aui-na ul").find("li").each(function(e){
+            var list1data = {
+                "name":$(this).find(".mui-media-body").html(),
+                "logo":$(this).find("img").attr("src"),
+                "id":$(this).attr("data-id"),
+            }
+            UParray.push(list1data)
+        })
+        $(".tmp6Class").each(function(e){
+            var list1data = {
+              "name":$(this).html(),
+              "logo":'',
+              "id":$(this).attr("data-id"),
+            } 
+            UParray.push(list1data)
+        })
+        $.ajax({
+            type : 'post',
+            dataType : 'json',
+            data:UParray,
+            url :$ctx+ UpdataUrl,
+            success : function(res) {
+                if(res){
+                    dialogmin("保存成功")
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
+    }
   viewModel.getuserInfo = function(){
         $.ajax({
             type : 'get',

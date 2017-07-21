@@ -13,8 +13,8 @@
     	<!--banner start-->
 		<div class="swiper-container" id="swiper-container">
 			<div class="swiper-wrapper" data-bind="foreach: data.banner()">
-				<div class="swiper-slide"  data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
-					<img  data-bind="attr:{'src':images}"/>
+				<div class="swiper-slide"  data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
+					<img  data-bind="attr:{'src':cover}"/>
 				</div>
 
 			</div>
@@ -28,7 +28,7 @@
 			<li  class="mui-table-view-cell mui-media mui-col-sm-3 " data-bind="visible:$index()<4,if:$index()<4,attr:{'data-id':cateId},click:function(){$parent.goList(cateId,name)}">
 				<a href="#">
 					<span class="aui-cell-img" data-bind="attr:{'class':'aui-cell-img images'+cateId}"><img data-bind="attr:{'src':images,click:function(){$parent.changeImg(images,'images'+cateId)}}" alt=""></span>
-					<div class="mui-media-body" data-bind="attr:{'class':'mui-media-body name'+cateId}" data-bind="text:name,click:function(){$parent.changeText(name,'name'+cateId)}">优选</div>
+					<div class="mui-media-body" data-bind="attr:{'class':'mui-media-body name'+cateId},text:name,click:function(){$parent.changeText(name,'name'+cateId)}"></div>
 				</a>
 			</li>
 
@@ -44,7 +44,7 @@
         <div class="devider t-line"></div>
         <!--潮流搭配-->
 		<div class="aui-list t-line">
-		<h2 data-bind="text:data.firstClass().name,attr:{'data-id':data.firstClass().cateId}">潮流搭配</h2>
+		<h2 data-bind="attr:{'class':'tmp6Class name'+data.firstClass().cateId},text:data.firstClass().name,click:function(){changeText(data.firstClass().name,'name'+data.firstClass().cateId)}" >潮流搭配</h2>
 		<ul class="mui-table-view mui-grid-view"   data-bind="foreach: data.banner()">
 			<li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
 				<a href="#">
@@ -57,7 +57,7 @@
     	<div class="devider t-line"></div>
         <!--推荐列表-->
 		<div class="aui-week t-line">
-            <h2 data-bind="text:data.secondClass().name,attr:{'data-id':data.firstClass().cateId}">推荐列表</h2>
+            <h2 data-bind="attr:{'class':'tmp6Class name'+data.secondClass().cateId},text:data.secondClass().name,click:function(){changeText(data.secondClass().name,'name'+data.secondClass().cateId)}" >推荐列表</h2>
             <ul class="mui-table-view mui-grid-view"  data-bind="foreach: data.banner()">
                 <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
                     <a href="productDetails.html">
@@ -91,6 +91,8 @@
             </div>
         </nav>
     </div>
+<div id="GoupdateModule" data-bind="click:GoupdateModule" style="position:absolute;z-index:0; height:1px;width:1px;visibility: hidden;"></div>
+
 <script src="../../js/unit.js"></script>
 <script src="../../trd/requirejs/require.js"></script>
 <script src="../../js/require.config.js"></script>
