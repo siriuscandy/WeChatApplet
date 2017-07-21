@@ -79,7 +79,7 @@
         viewModel.getbanner = function(){
             var queryData = {
                 isIndex:0,
-                userModuleId:viewModel.userModuleId
+                userid:viewModel.userId
             };
             ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
                 viewModel.data.list(res.list);
@@ -97,6 +97,7 @@
 
         viewModel.load=function(){
             viewModel.getbanner();
+            viewModel.userId = GetQueryString('userid');
         }
 
         viewModel.load();

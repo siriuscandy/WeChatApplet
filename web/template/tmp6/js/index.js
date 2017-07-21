@@ -22,13 +22,13 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       window.location.href = "../tmp6/index.html";
   };
   viewModel.goProList = function(){
-      window.location.href = "../product/spList.html?tmp=6";
+      window.location.href = "../product/spList.html?tmp=6&userid="+viewModel.userId;
   };
   viewModel.goOrder = function(){
-      window.location.href = "../product/myOrder.html?tmp=6";
+      window.location.href = "../product/myOrder.html?tmp=6&userid="+viewModel.userId;
   };
   viewModel.goME = function(){
-      window.location.href = "../product/me.html?tmp=6";
+      window.location.href = "../product/me.html?tmp=6&userid="+viewModel.userId;
   };
 
   viewModel.getbanner = function(){
