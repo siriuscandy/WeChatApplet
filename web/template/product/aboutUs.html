@@ -15,16 +15,106 @@
         <div class="aboutUsCon">
         	<div class="aboutUsTitle"><span>门店信息</span></div>
             <div class="xxLine">
-            	<h1>美丽服装店</h1>
+            	<h1 data-bind="text:data.list().dname">美丽服装店</h1>
                 <div class="xqConA">
-                	<p>小店主营：日韩女装、美丽牌子的女装，产品质优价廉，请各位放心！小店所有的商品都是店主精挑细选出来的，质量严格把关，请亲爱的淘友们尽管放心选购，我能在这里立足，完全源于各位淘友们，对我的支持和信任，我感谢你们！为了回报大家长期以来对我的支持，我会更加努力的为各位提供更好的商品，衷心的感谢各位的到来，祝您们购物愉快~</p>
-                    <p><img src="img/pic2.jpg"></p>
-                    <p>中国广东省深圳市福田区</p>
+                	<p data-bind="text:data.list().content">小店主营：日韩女装、美丽牌子的女装，产品质优价廉，请各位放心！小店所有的商品都是店主精挑细选出来的，质量严格把关，请亲爱的淘友们尽管放心选购，我能在这里立足，完全源于各位淘友们，对我的支持和信任，我感谢你们！为了回报大家长期以来对我的支持，我会更加努力的为各位提供更好的商品，衷心的感谢各位的到来，祝您们购物愉快~</p>
+                    <p><img data-bind="attr:{'src':data.list().content}"></p>
                 </div>
             </div>
         </div>
         <div class="fbBnt">联系我们</div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab">
+            <div class="t-line">
+                <a data-bind="click:function(){goIndex()}" class="aui-tab-item">
+                    <span class="mui-icon iconHover mui-icon-home"></span>
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a data-bind="click:function(){goProList()}" class="aui-tab-item " >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                    <span class="mui-tab-label">购物</span>
+                </a>
+                <a data-bind="click:function(){goOrder()}" class="aui-tab-item " >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+                    <span class="mui-tab-label">订单</span>
+                </a>
+                <a data-bind="click:function(){goME()}" class="aui-tab-item mui-active" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </div>
+        </nav>
     </div>
 <script src="js/mui.min.js"></script>
+<script src="../../js/unit.js"></script>
+<script src="../../trd/requirejs/require.js"></script>
+<script src="../../js/require.config.js"></script>
+<script type="text/javascript" charset="utf-8">
+    require([ 'jquery', 'knockout','dialogmin','ajaxCom'
+    ], function($, ko,dialogmin,ajaxCom) {
+        var listUrl  =  '/api/showDetailListByZnameAndUid'; //首页资讯
+        var viewModel = {
+            data : {
+                list : ko.observableArray([]),
+            },
+
+        };
+        viewModel.goIndex = function(){
+            window.location.href = "../tmp"+GetQueryString("tmp")+"/index.html";
+        };
+        viewModel.goProList = function(){
+            window.location.href = "spList.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goOrder = function(){
+            window.location.href = "myOrder.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goME = function(){
+            window.location.href = "me.html?tmp="+GetQueryString("tmp");
+        };
+        viewModel.goList = function(id,name){
+            window.location.href = "flList.html?tmp="+GetQueryString("tmp")+"&cateId=" + id+"&catename="+name;;
+        };
+         viewModel.getiList = function(){
+        var queryData = {
+            pageSize: 1,     //page size 每页显示条数
+            pageNum: 0,    //page num 当前页数
+            zname: "关于我们",   //page num 当前页数
+            userid:viewModel.userId
+        };
+        ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+                if(res.list.length<1 || GetQueryString("uid")=="0"){
+                    res = {"list":[
+                        {
+                            dname:"美丽服装店",
+                            fpic:"img/pic.jpg",
+                            did:"0",
+                            content:"出来的，质量严格把关，请亲爱的淘友们尽管放心选购，我能在这里立足，完全源于各位淘友们，对我的支持和信任，我感谢你们！为了回报大家长期以来对我的支持，我会更加努力的为各位提供更好的商品，衷心的感谢各位的到来，祝您们购物愉快~",
+                            createtime:"2017-6-22"
+                        },
+                        ],}
+                      
+                }
+                viewModel.data.list(res.list[0]);
+            },function(error){
+              dialogmin("网络错误");
+            })
+        };
+
+        viewModel.load=function(){
+            viewModel.getiList();
+            
+        }
+
+        viewModel.load();
+        ko.applyBindings(viewModel);
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        };
+
+    })
+</script>
 </body>
 </html>
