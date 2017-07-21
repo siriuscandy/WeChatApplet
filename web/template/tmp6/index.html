@@ -26,9 +26,9 @@
         <div class="aui-nav">
 		<ul class="mui-table-view mui-grid-view mui-grid-9" data-bind="foreach: data.attrs()">
 			<li  class="mui-table-view-cell mui-media mui-col-sm-3 " data-bind="visible:$index()<4,if:$index()<4,attr:{'data-id':id},click:function(){$parent.goList(id,name)}">
-				<a href="#">
-					<span class="aui-cell-img" data-bind="attr:{'class':'aui-cell-img logo'+id}"><img data-bind="attr:{'src':logo,click:function(){$parent.changeImg(cover,'cover'+id)}}" alt=""></span>
-					<div class="mui-media-body" data-bind="attr:{'class':'mui-media-body name'+id},text:name,click:function(){$parent.changeText(name,'name'+id)}"></div>
+				<a href="javascript:;">
+					<span class="aui-cell-img" data-bind="attr:{'class':'aui-cell-img logo'+id}"><img data-bind="attr:{'src':logo},click:function(){$parent.changeImg(cover,'cover'+id),id}}" alt=""></span>
+					<div class="mui-media-body" data-bind="attr:{'class':'mui-media-body name'+id},text:name,click:function(){$parent.changeText(name,'name'+id,id)}"></div>
 				</a>
 			</li>
 
@@ -47,7 +47,7 @@
 		<h2 data-bind="attr:{'class':'tmp6Class name'+data.firstClass().id},text:data.firstClass().name,click:function(){changeText(data.firstClass().name,'name'+data.firstClass().id)}" >潮流搭配</h2>
 		<ul class="mui-table-view mui-grid-view"   data-bind="foreach: data.banner()">
 			<li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
-				<a href="#">
+				<a href="javascript:;">
 					<img class="mui-media-object" data-bind="attr:{'src':cover}">
 					<div class="mui-media-body" data-bind="text:name">入夏套装新品</div>
 				</a>
@@ -60,7 +60,7 @@
             <h2 data-bind="attr:{'class':'tmp6Class name'+data.secondClass().id},text:data.secondClass().name,click:function(){changeText(data.secondClass().name,'name'+data.secondClass().id)}" >推荐列表</h2>
             <ul class="mui-table-view mui-grid-view"  data-bind="foreach: data.banner()">
                 <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
-                    <a href="#">
+                    <a href="javascript:;">
                         <img class="mui-media-object"  data-bind="attr:{'src':cover}">
                         <div class="mui-media-body" data-bind="text:name">入夏套装新品入夏套装新品</div>
                     </a>

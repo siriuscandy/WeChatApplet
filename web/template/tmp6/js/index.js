@@ -1,7 +1,7 @@
 
 require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 ], function($, ko,dialogmin,ajaxCom) {
-  var getgoodslistUrl  =  '/goodsAPI/goodsList';
+  var bannerUrl  =  '/goodsAPI/goodsList';
   var bannerUrl  =  '/goodsAPI/goodsListByName';
   var attrsUrl = '/goodsAPI/getGoodsCateList';
   var listUrl  =  '/api/showDetailListByZnameAndUid'; //首页资讯
@@ -39,7 +39,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       name: "banner",   //page num ��ǰҳ��
       userid:viewModel.userId
     };
-    ajaxCom.Loadajax('GET',getgoodslistUrl,queryData,function(res){
+    ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
       viewModel.data.banner(res.list);
       var swiper = new Swiper('#swiper-container', {
         autoplay:3000,
@@ -59,7 +59,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       cateId: Id,   //page num ��ǰҳ��
       userid:viewModel.userId
     };
-    ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
+    ajaxCom.Loadajax('GET',getgoodslistUrl,queryData,function(res){
       viewModel.data.list1(res.list);
       
     },function(error){
@@ -74,7 +74,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       cateId: Id,   //page num ��ǰҳ��
       userid:viewModel.userId
     };
-    ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
+    ajaxCom.Loadajax('GET',getgoodslistUrl,queryData,function(res){
       viewModel.data.list2(res.list);
      
     },function(error){
@@ -181,27 +181,27 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
               dialogmin("网络错误");
         })
     };
-   viewModel.changeImg =function(i,id,url){
+   viewModel.changeImg =function(i,id,cateId){
         if(GetQueryString("isedit")){
             $(".picLine",parent.document).find("img").attr("src",i).attr("data-id",id);
 
         }else{
-            window.location.href = url+'.html?uid='+viewModel.userModuleId()
+           window.location.href = '../../product/flList.html?tmp=6&cateId='+cateId;
         }
     }
-    viewModel.changeText =function(i,id){
+    viewModel.changeText =function(i,id,cateId){
         if(GetQueryString("isedit")){
             $(".xgtxt",parent.document).val(i).attr("data-id",id);
-            window.location.href = url+'.html?uid='+viewModel.userModuleId()
+           
         }else{
-
+           window.location.href = '../../product/flList.html?tmp=6&cateId='+cateId;
         }
     }
   viewModel.goDetail = function(id){
-    window.location.href = "../product/productDetails.html?goodsId="+id+"&tmp="+GetQueryString("tmp");;
+    window.location.href = "../../product/productDetails.html?goodsId="+id+"&tmp="+GetQueryString("tmp");
   };
   viewModel.goList = function(id,name){
-    window.location.href = "../product/flList.html?tmp=6&cateId=" + id+"&catename="+name;
+    window.location.href = "../../product/flList.html?tmp=6&cateId="+id+"&catename="+name;
   };
   viewModel.load=function(){
     viewModel.userModuleId = GetQueryString('uid');
