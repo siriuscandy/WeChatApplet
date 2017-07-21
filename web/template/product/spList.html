@@ -51,7 +51,7 @@
 <script type="text/javascript" charset="utf-8">
     require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
     ], function($, ko,dialogmin,ajaxCom) {
-        var listUrl  =  '/goodsAPI/goodsClassList';
+        var listUrl  =  '/goodsAPI/getGoodsCateList';
         var viewModel = {
             data : {
                 list : ko.observableArray([]),
@@ -78,7 +78,7 @@
         };
         viewModel.getbanner = function(){
             var queryData = {
-
+                isIndex:0,
                 userModuleId:viewModel.userModuleId
             };
             ajaxCom.Loadajax('GET',listUrl,queryData,function(res){

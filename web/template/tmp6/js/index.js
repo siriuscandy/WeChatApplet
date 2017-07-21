@@ -2,7 +2,7 @@
 require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 ], function($, ko,dialogmin,ajaxCom) {
   var bannerUrl  =  '/goodsAPI/goodsList';
-  var attrsUrl = '/goodsAPI/goodsClassList';
+  var attrsUrl = '/goodsAPI/getGoodsCateList';
   var listUrl  =  '/api/showDetailListByZnameAndUid'; //首页资讯
   var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
   var UpdataUrl = '/goodsAPI/updateGoodsCate';//修改
@@ -52,7 +52,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
   viewModel.getattrs = function(){
     var queryData = {
       userModuleId:viewModel.userModuleId,
-      status:1
+      isIndex:1
     };
     ajaxCom.Loadajax('GET',attrsUrl,queryData,function(res){
       viewModel.data.attrs(res.list);
