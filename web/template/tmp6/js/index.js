@@ -102,7 +102,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
   };
  viewModel.GoupdateModule =function(){
         var  UParray = [];
-        $(".aui-na ul").find("li").each(function(e){
+        $(".aui-nav ul").find("li").each(function(e){
             var list1data = {
                 "name":$(this).find(".mui-media-body").html(),
                 "logo":$(this).find("img").attr("src"),
