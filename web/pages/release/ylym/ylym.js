@@ -35,7 +35,7 @@ define([ 'jquery', 'knockout', 'text!pages/release/ylym/ylym.html','dialogmin','
         viewModel.id = parm[0];
         viewModel.userModuleId = parm[1];
         if(viewModel.userModuleId==0){
-        var Iframe_url = '/WeChatApplet/web/template/tmp'+viewModel.id+'/indexN.html?';
+        var Iframe_url = '/WeChatApplet/web/template/tmp'+viewModel.id+'/module/indexN.html?';
         }else{
         var Iframe_url = '/WeChatApplet/web/template/tmp'+viewModel.id+'/index.html?uid='+viewModel.userModuleId;
         }

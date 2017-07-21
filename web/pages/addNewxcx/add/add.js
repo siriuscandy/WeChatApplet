@@ -128,7 +128,7 @@ define([ 'jquery', 'knockout', 'text!pages/addNewxcx/add/add.html','dialogmin',
 
                 viewModel.setData(res.data);
                 $(".ewmLine").each(function(e){
-                    var path = "http://v.tixaapp.com/WeChatApplet/web/template/tmp"+(e+1)+"/indexN.html";
+                    var path = "http://v.tixaapp.com/WeChatApplet/web/template/tmp"+(e+1)+"/module/indexN.html";
                     $(this).qrcode({
                         render: "canvas", //也可以替换为table
                         width: 110,

@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>服装类</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="content bgfff">
+        <!--商品分类-->
+		<div class="aui-week t-line">
+            <h2><span>商品分类</span></h2>
+            <ul class="mui-table-view mui-grid-view">
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="productDetails.html">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">入夏套装新品入夏套装新品</div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">连衣裙</div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">时尚美</div>
+                    </a>
+                </li>	
+                    <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">上镜装</div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">显瘦装</div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">混搭界</div>
+                    </a>
+                </li>	
+                </li>	
+                    <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">上镜装</div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">显瘦装</div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">混搭界</div>
+                    </a>
+                </li>	
+                </li>	
+                    <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">上镜装</div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">显瘦装</div>
+                    </a>
+                </li>
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <a href="#">
+                        <img class="mui-media-object" src="img/pic1.jpg">
+                        <div class="mui-media-body">混搭界</div>
+                    </a>
+                </li>	
+             </ul>
+        </div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab">
+            <div class="t-line">
+                <a href="index.html" class="aui-tab-item">
+                    <span class="mui-icon iconHover mui-icon-home"></span>
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a href="spList.html" class="aui-tab-item mui-active" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                    <span class="mui-tab-label">购物</span>
+                </a>
+                <a class="aui-tab-item" href="me.html">
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+    var slider = mui("#slider");
+    document.getElementById("switch").addEventListener('toggle', function(e) {
+        if (e.detail.isActive) {
+            slider.slider({
+                interval: 5000
+            });
+        } else {
+            slider.slider({
+                interval: 0
+            });
+        }
+    });
+</script>
+<script>
+    mui.init();
+</script>
+</body>
+</html>

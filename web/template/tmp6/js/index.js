@@ -9,6 +9,8 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
   var viewModel = {
     data : {
       banner : ko.observableArray([]),
+      list1 : ko.observableArray([]),
+      list2 : ko.observableArray([]),
       attrs:ko.observable({}),
       firstClass:ko.observable({}),
       secondClass:ko.observable({}),
@@ -49,6 +51,36 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       dialogmin("网络错误");
     })
   };
+  viewModel.getGoodsList1 = function(Id){
+    var queryData = {
+      pageSize: 4,     //page size ÿҳ��ʾ����
+      pageNum: 0,    //page num ��ǰҳ��
+      cateId: Id,   //page num ��ǰҳ��
+      userModuleId:viewModel.userModuleId
+    };
+    ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
+      viewModel.data.list1(res.list);
+      
+    },function(error){
+
+      dialogmin("网络错误");
+    })
+  };
+  viewModel.getGoodsList2 = function(Id){
+    var queryData = {
+      pageSize: 4,     //page size ÿҳ��ʾ����
+      pageNum: 0,    //page num ��ǰҳ��
+      cateId: Id,   //page num ��ǰҳ��
+      userModuleId:viewModel.userModuleId
+    };
+    ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
+      viewModel.data.list2(res.list);
+     
+    },function(error){
+
+      dialogmin("网络错误");
+    })
+  };
   viewModel.getattrs = function(){
     var queryData = {
       userModuleId:viewModel.userModuleId,
@@ -56,8 +88,10 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
     };
     ajaxCom.Loadajax('GET',attrsUrl,queryData,function(res){
       viewModel.data.attrs(res.list);
-      viewModel.data.firstClass(res.list[5]);
       viewModel.data.secondClass(res.list[4]);
+      viewModel.data.firstClass(res.list[5]);
+      viewModel.getGoodsList1(res.list[4].id)
+      viewModel.getGoodsList2(res.list[5].id)
       console.log(viewModel.data.attrs())
     },function(error){
 
@@ -82,10 +116,13 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
             } 
             UParray.push(list1data)
         })
+        var updataD = {
+          attrs:UParray
+        }
         $.ajax({
             type : 'post',
             dataType : 'json',
-            data:UParray,
+            data:JSON.stringify(updataD),
             url :$ctx+ UpdataUrl,
             success : function(res) {
                 if(res){

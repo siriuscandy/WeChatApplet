@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>服装类</title>
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/jquery.spinner.css" />
+</head>
+
+<body>
+	<div class="content posRel">
+        <!--产品评价-->
+        <div class="aui-hot t-line">
+            <h2 class="cpplTitle">产品评价</h2>
+            <ul class="plList">
+            	<li>
+                	<h3 class="mjxx">
+                    	<span class="mjxxLeft">买家甲</span>
+                        <span class="timeRight">2017/1/13</span>
+                    </h3>
+                    <p class="plxq">东西收到，很满意!!真的是超级好的卖家，解答疑问不厌其烦，细致认真，关键是东西好， 而且货物发得超快，包装仔细，值得信赖!</p>
+                    <div class="picList">
+                    	<span><img src="img/pic1.jpg"></span>
+                        <span><img src="img/pic1.jpg"></span>
+                        <span><img src="img/pic1.jpg"></span>
+                    </div>
+                </li>
+                <li>
+                	<h3 class="mjxx">
+                    	<span class="mjxxLeft">买家甲</span>
+                        <span class="timeRight">2017/1/13</span>
+                    </h3>
+                    <p class="plxq">东西收到，很满意!!真的是超级好的卖家，解答疑问不厌其烦，细致认真，关键是东西好， 而且货物发得超快，包装仔细，值得信赖!</p>
+                    <div class="picList">
+                    	<span><img src="img/pic1.jpg"></span>
+                        <span><img src="img/pic1.jpg"></span>
+                        <span><img src="img/pic1.jpg"></span>
+                    </div>
+                </li>
+                <li>
+                	<h3 class="mjxx">
+                    	<span class="mjxxLeft">买家甲</span>
+                        <span class="timeRight">2017/1/13</span>
+                    </h3>
+                    <p class="plxq">东西收到，很满意!!真的是超级好的卖家，解答疑问不厌其烦，细致认真，关键是东西好， 而且货物发得超快，包装仔细，值得信赖!</p>
+                    <div class="picList">
+                    	<span><img src="img/pic1.jpg"></span>
+                        <span><img src="img/pic1.jpg"></span>
+                        <span><img src="img/pic1.jpg"></span>
+                    </div>
+                </li>
+                <li>
+                	<h3 class="mjxx">
+                    	<span class="mjxxLeft">买家甲</span>
+                        <span class="timeRight">2017/1/13</span>
+                    </h3>
+                    <p class="plxq">东西收到，很满意!!真的是超级好的卖家，解答疑问不厌其烦，细致认真，关键是东西好， 而且货物发得超快，包装仔细，值得信赖!</p>
+                    <div class="picList">
+                    	<span><img src="img/pic1.jpg"></span>
+                        <span><img src="img/pic1.jpg"></span>
+                        <span><img src="img/pic1.jpg"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+	<!--弹层效果-->
+	function toshare(){
+		$(".am-shareA").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn,.clooseBnt").click(function(){
+			$(".am-shareA").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}	
+	<!--弹层效果-->
+	function toshareB(){
+		$(".am-shareB").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn,.clooseBnt").click(function(){
+			$(".am-shareB").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}	
+</script>
+<script type="text/javascript" src="js/jquery.spinner.js"></script>
+<script type="text/javascript">
+$('.spinnerExample').spinner({});
+</script>
+</body>
+</html>
