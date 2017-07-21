@@ -1,7 +1,8 @@
 
 require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 ], function($, ko,dialogmin,ajaxCom) {
-  var bannerUrl  =  '/goodsAPI/goodsList';
+  var getgoodslistUrl  =  '/goodsAPI/goodsList';
+  var bannerUrl  =  '/goodsAPI/goodsListByName';
   var attrsUrl = '/goodsAPI/getGoodsCateList';
   var listUrl  =  '/api/showDetailListByZnameAndUid'; //首页资讯
   var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
@@ -38,7 +39,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       name: "banner",   //page num ��ǰҳ��
       userid:viewModel.userId
     };
-    ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
+    ajaxCom.Loadajax('GET',getgoodslistUrl,queryData,function(res){
       viewModel.data.banner(res.list);
       var swiper = new Swiper('#swiper-container', {
         autoplay:3000,
