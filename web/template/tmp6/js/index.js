@@ -109,7 +109,10 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
                 "logo":$(this).find("img").attr("src"),
                 "id":$(this).attr("data-id"),
             }
+            if(e<4){
             UParray.push(list1data)
+
+            }
         })
         $(".tmp6Class").each(function(e){
             var list1data = {

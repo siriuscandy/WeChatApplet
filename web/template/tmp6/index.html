@@ -44,7 +44,7 @@
         <div class="devider t-line"></div>
         <!--潮流搭配-->
 		<div class="aui-list t-line">
-		<h2 data-bind="attr:{'class':'tmp6Class name'+data.firstClass().id},text:data.firstClass().name,click:function(){changeText(data.firstClass().name,'name'+data.firstClass().id)}" >潮流搭配</h2>
+		<h2 data-bind="attr:{'class':'tmp6Class name'+data.firstClass().id,'data-id':data.firstClass().id},text:data.firstClass().name,click:function(){changeText(data.firstClass().name,'name'+data.firstClass().id)}" >潮流搭配</h2>
 		<ul class="mui-table-view mui-grid-view"   data-bind="foreach: data.banner()">
 			<li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
 				<a href="javascript:;">
@@ -57,7 +57,7 @@
     	<div class="devider t-line"></div>
         <!--推荐列表-->
 		<div class="aui-week t-line">
-            <h2 data-bind="attr:{'class':'tmp6Class name'+data.secondClass().id},text:data.secondClass().name,click:function(){changeText(data.secondClass().name,'name'+data.secondClass().id)}" >推荐列表</h2>
+            <h2 data-bind="attr:{'class':'tmp6Class name'+data.secondClass().id,'data-id':data.secondClass().id},text:data.secondClass().name,click:function(){changeText(data.secondClass().name,'name'+data.secondClass().id)}" >推荐列表</h2>
             <ul class="mui-table-view mui-grid-view"  data-bind="foreach: data.banner()">
                 <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
                     <a href="javascript:;">
