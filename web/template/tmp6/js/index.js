@@ -85,7 +85,8 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
   viewModel.getattrs = function(){
     var queryData = {
       userModuleId:viewModel.userModuleId,
-      isIndex:1
+      isIndex:1,
+      userId:viewModel.userId
     };
     ajaxCom.Loadajax('GET',attrsUrl,queryData,function(res){
       viewModel.data.attrs(res.list);
