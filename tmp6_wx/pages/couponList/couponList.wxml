@@ -1,0 +1,31 @@
+<!--couponList.wxml-->
+<view class="content bgfff">
+    	<view class="nr_tjhd_con">
+        	<view class="tuxx">
+                	<view class="span{{isUse==0?' dq_hover':''}}" data-isUse="0" bindtap="changeTab">未使用</view>
+                    <view class="span{{isUse==-1?' dq_hover':''}}" data-isUse="-1" bindtap="changeTab">已过期</view>
+                    <view class="span{{isUse==1?' dq_hover':''}}" data-isUse="1" bindtap="changeTab">已使用</view>
+                </view>
+                <view class="tb_nr_A">
+                	<view class="tb_nr_a" wx:for="{{list}}">
+                        <view class="djqList">
+                            <view class="li wsy">
+                            <navigator class="a" href="couponDetails.html">¥ <view class="em">{{item.discount}}</view> 元</navigator></view>
+                            <!-- <view class="li wsy">¥ <view class="em">3</view> 元</view> -->
+                        </view>
+                    </view>
+                    <!-- <view class="tb_nr_a">
+                    	<view class="djqList">
+                            <view class="li">¥ <view class="em">3</view> 元</view>
+                        </view>
+                    </view>
+                    <view class="tb_nr_a">
+                    	<view class="djqList">
+                            <view class="li">¥ <view class="em">3</view> 元</view>
+                            <view class="li">¥ <view class="em">3</view> 元</view>
+                            <view class="li">¥ <view class="em">3</view> 元</view>
+                        </view>
+                    </view> -->
+                </view>
+        </view>
+    </view>

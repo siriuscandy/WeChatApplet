@@ -1,0 +1,16 @@
+<!--about.wxml-->
+<view class="content bgfff">
+  <view class="aboutUsCon">
+      <view class="aboutUsTitle"><view class="span">门店信息</view></view>
+        <view class="xxLine">
+          <view class="h1">美丽服装店</view>
+            <view class="xqConA">
+              <view class="p">小店主营：日韩女装、美丽牌子的女装，产品质优价廉，请各位放心！小店所有的商品都是店主精挑细选出来的，质量严格把关，请亲爱的淘友们尽管放心选购，我能在这里立足，完全源于各位淘友们，对我的支持和信任，我感谢你们！为了回报大家长期以来对我的支持，我会更加努力的为各位提供更好的商品，衷心的感谢各位的到来，祝您们购物愉快~</view>
+                <view class="p"><image class="img" src="/img/pic2.jpg"/></view>
+                <view class="p">中国广东省深圳市福田区</view>
+            </view>
+        </view>
+    </view>
+    <view class="fbBnt">联系我们</view>
+</view>
+

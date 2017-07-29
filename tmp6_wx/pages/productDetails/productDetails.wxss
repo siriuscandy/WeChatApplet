@@ -1,0 +1,61 @@
+/* productDetails.wxss */
+.cpPic .img{width:100%;}
+.gwcBnt{height:44px; background:#fff;}
+.bugIcon{width:25px; height:25px; float:right; margin-right:3%; margin-top:10px;}
+.bugIcon .img{width:100%;height:100%}
+.xqTitle{padding:4%;}
+.titLine{border-bottom:1px solid #f3f3f3;padding-bottom:5px;}
+.titTxt{font-size:20px; color:#333; font-weight:normal; height:35px; line-height:35px;}
+.jgLine{height:30px; line-height:30px; }
+.price{width:auto; float:left; font-size:25px; color:#e37f42;}
+.sales{width:auto; float:right; font-size:15px; color:#666;}
+.qtxxLine{margin-top:10px;}
+.qtxxLine .span{display:block; font-size:15px; color:#666; height:30px; line-height:30px;}
+.aui-hot .cpplTitle{font-size:18px; color:#666; padding-top:0; text-align:left; line-height:35px;}
+.aui-hot .cpplTitle .morePl{font-size:14px; color:#ccc; float:right;}
+.aui-hot .mjxx{height:30px; line-height:30px; font-size:16px; padding-top:0;}
+.mjxxLeft{width:auto; float:left; color:#333;}
+.timeRight{width:auto; float:right; color:#ccc;}
+.aui-hot{font-size:14px; color:#666; line-height:20px;}
+.plList .li{border-bottom:1px solid #f3f3f3; padding-bottom:5px; padding-top:5px; display:block;}
+.picList .span{width:23%; display: inline-block; margin:0 2% 2% 0;}
+.picList .span .img{width:100%;}
+.cpxqTitle{margin-top:20px; border-bottom:1px solid #f3f3f3;}
+.cpxqCon{margin-top:10px;}
+.cpxqCon .span{margin-bottom:10px; display:block;}
+.cpxqCon .span .img{width:100%;}
+.buyBntList{ width:255px; margin:2% auto 0 auto;}
+.buyBnt{width:120px; height:35px; display:inline-block; line-height:35px; font-size:15px; text-align:center;border-radius:5px; }
+.buyBnt .a{height:35px; display:block;}
+.jrgwc{border:1px solid #ccc;  background:#fff;}
+.jrgwc .a{color:#222;}
+.ljgm{background:#ff6c00; margin-left:10px;}
+.ljgm .a{color:#fff;}
+.mui-bar.mui-bar-tab.buyBar{background:#fff;}
+.picList{margin-top:10px;}
+/*弹层*/
+.am-share { font-size: 14px; border-radius: 0; bottom: 0; left: 0; position: fixed; text-align: center; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 1110; }
+.am-modal-active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
+.am-modal-out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
+.am-share-footer { padding: 10px; background:#fff;}
+.am-share-footer .share_btn { color: #fff;  display: block; width: 100%; background-color: #ff6c00; border-radius: 5px; border:0; cursor: pointer;  font-size: 16px; font-weight: 400; line-height: 1.2; padding: 0.625em 0; text-align: center; transition: background-color 300ms ease-out 0s, border-color 300ms ease-out 0s; vertical-align: middle; white-space: nowrap;font-family:"微软雅黑";  }
+.sharebg { background-color: rgba(0, 0, 0, 0.6); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 1100; display:none; }
+.sharebg-active { opacity: 1; display:block; }
+.cpxx{padding:10px; background:#fff; overflow:hidden;}
+.cpxqLine{border-bottom:1px solid #f3f3f3;overflow:hidden; padding-bottom:20px;}
+.xqLeft{width:87%; float:left;}
+.xqPic{width:70px; height:70px; float:left;}
+.xqPic .img{width:100%;}
+.posRel{position:relative;}
+.titPice{width:65%; float:left; margin-left:20px;}
+.titPice .span{width:100%; float:left; text-align:left;}
+.titPice .cpxqTitA{font-size:18px; color:#666; height:30px; line-height:30px;}
+.titPice .jgLineA{font-size:25px; color:#e37f42; height:30px; line-height:30px;}
+.clooseBnt{width:20px; height:20px; float:right; cursor:pointer;}
+.clooseBnt .img{width:100%;}
+.slkc{overflow:hidden; padding:20px 0; font-size:16px; line-height:30px; color:#333;}
+.slkc .slLeft{width:auto; float:left; text-align:left;}
+.spinnerExample{margin:10px 0;}
+.sljj{width:auto; float:right;}
+/*成功提示*/
+.jfcgTip{width:150px; height:50px; position:absolute; background:rgba(0,0,0,0.6); text-align:center; line-height:50px; color:#fff; border-radius:5px; top:50%; left:30%;}

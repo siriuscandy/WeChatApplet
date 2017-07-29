@@ -1,0 +1,84 @@
+<import src="/pages/template/comment.wxml"/>
+<!--productDetails.wxml-->
+<view class="content posRel">
+    	<view class="gwcBnt"><a href="#" class="bugIcon"><image class="img" src="/img/icon1-5.png"/></a></view>
+    	<view class="cpPic"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{goods.cover}}"/></view>
+        <view class="aui-nav xqTitle">
+            <view class="titLine">
+            	<view class="titTxt">{{goods.name}}</view>
+                <view class="jgLine">
+                	<view class="span price">￥{{goods.price}}</view>
+                    <view class="span sales">销量：12345</view>
+                </view>
+            </view>
+            <view class="qtxxLine">
+            	<view class="span">运费：{{goods.freight==0?'免运费':goods.freight}}</view>
+                <view class="span">库存：{{goods.capacity}}</view>
+            </view>
+        </view>
+    	<view class="devider t-line"></view>
+        <!--产品评价-->
+        <view class="aui-hot t-line">
+            <view class="cpplTitle">
+            	产品评价
+                <navigator url="../commentList/commentList" class="morePl">查看产品全部评论 ></navigator>
+            </view>
+            <template is="comment" data="{{list:comments}}"></template>
+            <view class="cpplTitle cpxqTitle">产品详情</view>
+            <view class="cpxqCon">
+            	<view class="span" wx:for="{{imgs}}" wx:if="{{item != ''}}"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{item}}"/></view>
+                <!-- <view class="span"><img class="img" src="img/pic1-1.jpg"/></view> -->
+            </view>
+        </view>
+        <view style="height:50px"></view>
+        <view class="mui-bar mui-bar-tab buyBar">
+            <view class="buyBntList">
+            	<view class="span buyBnt jrgwc"><a class="a" onClick="toshare()" href="#">加入购物车</a></view>
+                <view class="span buyBnt ljgm"><a class="a" onClick="toshareB()" href="#">立即购买</a></view>
+            </view>
+        </view>
+        <!--加入购物车 弹层-->
+        <view class="am-share am-shareA">
+          <view class="cpxx">
+                <view class="cpxqLine">
+                    <view class="xqLeft">
+                        <view class="xqPic"><img class="img" src="img/pic1.jpg"/></view>
+                        <view class="titPice">
+                            <view class="span cpxqTitA">简约新款</view>
+                            <view class="span jgLineA">￥ 36.00  </view>
+                        </view>
+                    </view>
+                    <view class="i clooseBnt"><img class="img" src="img/icon3.png"/></view>
+                </view>
+                <view class="slkc" id="tab">
+                	<view class="span slLeft">购买数量：</view>
+                    <view class="sljj">
+                    	<input type="text" class="spinnerExample"/>
+                    </view>
+                </view>
+            </view>
+          <view class="am-share-footer"><a class="a" href="productDetails-jrcg.html"><button class="share_btn">确定</button></a></view>
+        </view>
+        <!--立即购买 弹层-->
+        <view class="am-share am-shareB">
+          <view class="cpxx">
+                <view class="cpxqLine">
+                    <view class="xqLeft">
+                        <view class="xqPic"><img class="img" src="img/pic1.jpg"/></view>
+                        <view class="titPice">
+                            <view class="span cpxqTitA">简约新款立即购买</view>
+                            <view class="span jgLineA">￥ 36.00  </view>
+                        </view>
+                    </view>
+                    <view class="i clooseBnt"><img class="img" src="img/icon3.png"/></view>
+                </view>
+                <view class="slkc" id="tab">
+                	<view class="span slLeft">购买数量：</view>
+                    <view class="sljj">
+                    	<input type="text" class="spinnerExample"/>
+                    </view>
+                </view>
+            </view>
+          <view class="am-share-footer"><a href="payment.html"><button class="share_btn">确定</button></a></view>
+        </view>
+    </view>

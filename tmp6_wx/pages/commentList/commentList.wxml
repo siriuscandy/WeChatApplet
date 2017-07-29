@@ -1,0 +1,9 @@
+<import src="/pages/template/comment.wxml"/>
+<!--commentList.wxml-->
+<view class="content posRel">
+        <!--产品评价-->
+        <view class="aui-hot t-line">
+            <view class="cpplTitle">产品评价</view>
+            <template is="comment" data="{{list:list}}"></template>
+        </view>
+    </view>

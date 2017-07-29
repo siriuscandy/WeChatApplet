@@ -1,0 +1,28 @@
+<template name="order">
+  <view class="fkList">
+      <view class="li" wx:for="{{list}}">
+        <view class="timeLine">
+            <view class="span">{{item.createTime}}</view>
+              <view class="p" wx:if="{{item.status==-1}}">退款中</view> 
+              <view class="p" wx:if="{{item.status==0}}">待付款</view> 
+              <view class="p" wx:if="{{item.status==1}}">已支付</view> 
+              <view class="p" wx:if="{{item.status==-2}}">已退款</view> 
+              <view class="p" wx:if="{{item.status==-3}}">已关闭</view> 
+          </view>
+          <view class="cpxqLineA">
+            <view class="cppictxt">
+                <view class="span"><image class="img" src="/img/pic1.jpg"/></view>
+                  <view class="p">{{item.name}}</view>
+              </view>
+              <view class="jgsl">￥ {{item.price}}<br/>x1</view>
+          </view>
+          <view class="jzLine">
+            <view class="jzLineLeft"><view class="span">共{{item.number}}件</view> 
+            <view class="span">实付：<view class="em orange">{{item.actualAmount}}</view></view></view>
+            <view class="jzLineBnt" wx:if="{{item.status==2}}"><navigator url="/pages/evaluate/evaluate.html">去评价</navigator></view>
+            <view class="jzLineBnt" wx:if="{{item.status==1}}"><navigator url="＃">收货</navigator></view>
+            <view class="jzLineBnt" wx:if="{{item.status==0}}"><navigator url="/pages/payment/payment.wxml">付款</navigator></view>
+          </view>
+      </view>
+  </view>
+</template>
