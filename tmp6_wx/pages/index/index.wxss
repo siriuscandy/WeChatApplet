@@ -1,1 +1,10 @@
-.img{width:100%}
+.img{
+  width:100%;
+  hieght:80px;
+  
+  }
+.imgbg{
+ line-height: 80px;
+	max-width: 80px;
+	height: 80px
+}

@@ -32,7 +32,10 @@ Page({
     tab: 3,
     cateName: ""
   },
-
+  choseaddress: function (event) {
+    console.log(event)
+    var dataad = event.currentTarget.dataset.hi;
+  },
   /**
    * 生命周期函数--监听页面加载
    */

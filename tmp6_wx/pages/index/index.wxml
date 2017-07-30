@@ -1,97 +1,47 @@
 <!--index.wxml-->
 <view class="content">
 
-  <view id="slider" class="mui-slider" >
-        <view class="mui-slider-group mui-slider-loop">
-            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-            <view class="mui-slider-item mui-slider-item-duplicate">
-                <a href="#">
-                    <image class="img" src="/img/banner.jpg"/>
-                </a>
-            </view>
-            <!-- 第一张 -->
-            <view class="mui-slider-item">
-                <a href="#">
-                    <image class="img" src="/img/banner.jpg"/>
-                </a>
-            </view>
-            <!-- 第二张 -->
-            <view class="mui-slider-item">
-                <a href="#">
-                    <image class="img" src="/img/banner.jpg"/>
-                </a>
-            </view>
-            <!-- 第三张 -->
-            <view class="mui-slider-item">
-                <a href="#">
-                    <image class="img" src="/img/banner.jpg"/>
-                </a>
-            </view>
-            <!-- 第四张 -->
-            <view class="mui-slider-item">
-                <a href="#">
-                    <image class="img" src="/img/banner.jpg"/>
-                </a>
-            </view>
-            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-            <view class="mui-slider-item mui-slider-item-duplicate">
-                <a href="#">
-                    <image class="img" src="/img/banner.jpg"/>
-                </a>
-            </view>
-        </view>
-        <view class="mui-slider-indicator">
-            <view class="mui-indicator mui-active"></view>
-            <view class="mui-indicator"></view>
-            <view class="mui-indicator"></view>
-            <view class="mui-indicator"></view>
-        </view>
-    </view>
+ 
+        <swiper indicator-dots="true"  
+            autoplay="true" interval="3000" duration="300">  
+            <block wx:for="{{banner}}">  
+            <swiper-item>  
+              <navigator url="../productDdetails/productDdetails?goodsId={{item.id}}" hover-class="navigator-hover">  
+                <image src="{{item.cover}}" class="img" width="350" height="150"/>  
+              </navigator>   
+            </swiper-item>  
+              </block>  
+        </swiper>  
+        
+ 
     <!--banner end-->
     <view class="devider t-line"></view>
     <view class="aui-nav">
         <view class="mui-table-view mui-grid-view mui-grid-9">
-            <view class="mui-table-view-cell mui-media mui-col-sm-3 ">
-                <navigator url="../spList/spList">
-                    <view class="aui-cell-img"><image class="img" src="/img/icon.jpg" alt=""/></view>
-                    <view class="mui-media-body">优选</view>
+            <view class="mui-table-view-cell mui-media mui-col-sm-3 " wx:for="{{CateList}}" wx:if="{{index<4}}">
+                <navigator url="../spList/spList?cateId={{item.id}}">
+                    <view class="aui-cell-img"><image class="img" src="{{item.logo}}" alt=""/></view>
+                    <view class="mui-media-body">{{item.name}}</view>
                 </navigator>
             </view>
-            <view class="mui-table-view-cell mui-media mui-col-sm-3 ">
-                <navigator url="../spList/spList">
-                    <view class="aui-cell-img"><image class="img" src="/img/icon1.jpg" alt=""/></view>
-                    <view class="mui-media-body">热销</view>
-                </navigator>
-            </view>
-            <view class="mui-table-view-cell mui-media mui-col-sm-3 ">
-                <navigator url="../spList/spList">
-                    <view class="aui-cell-img"><image class="img" src="/img/icon1-1.jpg" alt=""/></view>
-                    <view class="mui-media-body">分类</view>
-                </navigator>
-            </view>
-            <view class="mui-table-view-cell mui-media mui-col-sm-3 ">
-                <a href="lqyhq.html">
-                    <view class="aui-cell-img"><image class="img" src="/img/icon1-2.jpg" alt=""/></view>
-                    <view class="mui-media-body">优惠</view>
-                </a>
-            </view>
+            
         </view>
     </view>
     <view class="devider t-line"></view>
     <view class="aui-hot t-line">
         <view>
-            <a href="#"><image class="img" src="/img/pic.jpg" alt=""/></a>
+            <a href="#"><image class="img" src="{{homenews.fpic}}" alt=""/></a>
         </view>
-        <view class="h2">男神女神们读书忙 你还在继续做文盲？松茸部长</view>
+        <view class="h2">{{homenews.dname}}</view>
     </view>
     <view class="devider t-line"></view>
     <!--潮流搭配-->
     <view class="aui-list t-line">
-        <view class="h2">潮流搭配</view>
-        <view class="mui-table-view mui-grid-view">
-            <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list}}" wx:if="{{index<6}}">
+        <view class="h2">{{firstClass.name}}</view>
+        <view class="mui-table-view mui-grid-view" style="display: flex;flex-direction: row;">
+            <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list2}}" >
                 <navigator url="../spList/spList?cataId={{item.id}}&&name={{item.name}}">
-                    <image class="mui-media-object" src="https://v.tixaapp.com/WeChatApplet/{{item.logo}}"/>
+                    <image class="mui-media-object imgbg" src="https://v.tixaapp.com/WeChatApple/{{item.cover}}" style="height:95px"/>
                     <view class="mui-media-body">{{item.name}}</view>
                 </navigator>
             </view>
@@ -112,11 +62,11 @@
     <view class="devider t-line"></view>
     <!--推荐列表-->
     <view class="aui-week t-line">
-        <view class="h2">推荐列表</view>
+        <view class="h2">{{secondClass.name}}</view>
         <view class="ul mui-table-view mui-grid-view">
-            <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list}}" wx:if="{{index>=6}}">
+            <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list2}}" >
                 <navigator url="../spList/spList?cataId={{item.id}}&&name={{item.name}}">
-                    <image class="mui-media-object" src="https://v.tixaapp.com/WeChatApplet/{{item.logo}}"/>
+                    <image class="mui-media-object" src="https://v.tixaapp.com/WeChatApple/{{item.cover}}" style="height:95px"/>
                     <view class="mui-media-body">{{item.name}}</view>
                 </navigator>
             </view>
