@@ -1,0 +1,20 @@
+<view class="content heighAoto">
+    	<view class="addressCon">
+        	<view class="li" wx:for="{{list}}">
+            	<view class="dzxmLine">
+                	<view class="nameLine"><view class="span">{{item.consignee}}</view><view class="p">1870000000</view></view>
+                    <view class="xxdz">{{item.detailedAddress}}</view>
+                </view>
+                <view class="czLine">
+                	<view class="mrdz mrdzA"><view class="em"></view>默认地址</view>
+                    <view class="sccz">
+                    	<view class="span"><view class="em"><image class="img" src="/img/icon3-3.png"/></view>编辑</view>
+                        <view class="span"><view class="em"><image class="img" src="/img/icon3-4.png"/></view>删除</view>
+                    </view>
+                </view>
+            </view>
+            
+            
+        </view>
+        <view class="adddzBnt"> <navigator open-type="redirect" url="../addNewdz/addNewdz">添加新地址</navigator></view>
+    </view>

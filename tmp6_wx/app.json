@@ -8,7 +8,11 @@
     "pages/couponList/couponList",
     "pages/about/about",
     "pages/commentList/commentList",
-    "pages/productlist/pdList"
+    "pages/productlist/pdList",
+    "pages/cart/cart",
+    "pages/pay/pay",
+    "pages/addressList/addressList",
+    "pages/addNewdz/addNewdz"
   ],
   "window": {
     "backgroundTextStyle": "light",

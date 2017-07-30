@@ -1,0 +1,63 @@
+<view class="content posRel">
+    	<view class="ddztLine">
+        	<view class="em"><image class="img" src="/img/icon3-2.png" /></view>
+            <view class="ddxqRight">
+            	<view class="span">订单状态：待付款</view>
+                <view class="span">订单号：5911730917ef9895247089</view>
+            </view>
+        </view>
+        <view class="devider t-line"></view>
+        
+         <navigator open-type="redirect" url="../addressList/addressList">
+          <view class="shdzLine">
+                <view class="span">请选择地址</view>
+                  <view class="p">></view>
+          </view>
+          </navigator>   
+        
+        <view class="devider t-line"></view>
+        <!--<view class="aui-nav xqTitle">
+            <view class="fhLine">
+            	<view class="li">
+                	<view class="span wxzf"><image class="img" src="/img/wxzf.png" /></view>
+                    <view class="p xzHover"></view>
+                </view>
+                <view class="li">
+                	<view class="span zfb"><image class="img" src="/img/zfb.png" /></view>
+                    <view class="p"></view>
+                </view>
+            </view>
+        </view>-->
+    	<view class="devider t-line"></view>
+        <view class="aui-nav">
+            <view class="xqLineA">
+            	<view class="xqLineLeft">
+                	<view class="xqPic"><image class="img" src="/img/pic1.jpg" style="width:70px;height:70px"/></view>
+                    <view class="titPice">
+                            <view class="span cpxqTitA">简约新款</view>
+                            <view class="span jgLineA">￥ 36.00  </view>
+                        </view>
+                </view>
+                <view class="slRight">X1</view>
+            </view>
+            <view class="qtxxLineA">
+            	<!--<view class="yhjxz">
+                	<a class="a" href="couponList.html">
+                    	<view class="span">店铺优惠</view>
+                        <view class="p">使用优惠券 ></view>
+                    </a>
+                </view>-->
+                <view class="qtxxLineB">
+                	<view class="li"><view class="span">商品金额</view><view class="p">￥58</view></view>
+                    <view class="li"><view class="span">运费</view><view class="p">￥0.00</view></view>
+                </view>
+            </view>
+        </view>
+        <view style="height:50px"></view>
+        <view class="mui-bar mui-bar-tab buyBar">
+            <view class="jezj">
+            	<view class="span">应付金额:<view class="em">￥ 36.00</view> </view>
+                <view class="fkBnt">去付款</view>
+            </view>
+        </view>
+    </view>

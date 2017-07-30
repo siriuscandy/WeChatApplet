@@ -13,7 +13,6 @@ var getList = function (that) {
       
     },
     success: function (res) {
-      console.log(res)
       that.setData({
           list: res.data.list
       });

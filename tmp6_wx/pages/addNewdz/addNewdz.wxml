@@ -1,0 +1,29 @@
+<view class="content bgfff">
+    	<view class="dzLineA">
+        	<view class="li">新建收货地址</view>
+            <view class="li">
+            	<view class="span">收货人</view>
+            	<view class="p"><input type="text" class="input dzxqK" placeholder="收货人"/></view>
+            </view>
+            <view class="li">
+            	<view class="span">联系电话</view>
+            	<view class="p"><input type="number" class="input dzxqK" placeholder="xxxxxxx"/></view>
+            </view>
+            <view class="li">
+            	<view class="span">所在地区</view>
+            	<view class="content-block">
+                    <input id="demo1" class="input" type="text" readonly placeholder="选择所在地区"  value=""/>
+                    <input id="value1" class="input" type="hidden" value="20,234,504"/>
+                </view>
+            </view>
+            <view class="li">
+            	<view class="span">详细地址</view>
+            	<view class="p"><input type="text" class="input dzxqK" placeholder="详细地址" /></view>
+            </view>
+            <view class="li">
+            	<view class="span szdz">设置为默认地址</view>
+            	<view class="p kqBnt"><input type="checkbox" id="checkbox_c1" class="input chk_3" /><label for="checkbox_c1"></label></view>
+            </view>
+        </view>
+        <view class="fbBnt">保存并使用</view>
+    </view>

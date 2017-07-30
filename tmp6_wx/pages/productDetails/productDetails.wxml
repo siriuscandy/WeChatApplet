@@ -33,8 +33,8 @@
         <view style="height:50px"></view>
         <view class="mui-bar mui-bar-tab buyBar">
             <view class="buyBntList">
-            	<view class="span buyBnt jrgwc"><a class="a" onClick="toshare()" href="#">加入购物车</a></view>
-                <view class="span buyBnt ljgm"><a class="a" onClick="toshareB()" href="#">立即购买</a></view>
+            	<!--<view class="span buyBnt jrgwc"><a class="a" onClick="toshare()" href="#">加入购物车</a></view>-->
+                <view class="span buyBnt ljgm"><navigator class="a"  url="../pay/pay?goodsId={{goods.id}}">立即购买</navigator></view>
             </view>
         </view>
         <!--加入购物车 弹层-->

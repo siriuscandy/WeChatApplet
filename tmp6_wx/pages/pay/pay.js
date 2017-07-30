@@ -1,49 +1,18 @@
-// spList.js
-
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/goodsList";
-var userId = 95;
-var pageNum = 0;
-var pageSize = 15;
-var thisCateId =0;
-
-var getList = function (that) {
-  wx.request({
-    url: url,
-    data: {
-      pageNum: pageNum,
-      pageSize: pageSize,
-      userId: userId,
-      classId: thisCateId,
-    },
-    success: function (res) {
-      var plist = res.data.list;
-      that.setData({
-        prolist: plist
-      });
-    }
-  });
-}
-
+// me.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    prolist:[],
-    tab: 2,
-    cateName:""
+    tab: 3
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    thisCateId = options.cateId;
-    this.setData({
-      cateName: options.cateName 
-    });
-    getList(this);
+  
   },
 
   /**

@@ -3,27 +3,27 @@
             <view class="find_nav_left">
                 <view class="find_nav_list" id="pagenavi1">
                     <ul>
-                        <li><a href="#" class="active" data-bind="text:data.title()">鲜花订阅</a></li>
+                        <li><a href="#" class="active" >{{cateName}}</a></li>
                     </ul>
                 </view>
             </view>
         </view>
-        <view id="slider1" class="swipe">
-              <ul class="box01_list">
-                <li class="li_list">
-                	<view class="mui-table-view mui-grid-view" data-bind="foreach: data.list()">
-                        <view class="mui-table-view-cell mui-media mui-col-xs-6" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
-                            <a >
-                                <imgage class="mui-media-object"data-bind="attr:{'src':cover}" />
-                                <view class="mui-media-body" data-bind="text:name">上门保洁-房间彻底清理</view>
-                                <view class="mui-media-body jgPice">¥<d data-bind="text:price"></d>/次</view>
-                            </a>
+        <view  class="swipe">
+              <view class="box01_list">
+                <view class="li_list" >
+                	<view class="mui-table-view mui-grid-view" >
+                        <view class="mui-table-view-cell mui-media mui-col-xs-6" wx:for="{{prolist}}" wx:key="productlist">
+                            <navigator url="../productDetails/productDetails?goodsId={{item.id}}">
+                                <imgage class="mui-media-object" src="{{item.cover}}" />
+                                <view class="mui-media-body" >{{item.name}}</view>
+                                <view class="mui-media-body jgPice">¥<d>{{item.price}}</d>/次</view>
+                            </navigator>
                         </view>
 
                      </view>
-                </li>
+                </view>
 
-              </ul>
+              </view>
         
             </view>
 </view>

@@ -31,7 +31,7 @@ Page({
    */
   data: {
     prolist:[],
-    tab: 2,
+    tab: 4,
     cateName:""
   },
 
