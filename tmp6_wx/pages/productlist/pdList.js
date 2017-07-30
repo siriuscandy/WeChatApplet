@@ -1,21 +1,26 @@
 // spList.js
 
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsCateList";
+var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/goodsList";
 var userId = 95;
-var isindex=0;
+var pageNum = 0;
+var pageSize = 15;
+var cataId=0;
+var cataName='全部'
 
 var getList = function (that) {
   wx.request({
     url: url,
     data: {
+      pageNum: pageNum,
+      pageSize: pageSize,
       userId: userId,
-      isIndex: isindex,
-      
+      cataId: cataId,
+      cataName: cataName
     },
     success: function (res) {
-      console.log(res)
+      var list = res.data.list;
       that.setData({
-          list: res.data.list
+        list: list
       });
     }
   });
@@ -29,13 +34,24 @@ Page({
   data: {
     list:[],
     tab: 2,
+    cataId: cataId
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    if (options.cataId){
+      cataId = options.cataId;
+      cataName= options.name
+    } else {
+      cataId = 0;
+      cataName = '全部'
+    }
+    this.setData({
+      cataId: cataId,
+      cataName: cataName
+    })
     getList(this);
   },
 

@@ -7,7 +7,8 @@
     "pages/productDetails/productDetails",
     "pages/couponList/couponList",
     "pages/about/about",
-    "pages/commentList/commentList"
+    "pages/commentList/commentList",
+    "pages/productlist/pdList"
   ],
   "window": {
     "backgroundTextStyle": "light",

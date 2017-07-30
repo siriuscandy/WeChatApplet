@@ -1,0 +1,29 @@
+<view class="content bgfff">
+<view class="find_nav">
+            <view class="find_nav_left">
+                <view class="find_nav_list" id="pagenavi1">
+                    <ul>
+                        <li><a href="#" class="active" data-bind="text:data.title()">鲜花订阅</a></li>
+                    </ul>
+                </view>
+            </view>
+        </view>
+        <view id="slider1" class="swipe">
+              <ul class="box01_list">
+                <li class="li_list">
+                	<view class="mui-table-view mui-grid-view" data-bind="foreach: data.list()">
+                        <view class="mui-table-view-cell mui-media mui-col-xs-6" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
+                            <a >
+                                <imgage class="mui-media-object"data-bind="attr:{'src':cover}" />
+                                <view class="mui-media-body" data-bind="text:name">上门保洁-房间彻底清理</view>
+                                <view class="mui-media-body jgPice">¥<d data-bind="text:price"></d>/次</view>
+                            </a>
+                        </view>
+
+                     </view>
+                </li>
+
+              </ul>
+        
+            </view>
+</view>
