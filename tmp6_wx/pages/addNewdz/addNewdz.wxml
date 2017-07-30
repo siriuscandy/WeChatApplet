@@ -1,29 +1,52 @@
 <view class="content bgfff">
+<form bindsubmit="formSubmit" bindreset="formReset">  
     	<view class="dzLineA">
         	<view class="li">新建收货地址</view>
             <view class="li">
             	<view class="span">收货人</view>
-            	<view class="p"><input type="text" class="input dzxqK" placeholder="收货人"/></view>
+            	<view class="p"><input type="text" class="input dzxqK" placeholder="收货人" name="consignee"/></view>
             </view>
             <view class="li">
             	<view class="span">联系电话</view>
-            	<view class="p"><input type="number" class="input dzxqK" placeholder="xxxxxxx"/></view>
+            	<view class="p"><input type="number" class="input dzxqK" placeholder="xxxxxxx" name="mobile" maxlength="11"/></view>
             </view>
             <view class="li">
             	<view class="span">所在地区</view>
             	<view class="content-block">
-                    <input id="demo1" class="input" type="text" readonly placeholder="选择所在地区"  value=""/>
-                    <input id="value1" class="input" type="hidden" value="20,234,504"/>
+              <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">  
+                    <view class="picker">  
+                        <input type="hidden" class="input" disabled="true" name="location" value="{{array[index]}}"/>  
+                    </view>  
+                </picker>  
+                  
                 </view>
             </view>
             <view class="li">
             	<view class="span">详细地址</view>
-            	<view class="p"><input type="text" class="input dzxqK" placeholder="详细地址" /></view>
+            	<view class="p"><input type="text" class="input dzxqK" placeholder="详细地址" name="detailedAddress"/></view>
             </view>
             <view class="li">
             	<view class="span szdz">设置为默认地址</view>
-            	<view class="p kqBnt"><input type="checkbox" id="checkbox_c1" class="input chk_3" /><label for="checkbox_c1"></label></view>
+            	<view class="p kqBnt"><switch name="status"/>  </view>
             </view>
         </view>
-        <view class="fbBnt">保存并使用</view>
+        <button class="fbBnt" formType="submit">提交</button>  
+            <button class="fbBnt" formType="reset">清空</button>  
+        <!--<view class="fbBnt" formType="submit">保存并使用</view>-->
+        
+</form>
+        <!-- 黑框提示并消失 -->  
+    <toast hidden="{{toast1Hidden}}" bindchange="toast1Change">  
+        {{notice_str}}  
+    </toast>  
+    <!-- 确认框 及 提示框 -->  
+    <view class="page__bd">  
+        <modal title="确认" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="confirm_one" bindcancel="cancel_one">  
+            确认提交么？  
+        </modal>  
+        <modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2" bindcancel="modalChange2">  
+            <view> 提示 </view>  
+            <view> 清空成功 </view>  
+        </modal>  
+    </view>  
     </view>

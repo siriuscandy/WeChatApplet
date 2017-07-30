@@ -9,3 +9,4 @@
 .dzLineA .li:last-child{border-bottom:0;}
 .dzLineA .li .kqBnt{width:auto; float:right;padding-top: 9px;}
 .chk_3 {display: none;}
+.fbBnt{margin:5%; height:35px; text-align:center; line-height:35px; font-size:15px; color:#fff; background:#ff6c00; border-radius:5px; cursor:pointer;}

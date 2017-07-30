@@ -1,6 +1,6 @@
 // spList.js
 
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/addAddress";
+var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/addAddress?userId=95";
 var ThisuserId = 95;
 var pageNum = 0;
 var pageSize = 15;
@@ -74,6 +74,7 @@ Page({
       index: e.detail.value
     })
   },
+ 
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数  
   },
@@ -91,6 +92,11 @@ Page({
   },
   formSubmit: function (e) {
     var that = this;
+    if (e.detail.value.status == true) {
+      e.detail.value.status = 1
+    } else {
+      e.detail.value.status = 0
+    }
     var formData = e.detail.value;
     wx.request({
       url: url,
