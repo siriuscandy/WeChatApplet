@@ -2,7 +2,9 @@
 var goodsData="";
 
 var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsDetail";
+var submmiturl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/addOrder"
 var goodsId = 0;
+var userId = 95;
 
 var getDetail = function (that) {
   wx.request({
@@ -16,6 +18,21 @@ var getDetail = function (that) {
       that.setData({
         goods: goods,
       });
+    }
+  });
+};
+var gopaysubmit = function (that) {
+  wx.request({
+    url: submmiturl,
+    data: {
+      goodsId: goodsId,
+      number: 1,
+      userId: userId,
+      address: that.data.addressdata
+    },
+    success: function (res) {
+      console.log("ok")
+      
     }
   });
 }
@@ -38,6 +55,9 @@ Page({
     console.log(options)
     goodsId = options.goodsId
     getDetail(this);
+  },
+  gopay: function (event) {
+    gopaysubmit(this);
   },
   addaddress: function (event) {
     var Dthis =this;

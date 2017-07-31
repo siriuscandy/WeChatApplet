@@ -64,7 +64,7 @@
         <view class="mui-bar mui-bar-tab buyBar">
             <view class="jezj">
             	<view class="span">应付金额:<view class="em">￥ {{goods.price}}</view> </view>
-                <view class="fkBnt">去付款</view>
+                <view class="fkBnt" bindtap="gopay">去付款</view>
             </view>
         </view>
     </view>
