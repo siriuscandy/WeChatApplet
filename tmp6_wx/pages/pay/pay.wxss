@@ -30,3 +30,6 @@
 .jezj .span{font-size:16px; color:#333; width:auto; display:inline;}
 .jezj .span .em{font-size:25px; color:#e37f42;width:auto; display:inline;}
 .fkBnt{width:90px; float:right; height:33px; line-height:33px; text-align:center; background:#ff6c00; font-size:16px; color:#fff; margin-right:10px; border-radius:5px; margin-top:8px; margin-left:15px;}
+.addressDIV .address { float: left; width: 100%;}
+.addressDIV { height:auto; line-height: 28px; float:left;}
+.addressDIV .address_nameLine{float: left; width: 80%;}

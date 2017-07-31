@@ -7,9 +7,16 @@
             </view>
         </view>
         <view class="devider t-line"></view>
-        
+         <view class="shdzLine addressDIV"  wx:if="{{!addresshidden}}">
+            	<view class="address_nameLine" >
+                <view class="address">{{addressdata.userName}}</view>
+                <view class="address">{{addressdata.telNumber}}</view>
+                <view class="address">{{addressdata.provinceName}}／{{addressdata.cityName}}／{{addressdata.countyName}}／{{addressdata.detailInfo}}</view>
+              </view>
+              <view class="p">></view>
+          </view>
          <!--<navigator open-type="redirect" url="../addressList/addressList">-->
-          <view class="shdzLine" bindtap="addaddress">
+          <view wx:if="{{addresshidden}}" class="shdzLine" bindtap="addaddress">
                 <view class="span">请选择地址</view>
                   <view class="p">></view>
           </view>
@@ -32,10 +39,10 @@
         <view class="aui-nav">
             <view class="xqLineA">
             	<view class="xqLineLeft">
-                	<view class="xqPic"><image class="img" src="/img/pic1.jpg" style="width:70px;height:70px"/></view>
+                	<view class="xqPic"><image class="img" src="{{goods.cover}}" style="width:70px;height:70px"/></view>
                     <view class="titPice">
-                            <view class="span cpxqTitA">简约新款</view>
-                            <view class="span jgLineA">￥ 36.00  </view>
+                            <view class="span cpxqTitA">{{goods.name}}</view>
+                            <view class="span jgLineA">￥ {{goods.price}}  </view>
                         </view>
                 </view>
                 <view class="slRight">X1</view>
@@ -48,7 +55,7 @@
                     </a>
                 </view>-->
                 <view class="qtxxLineB">
-                	<view class="li"><view class="span">商品金额</view><view class="p">￥58</view></view>
+                	<view class="li"><view class="span">商品金额</view><view class="p">￥{{goods.price}}</view></view>
                     <view class="li"><view class="span">运费</view><view class="p">￥0.00</view></view>
                 </view>
             </view>
@@ -56,7 +63,7 @@
         <view style="height:50px"></view>
         <view class="mui-bar mui-bar-tab buyBar">
             <view class="jezj">
-            	<view class="span">应付金额:<view class="em">￥ 36.00</view> </view>
+            	<view class="span">应付金额:<view class="em">￥ {{goods.price}}</view> </view>
                 <view class="fkBnt">去付款</view>
             </view>
         </view>

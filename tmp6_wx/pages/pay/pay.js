@@ -1,23 +1,53 @@
 // me.js
+var goodsData="";
+
+var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsDetail";
+var goodsId = 0;
+
+var getDetail = function (that) {
+  wx.request({
+    url: url,
+    data: {
+      goodsId: goodsId
+    },
+    success: function (res) {
+      var goods = res.data.data.list;
+      console.log(goods.images.split(","));
+      that.setData({
+        goods: goods,
+      });
+    }
+  });
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tab: 3
+    tab: 3,
+    goods:{},
+    addresshidden:true,
+    addressdata:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    console.log(options)
+    goodsId = options.goodsId
+    getDetail(this);
   },
   addaddress: function (event) {
+    var Dthis =this;
     if (wx.chooseAddress) {
       wx.chooseAddress({
         success: function (res) {
+          Dthis.setData({
+            addressdata: res,
+            addresshidden:false
+          });
           console.log(JSON.stringify(res))
         },
         fail: function (err) {
