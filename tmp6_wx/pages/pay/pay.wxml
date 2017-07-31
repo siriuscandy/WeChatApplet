@@ -8,12 +8,12 @@
         </view>
         <view class="devider t-line"></view>
         
-         <navigator open-type="redirect" url="../addressList/addressList">
-          <view class="shdzLine">
+         <!--<navigator open-type="redirect" url="../addressList/addressList">-->
+          <view class="shdzLine" bindtap="addaddress">
                 <view class="span">请选择地址</view>
                   <view class="p">></view>
           </view>
-          </navigator>   
+          <!--</navigator>   -->
         
         <view class="devider t-line"></view>
         <!--<view class="aui-nav xqTitle">

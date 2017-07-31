@@ -4069,7 +4069,7 @@ select:focus {
 .aui-hot.aui-hota{background:none;}
 .mui-bar-tab .aui-tab-item {display: table-cell;overflow: hidden;width: 1%;height: 50px;text-align: center;vertical-align: middle;white-space: nowrap;text-overflow: ellipsis;color: #929292;}
 .mui-bar-tab .aui-tab-item.mui-active{color: #ff6c00;}
-.mui-bar-tab .aui-tab-item .mui-icon{top: 6px;width: 24px;height: 26px;padding-top: 0;padding-bottom: 0;}
+.mui-bar-tab .aui-tab-item .mui-icon{top: 0;width: 24px;height: 26px;padding-top: 0;padding-bottom: 0;}
 .mui-bar-tab .aui-tab-item .mui-icon.mui-tab-label {font-size: 14px;display: block;overflow: hidden;text-overflow: ellipsis;}
 .mui-tab-label{font-size:14px;}
 .mui-icon.mui-icon-home{background: no-repeat 0 2px; background-size:100%;}

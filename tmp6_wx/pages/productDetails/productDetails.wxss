@@ -29,7 +29,7 @@
 .buyBnt .a{height:35px; display:block;}
 .jrgwc{border:1px solid #ccc;  background:#fff;}
 .jrgwc .a{color:#222;}
-.ljgm{background:#ff6c00; margin-left:10px;}
+.ljgm{background:#ff6c00; margin-left:26%;}
 .ljgm .a{color:#fff;}
 .mui-bar.mui-bar-tab.buyBar{background:#fff;}
 .picList{margin-top:10px;}

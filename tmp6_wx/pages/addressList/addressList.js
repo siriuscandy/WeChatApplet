@@ -34,7 +34,7 @@ Page({
   },
   choseaddress: function (event) {
     console.log(event)
-    var dataad = event.currentTarget.dataset.hi;
+    var dataad = event.currentTarget.dataset
   },
   /**
    * 生命周期函数--监听页面加载
@@ -43,7 +43,31 @@ Page({
     
     getList(this);
   },
+  addaddress:function(event){
+    if (wx.chooseAddress) {
 
+      　　wx.chooseAddress({
+
+        　　success: function (res) {
+
+          　　console.log(JSON.stringify(res))
+
+        　　},
+
+        　　fail: function (err) {
+
+          　　console.log(JSON.stringify(err))
+
+        　　}
+
+      　　})
+
+    　　} else {
+
+      　　console.log('当前微信版本不支持chooseAddress');
+
+    　　}
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

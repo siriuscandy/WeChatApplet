@@ -14,7 +14,20 @@ Page({
   onLoad: function (options) {
   
   },
-
+  addaddress: function (event) {
+    if (wx.chooseAddress) {
+      wx.chooseAddress({
+        success: function (res) {
+          console.log(JSON.stringify(res))
+        },
+        fail: function (err) {
+          console.log(JSON.stringify(err))
+        }
+      })
+    } else {
+      console.log('当前微信版本不支持chooseAddress');
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

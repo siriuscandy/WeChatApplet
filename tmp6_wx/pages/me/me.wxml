@@ -12,7 +12,7 @@
       <view class="myLine">
           <view class="li"><navigator class="a" url="/pages/order/order"><image src="/img/ico09.png" class="em"></image>我的订单</navigator></view>
             <!--<view class="li"><navigator class="a" url="../couponList/couponList"><image src="/img/ico10.png" class="em yhjIcon"></image>优惠券</navigator></view>-->
-            <view class="li"><navigator class="a" url="../addressList/addressList"><image src="/img/ico10.png" class="em yhjIcon"></image>收货地址</navigator></view>
+            <view class="li" bindtap="addaddress"><image src="/img/ico10.png" class="em yhjIcon"></image>收货地址</view>
             <view class="li"><navigator class="a" url="../about/about"><image src="/img/ico11.png" class="em gywmIcon"></image>关于我们</navigator></view>
         </view>
     </view>
