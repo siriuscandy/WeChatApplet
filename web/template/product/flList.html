@@ -90,13 +90,13 @@
             window.location.href = "../product/productDetails.html?goodsId="+id +"&tmp="+GetQueryString("tmp");
         };
         viewModel.goList = function(id){
-            window.location.href = "flList.html?tmp="+GetQueryString("tmp")+"&classId=" + id;
+            window.location.href = "flList.html?tmp="+GetQueryString("tmp")+"&cateId=" + id;
         };
         viewModel.getbanner = function(){
             var queryData = {
                 pagesize: 4,     //page size 每页显示条数
                 pageNum: 0,    //page num 当前页数
-                classId: viewModel.cateId,   //page num 当前页数
+                cateId: viewModel.cateId,   //page num 当前页数
                 userModuleId:viewModel.userModuleId
             };
             ajaxCom.Loadajax('GET',listUrl,queryData,function(res){

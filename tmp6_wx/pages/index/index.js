@@ -45,6 +45,8 @@ var GetList = function (that) {
         firstClass: list[4],
         secondClass: list[5],
       });
+      getlist1(that);
+      getlist2(that);
     }
   });
 }
@@ -166,8 +168,7 @@ Page({
   onShow: function () {
     GetList(this);
     getBanner(this);
-    getlist1(this);
-    getlist2(this);
+    
     gethomeNews(this);
   }
 })

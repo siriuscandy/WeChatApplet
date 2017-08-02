@@ -13,7 +13,7 @@ var getList = function (that) {
       pageNum: pageNum,
       pageSize: pageSize,
       userId: userId,
-      classId: thisCateId,
+      cateId: thisCateId,
     },
     success: function (res) {
       var plist = res.data.list;
