@@ -23,7 +23,12 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       window.location.href = "../tmp6/index.html";
   };
   viewModel.goProList = function(){
+    if(GetQueryString("isedit")){
+      window.location.href = "../product/spList.html?tmp=6&isedit=true&userid="+viewModel.userId;
+
+      }else{
       window.location.href = "../product/spList.html?tmp=6&userid="+viewModel.userId;
+      }
   };
   viewModel.goOrder = function(){
       window.location.href = "../product/myOrder.html?tmp=6&userid="+viewModel.userId;

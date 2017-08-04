@@ -15,9 +15,9 @@
             <h2><span>商品分类</span></h2>
             <ul class="mui-table-view mui-grid-view" data-bind="foreach: data.list()">
                 <li class="mui-table-view-cell mui-media mui-col-xs-3a"  data-bind="attr:{'data-id':id}">
-                    <a data-bind="click:function(){$parent.goList(id,name)}" >
-                        <img class="mui-media-object" data-bind="attr:{'src':logo}">
-                        <div class="mui-media-body" data-bind="text:name"></div>
+                    <a data-bind="attr:{'class':'logo'+id}" >
+                        <img class="mui-media-object" data-bind="attr:{'src':logo},click:function(){$parent.changeImg(logo,'logo'+id,id)}">
+                        <div class="mui-media-body" data-bind="attr:{'class':'mui-media-body name'+id},text:name,click:function(){$parent.changeText(name,'name'+id,id)}"></div>
                     </a>
                 </li>
 
@@ -45,6 +45,8 @@
             </div>
         </nav>
     </div>
+    <div id="GoupdateModule" data-bind="click:GoupdateModule" style="position:absolute;z-index:0; height:1px;width:1px;visibility: hidden;"></div>
+
 <script src="../../js/unit.js"></script>
 <script src="../../trd/requirejs/require.js"></script>
 <script src="../../js/require.config.js"></script>
@@ -52,6 +54,8 @@
     require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
     ], function($, ko,dialogmin,ajaxCom) {
         var listUrl  =  '/goodsAPI/getGoodsCateList';
+        var UpdataUrl = '/goodsAPI/updateGoodsCate';//修改
+
         var viewModel = {
             data : {
                 list : ko.observableArray([]),
@@ -76,6 +80,53 @@
         viewModel.goList = function(id,name){
             window.location.href = "flList.html?tmp="+GetQueryString("tmp")+"&cateId=" + id+"&catename="+name;;
         };
+        viewModel.changeImg =function(i,id,cateId){
+        if(GetQueryString("isedit")){
+            $(".picLine",parent.document).find("img").attr("src",i).attr("data-id",id);
+
+        }else{
+            window.location.href = "flList.html?tmp="+GetQueryString("tmp")+"&cateId=" + id+"&catename="+name;;
+        }
+        }
+        viewModel.changeText =function(i,id,cateId){
+            if(GetQueryString("isedit")){
+                $(".xgtxt",parent.document).val(i).attr("data-id",id);
+            
+            }else{
+            window.location.href = '../product/flList.html?tmp=6&cateId='+cateId;
+            }
+        }
+        viewModel.GoupdateModule =function(){
+        var  UParray = [];
+        $(".aui-week ul").find("li").each(function(e){
+            var list1data = {
+                "name":$(this).find(".mui-media-body").html(),
+                "logo":$(this).find("img").attr("src"),
+                "id":$(this).attr("data-id"),
+            }
+            UParray.push(list1data)
+        })
+        
+        var updataD = {
+          attrs:UParray
+        }
+        $.ajax({
+            type : 'post',
+            dataType : 'json',
+            data:{
+              attrs:JSON.stringify(updataD)
+            },
+            url :$ctx+ UpdataUrl,
+            success : function(res) {
+                if(res){
+                    dialogmin("保存成功")
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
+    }
         viewModel.getbanner = function(){
             var queryData = {
                 isIndex:0,
