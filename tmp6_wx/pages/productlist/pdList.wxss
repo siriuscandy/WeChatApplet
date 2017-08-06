@@ -1,1 +1,6 @@
 /* spList.wxss */
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-object{
+  width:50%;
+max-width:100%;
+height:80px
+}

@@ -1,7 +1,7 @@
 // order.js
 
 var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getOrderList";
-var userId=1;
+var userId = getApp().globalData.USERID;
 var status=-10;
 var pageNum = 0;
 var pageSize = 5;

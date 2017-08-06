@@ -1,65 +1,53 @@
 <view class="t-line">
-        	<view class="commodity_box">
+  <view class="commodity_box">
 			<view class="commodity_list">
 				<!--店名信息-->
 				<view class="tite_tim select">
-					<view aem="1" cart_id="84"></view>
-					<span><i><image src="img/icon.png" /></i>美丽服装店</span>
-                    <a class="rig_shai" id="rem_s" href="cart1.html" style="margin-right: 2%;position: absolute; top: 5px; right: 3%;">编辑</a>
+					
+					<view class="span"><view class="i"><image class="icon_img img" src="/img/icon.jpg" /></view>美丽服装店</view>
+                    <navigator class="a rig_shai" id="rem_s" href="cart1.html" style="margin-right: 2%;position: absolute; top: 5px; right: 3%;">编辑</navigator>
 					<view class="clear"></view>
 				</view>
 				<!--商品-->
-				<ul class="commodity_list_term">
-					<li class="select">
-						<view aem="0" cart_id="84"></view>
-						<image src="images/33d332dbca4e027fbc270db34a1a915d.png" />
-						<view class="view_center">
-							<view>欧美新款</view>
-							<p class="now_value"><i>￥</i><b class="qu_su">120.00</b></p>
+				<view class="ul" class="commodity_list_term">
+					<view class="li select" wx:for="{{prolist}}">
+						<icon class="em" wx:if="{{item.selected}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+   <icon class="em" wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+						<image class="img" src="{{item.goodsCover}}" />
+						<view class="div_center">
+							<view class="h4">{{item.goodsName}}</view>
+							<view class="p now_value">
+                <view class="i">￥</view>
+                <view class="b qu_su">{{item.unitPrice}}</view>
+              </view>
 						</view>
-						<view class="view_right wcbj">
-							X <span class="zi">1</span>
+						<view class="div_right wcbj">
+							X <view class="zi span">{{item.goodsnumber}}</view>
 						</view>
-                        <view class="scBnt">删除</view>
-					</li>
-					<li class="select">
-						<view aem="0" cart_id="84"></view>
-						<image src="images/33d332dbca4e027fbc270db34a1a915d.png" />
-						<view class="view_center">
-							<view>欧美新款</view>
-							<p class="now_value"><i>￥</i><b class="qu_su">50.00</b></p>
-						</view>
-						<view class="view_right wcbj">
-							X <span class="zi">1</span>
-						</view>
-                        <view class="scBnt">删除</view>
-					</li>
-                    <li class="select">
-						<view aem="0" cart_id="84"></view>
-						<image src="images/33d332dbca4e027fbc270db34a1a915d.png" />
-						<view class="view_center">
-							<view>欧美新款</view>
-							<p class="now_value"><i>￥</i><b class="qu_su">10.00</b></p>
-						</view>
-						<view class="view_right wcbj">
-							X <span class="zi">1</span>
-						</view>
-                        <view class="scBnt">删除</view>
-					</li>
-				</ul>
+            <view class="scBnt">删除</view>
+					</view>
+					
+				</view>
 			</view>
-		</view>
+	</view>
+</view>
+
+<view class="settle_box">
+    	<view class="dl all_check select">
+        	<view class="dt">
+           <icon class="span" wx:if="{{allselected}}" type="success_circle" size="20" bindtap="allbindCheckbox" />
+   <icon class="span" wx:else type="circle" size="20" bindtap="allbindCheckbox" />
+            <view class="p">全选</view>
+          </view>
         </view>
-        <view style="height:50px"></view>
-        <view class="settle_box">
-    	<dl class="all_check select">
-        	<dt><span id="all_pitch_on"></span><p>全选</p></dt>
-        </dl>
-        <dl class="total_amount">
-        	<dt>合计：<p id="total_price">¥<b>0</b></p></dt>
-            <dd>不含运费</dd>
-        </dl>
-        <input type="hidden" name="gcs" id="gcs" />
-        <a class="settle_btn" href="javascript:void(0);" id="confirm_cart">付款</a>
-        <a class="settle_btn" href="javascript:void(0);" id="confirm_cart1" onclick="big_cart_remove()">删除</a>
-    </view>
+        <view class="dl total_amount">
+        	<view class="dt">合计：
+          <view class="p" id="total_price">¥<view class="b">{{totalprice}}</view>
+          </view>
+          </view>
+          <view class="dd">不含运费</view>
+        </view>
+       
+        <view class="a settle_btn" bindtap="bindgopay" >付款</view>
+  </view>    
+ <include src="/pages/template/footer.wxml"/>

@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab: 3
+    tab: 3,
+    userInfo: getApp().globalData.userInfo,
   },
 
   /**

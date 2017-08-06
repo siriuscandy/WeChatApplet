@@ -1,7 +1,7 @@
 // spList.js
 
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/goodsList";
-var userId = 95;
+var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCartList";
+var userId = getApp().globalData.USERID;
 var pageNum = 0;
 var pageSize = 15;
 var thisCateId =0;
@@ -13,7 +13,6 @@ var getList = function (that) {
       pageNum: pageNum,
       pageSize: pageSize,
       userId: userId,
-      cateId: thisCateId,
     },
     success: function (res) {
       var plist = res.data.list;
@@ -32,27 +31,135 @@ Page({
   data: {
     prolist:[],
     tab: 4,
-    cateName:""
+    cateName:"",
+    allselected:false,
+    totalprice:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    thisCateId = options.cateId;
-    this.setData({
-      cateName: options.cateName 
-    });
+    
     getList(this);
   },
+  bindCheckbox: function (e) {
+    /*绑定点击事件，将checkbox样式改变为选中与非选中*/
 
+    //拿到下标值，以在items作遍历指示用
+    var index = parseInt(e.currentTarget.dataset.index);
+    //原始的icon状态
+    var type = this.data.items[index].type;
+    var items = this.data.items;
+    if (type == 'circle') {
+      //未选中时
+      items[index].type = 'success_circle';
+    } else {
+      items[index].type = 'circle';
+    }
+
+    // 写回经点击修改后的数组
+    this.setData({
+      items: items
+    });
+    // 遍历拿到已经勾选的值
+    var checkedValues = [];
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type == 'success_circle') {
+        checkedValues.push(items[i].value);
+      }
+    }
+    // 写回data，供提交到网络
+    this.setData({
+      checkedValues: checkedValues
+    });
+  },
+  bindCheckbox: function (e) {
+    /*绑定点击事件，将checkbox样式改变为选中与非选中*/
+    //拿到下标值，以在carts作遍历指示用
+    var price = this.data.totalprice;
+    var index = parseInt(e.currentTarget.dataset.index);
+    //原始的icon状态
+    var selected = this.data.prolist[index].selected;
+    var carts = this.data.prolist;
+    // 对勾选状态取反
+    carts[index].selected = !selected;
+    if (selected){
+      price -= carts[index].unitPrice * carts[index].goodsnumber
+    }else{
+      price += carts[index].unitPrice * carts[index].goodsnumber
+    }
+    // 写回经点击修改后的数组
+    this.setData({
+      prolist: carts,
+      totalprice:price
+    });
+  },
+  allbindCheckbox: function (e) {
+    var carts = this.data.prolist;
+    var totalprice = 0;
+    if (this.data.allselected==false){
+      for (var i = 0; i < carts.length; i++) {
+        this.data.prolist[i].selected = true;
+        totalprice += this.data.prolist[i].unitPrice * this.data.prolist[i].goodsnumber
+      }
+      this.setData({
+        prolist: carts,
+        allselected: true,
+        totalprice: totalprice
+      });
+    }else{
+      for (var i = 0; i < carts.length; i++) {
+        this.data.prolist[i].selected = false;
+      }
+      this.setData({
+        prolist: carts,
+        allselected: false,
+        totalprice: 0
+      });
+    }
+   
+    
+  },
+  bindgopay: function () {
+    var carts = this.data.prolist;
+    var gopaydata =[];
+    for (var i = 0; i < carts.length; i++) {
+      if (carts[i].selected == true){
+        gopaydata.push(carts[i])
+      }
+    }
+    if (gopaydata.length == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择商品',
+        success: function (res) {
+
+        }
+      })
+      return false;
+
+    }
+    wx.setStorage({
+      key: "cartdata",
+      data: gopaydata
+    })
+    wx.redirectTo({
+      url: '../pay/pay',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
   
   },
+  gopay: function () {
 
+  },
   /**
    * 生命周期函数--监听页面显示
    */

@@ -22,7 +22,7 @@ cover: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
 var isIndex = 1;
 var pageNum = 0;
 var pageSize = 10;
-var userId = 95;
+var userId = getApp().globalData.USERID;
 var list1Id = "";
 var list2Id = "";
 
@@ -112,15 +112,15 @@ var gethomeNews= function (that) {
   wx.request({
     url: $ctx + newslistUrl,
     data: {
-      pageNum: 0,
+      pageNum: 1,
       pageSize: 1,
       zname: "首页资讯", 
       userid: userId
     },
     success: function (res) {
-
+      console.log(res)
       that.setData({
-        homenews: res.data.list,
+        homenews: res.data.list[0],
       });
 
     }

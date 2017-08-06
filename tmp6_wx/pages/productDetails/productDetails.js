@@ -1,7 +1,9 @@
 // productDetails.js
 
 var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsDetail";
+var addcart = "https://v.tixaapp.com/WeChatApplet/goodsAPI/addCart"
 var goodsId = 0;
+var userId = getApp().globalData.USERID;
 
 var getDetail = function (that) {
   wx.request({
@@ -19,7 +21,39 @@ var getDetail = function (that) {
     }
   });
 }
-
+var addcartFUN = function (that) {
+  wx.request({
+    url: addcart,
+    data: {
+      goodsId: goodsId,
+      goodsNumber: that.data.num,
+      userId: userId
+    },
+    success: function (res) {
+      wx.showToast({
+        title: '成功',
+        icon: 'success',
+        duration: 2000
+      })
+    }
+  });
+}
+var gobuyFUN = function (that) {
+  wx.setStorage({
+    key: "cartdata",
+    data: [
+      { goodsId: goodsId,
+        goodsnumber: that.data.num,
+        goodsName: that.data.goods.name,
+        unitPrice: that.data.goods.price,
+        goodsCover: that.data.goods.cover,
+      }
+    ]
+  })
+  wx.redirectTo({
+    url: "../pay/pay"
+  })
+}
 var commentUrl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCommentList";
 var pageNum = 0;
 var pageSize=3;
@@ -47,7 +81,12 @@ Page({
    */
   data: {
     goods: undefined,
-    comments:[]
+    comments:[],
+    opencart:false,
+    openbuy:false,
+    num: 1,// 使用data数据对象设置样式名  
+    minusStatus: 'disabled',
+    btnStatus:0,
   },
 
   /**
@@ -58,7 +97,61 @@ Page({
     getDetail(this);
     getCommentList(this);
   },
-
+  cartpro: function () {
+    this.setData({
+      opencart: true,
+      btnStatus:0
+    });
+  },
+  buypro: function () {
+    this.setData({
+      opencart: true,
+      btnStatus:1
+    });
+  },
+  addcart: function(){
+    if (this.data.btnStatus == 0){
+      addcartFUN(this);
+    }else {
+      gobuyFUN(this);
+    }
+    
+  },
+  bindMinus: function () {
+    var num = this.data.num;
+    // 如果大于1时，才可以减  
+    if (num > 1) {
+      num--;
+    }
+    // 只有大于一件的时候，才能normal状态，否则disable状态  
+    var minusStatus = num <= 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回  
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+  },
+  /* 点击加号 */
+  bindPlus: function () {
+    var num = this.data.num;
+    // 不作过多考虑自增1  
+    num++;
+    // 只有大于一件的时候，才能normal状态，否则disable状态  
+    var minusStatus = num < 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回  
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+  },
+  /* 输入框事件 */
+  bindManual: function (e) {
+    var num = e.detail.value;
+    // 将数值与状态写回  
+    this.setData({
+      num: num
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,7 +1,7 @@
 // spList.js
 
 var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/goodsList";
-var userId = 95;
+var userId = getApp().globalData.USERID;
 var pageNum = 0;
 var pageSize = 15;
 var thisCateId =0;
@@ -32,7 +32,8 @@ Page({
   data: {
     prolist:[],
     tab: 2,
-    cateName:""
+    cateName:"",
+      
   },
 
   /**

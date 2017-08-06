@@ -3,8 +3,10 @@
   <view class="yhdltx t-line">
       <view class="yhPic">
           <navigator url="login.html">
-                <view src="/img/icon2-1.png" class="span"></view>
-                <view class="p">请登录</view>
+                <view src="/img/icon2-1.png" class="span">
+                  <image class="image" src="{{userInfo.avatarUrl}}"/>
+                </view>
+                <view class="p">{{userInfo.nickName}}</view>
             </navigator>
         </view>
     </view>

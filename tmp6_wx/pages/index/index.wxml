@@ -41,7 +41,7 @@
         <view class="mui-table-view mui-grid-view" style="display: flex;flex-direction: row;">
             <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list2}}" >
                 <navigator url="../productDetails/productDetails?goodsId={{item.id}}">
-                    <image class="mui-media-object imgbg" src="https://v.tixaapp.com/WeChatApple/{{item.cover}}" style="height:95px"/>
+                    <image class="mui-media-object imgbg" src="{{item.cover}}" style="height:95px"/>
                     <view class="mui-media-body">{{item.name}}</view>
                 </navigator>
             </view>
@@ -66,7 +66,7 @@
         <view class="ul mui-table-view mui-grid-view">
             <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list2}}" >
                 <navigator url="../productDetails/productDetails?goods={{item.id}}">
-                    <image class="mui-media-object" src="https://v.tixaapp.com/WeChatApple/{{item.cover}}" style="height:95px"/>
+                    <image class="mui-media-object" src="{{item.cover}}" style="height:95px"/>
                     <view class="mui-media-body">{{item.name}}</view>
                 </navigator>
             </view>

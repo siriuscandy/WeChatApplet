@@ -1,7 +1,7 @@
 <import src="/pages/template/comment.wxml"/>
 <!--productDetails.wxml-->
 <view class="content posRel">
-    	<view class="gwcBnt"><a href="#" class="bugIcon"><image class="img" src="/img/icon1-5.png"/></a></view>
+    	<view class="gwcBnt"><navigator open-type="redirect" url="../cart/cart" class="bugIcon"><image class="img" src="/img/icon1-5.png"/></navigator></view>
     	<view class="cpPic"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{goods.cover}}"/></view>
         <view class="aui-nav xqTitle">
             <view class="titLine">
@@ -33,19 +33,19 @@
         <view style="height:50px"></view>
         <view class="mui-bar mui-bar-tab buyBar">
             <view class="buyBntList">
-            	<!--<view class="span buyBnt jrgwc"><a class="a" onClick="toshare()" href="#">加入购物车</a></view>-->
-                <view class="span buyBnt ljgm"><navigator class="a"  url="../pay/pay?goodsId={{goods.id}}">立即购买</navigator></view>
+            	<view class="span buyBnt jrgwc"><navigator class="a" bindtap="cartpro" >加入购物车</navigator></view>
+                <view class="span buyBnt ljgm"><navigator bindtap="buypro"  class="a"  >立即购买</navigator></view>
             </view>
         </view>
         <!--加入购物车 弹层-->
-        <view class="am-share am-shareA">
+        <view class="am-share am-shareA {{opencart==true?'am-modal-active':''}}" >
           <view class="cpxx">
                 <view class="cpxqLine">
                     <view class="xqLeft">
-                        <view class="xqPic"><img class="img" src="img/pic1.jpg"/></view>
+                        <view class="xqPic"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{goods.cover}}"/></view>
                         <view class="titPice">
-                            <view class="span cpxqTitA">简约新款</view>
-                            <view class="span jgLineA">￥ 36.00  </view>
+                            <view class="span cpxqTitA">{{goods.name}}</view>
+                            <view class="span jgLineA">￥ {{goods.price}}  </view>
                         </view>
                     </view>
                     <view class="i clooseBnt"><img class="img" src="img/icon3.png"/></view>
@@ -53,32 +53,18 @@
                 <view class="slkc" id="tab">
                 	<view class="span slLeft">购买数量：</view>
                     <view class="sljj">
-                    	<input type="text" class="spinnerExample"/>
+                    	<view class="stepper">  
+                        <!-- 减号 -->  
+                        <text class="{{minusStatus}}" bindtap="bindMinus">-</text>  
+                        <!-- 数值 -->  
+                        <input type="number" bindchange="bindManual" value="{{num}}" />  
+                        <!-- 加号 -->  
+                        <text class="normal" bindtap="bindPlus">+</text>  
+                    </view> 
                     </view>
                 </view>
             </view>
-          <view class="am-share-footer"><a class="a" href="productDetails-jrcg.html"><button class="share_btn">确定</button></a></view>
+          <view class="am-share-footer" bindtap="addcart"><button class="share_btn">确定</button></view>
         </view>
-        <!--立即购买 弹层-->
-        <view class="am-share am-shareB">
-          <view class="cpxx">
-                <view class="cpxqLine">
-                    <view class="xqLeft">
-                        <view class="xqPic"><img class="img" src="img/pic1.jpg"/></view>
-                        <view class="titPice">
-                            <view class="span cpxqTitA">简约新款立即购买</view>
-                            <view class="span jgLineA">￥ 36.00  </view>
-                        </view>
-                    </view>
-                    <view class="i clooseBnt"><img class="img" src="img/icon3.png"/></view>
-                </view>
-                <view class="slkc" id="tab">
-                	<view class="span slLeft">购买数量：</view>
-                    <view class="sljj">
-                    	<input type="text" class="spinnerExample"/>
-                    </view>
-                </view>
-            </view>
-          <view class="am-share-footer"><a href="payment.html"><button class="share_btn">确定</button></a></view>
-        </view>
+        
     </view>

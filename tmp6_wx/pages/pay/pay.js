@@ -2,9 +2,9 @@
 var goodsData="";
 
 var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsDetail";
-var submmiturl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/addOrder"
+var submmiturl = "https://v.tixaapp.com/WeChatApplet/app/xiadan"
 var goodsId = 0;
-var userId = 95;
+var userId = getApp().globalData.USERID;
 
 var getDetail = function (that) {
   wx.request({
@@ -21,20 +21,47 @@ var getDetail = function (that) {
     }
   });
 };
-var gopaysubmit = function (that) {
-  wx.request({
-    url: submmiturl,
-    data: {
-      goodsId: goodsId,
-      number: 1,
-      userId: userId,
-      address: that.data.addressdata
-    },
-    success: function (res) {
-      console.log("ok")
-      
-    }
-  });
+var gopaysubmit = function (that, openId) {
+  if (that.data.addressdata == ""){
+    wx.showModal({
+      title: '提交失败',
+      content: '请选择地址',
+      success: function (res) {
+        
+      }
+    })
+    return false;
+
+  }
+    wx.request({
+      url: submmiturl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        'openid': getApp().globalData.openId,
+        'memberId': getApp().globalData.memberId,
+        'userId': userId,
+        'address': JSON.stringify(that.data.addressdata),
+        'total_fee': that.data.totalprice,
+        'list': JSON.stringify(that.data.gopaylist),        
+        
+      },
+      success: function (res) {
+        var pay = res.data
+        //发起支付
+        var timeStamp = pay[0].timeStamp;
+        var packages = pay[0].package;
+        console.log("package===" + packages);
+        var paySign = pay[0].paySign;
+        var nonceStr = pay[0].nonceStr;
+        var param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
+        that.pay(param)
+
+      }
+    })
+  
 }
 Page({
 
@@ -43,18 +70,81 @@ Page({
    */
   data: {
     tab: 3,
-    goods:{},
+    goods:[],
     addresshidden:true,
-    addressdata:""
+    addressdata:"",
+    num:1,
+    totalprice:0,
+    gopaylist:[]
   },
-
+  pay: function (param) {
+    console.log("支付")
+    console.log(param)
+    wx.requestPayment({
+      timeStamp: param.timeStamp,
+      nonceStr: param.nonceStr,
+      package: param.package,
+      signType: param.signType,
+      paySign: param.paySign,
+      success: function (res) {
+        // success
+        wx.navigateBack({
+          delta: 1, // 回退前 delta(默认为1) 页面
+          success: function (res) {
+            wx.showToast({
+              title: '支付成功',
+              icon: 'success',
+              duration: 2000
+            })
+          },
+          fail: function () {
+            // fail
+            console.log('失败1');
+          },
+          complete: function () {
+            // complete
+            console.log('完成1');
+          }
+        })
+      },
+      fail: function (res) {
+        // fail
+        console.log('失败2');
+      },
+      complete: function () {
+        // complete
+        console.log('完成2');
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    goodsId = options.goodsId
-    getDetail(this);
+    var that = this;
+    var totalprice = 0;
+    var list = [];
+    wx.getStorage({
+      key: 'cartdata',
+      success: function (res) {
+        for (var i = 0; i < res.data.length; i++) {
+          var Ldata = {
+            'body': res.data[i].goodsName,
+            'attach': res.data[i].goodsName,
+            'goodsId': res.data[i].goodsId,
+          }
+          totalprice += res.data[i].unitPrice * res.data[i].goodsnumber;
+          list.push(Ldata)
+        }
+        that.setData({
+          goods: res.data,
+          totalprice: totalprice,
+          gopaylist: list,
+        });
+      }
+    })
+   
+    //getDetail(this);
   },
   gopay: function (event) {
     gopaysubmit(this);

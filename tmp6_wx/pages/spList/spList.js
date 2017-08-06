@@ -1,7 +1,7 @@
 // spList.js
 
 var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsCateList";
-var userId = 95;
+var userId = getApp().globalData.USERID;
 var isindex=0;
 
 var getList = function (that) {

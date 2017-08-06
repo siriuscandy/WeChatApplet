@@ -24,7 +24,7 @@
 .cpxqCon{margin-top:10px;}
 .cpxqCon .span{margin-bottom:10px; display:block;}
 .cpxqCon .span .img{width:100%;}
-.buyBntList{ width:255px; margin:2% auto 0 auto;}
+.buyBntList{ width:88%; margin:2% auto 0 auto;}
 .buyBnt{width:120px; height:35px; display:inline-block; line-height:35px; font-size:15px; text-align:center;border-radius:5px; }
 .buyBnt .a{height:35px; display:block;}
 .jrgwc{border:1px solid #ccc;  background:#fff;}
@@ -59,3 +59,48 @@
 .sljj{width:auto; float:right;}
 /*成功提示*/
 .jfcgTip{width:150px; height:50px; position:absolute; background:rgba(0,0,0,0.6); text-align:center; line-height:50px; color:#fff; border-radius:5px; top:50%; left:30%;}
+
+
+  
+/*主容器*/  
+.stepper {  
+    width: 80px;  
+    height: 26px;  
+    /*给主容器设一个边框*/  
+    border: 1px solid #ccc;  
+    border-radius: 3px;  
+    margin:0 auto;  
+}  
+  
+/*加号和减号*/  
+.stepper text {  
+    width: 19px;  
+    line-height: 26px;  
+    text-align: center;  
+    float: left;  
+}  
+  
+/*数值*/  
+.stepper input {  
+    width: 40px;  
+    height: 26px;  
+    float: left;  
+    padding:0;
+border:0;
+    margin: 0 auto;  
+    text-align: center;  
+    font-size: 12px;  
+    /*给中间的input设置左右边框即可*/  
+    border-left: 1px solid #ccc;  
+    border-right: 1px solid #ccc;  
+}  
+  
+/*普通样式*/  
+.stepper .normal{  
+    color: black;  
+}  
+  
+/*禁用样式*/  
+.stepper .disabled{  
+    color: #ccc;  
+}  
