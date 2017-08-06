@@ -5,7 +5,7 @@
 .bugIcon .img{width:100%;height:100%}
 .xqTitle{padding:4%;}
 .titLine{border-bottom:1px solid #f3f3f3;padding-bottom:5px;}
-.titTxt{font-size:20px; color:#333; font-weight:normal; height:35px; line-height:35px;}
+.titTxt{font-size:20px; color:#333; font-weight:normal;}
 .jgLine{height:30px; line-height:30px; }
 .price{width:auto; float:left; font-size:25px; color:#e37f42;}
 .sales{width:auto; float:right; font-size:15px; color:#666;}
@@ -34,7 +34,7 @@
 .mui-bar.mui-bar-tab.buyBar{background:#fff;}
 .picList{margin-top:10px;}
 /*弹层*/
-.am-share { font-size: 14px; border-radius: 0; bottom: 0; left: 0; position: fixed; text-align: center; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 1110; }
+.am-share { font-size: 14px; border-radius: 0; bottom: 0; left: 0; position: fixed; text-align: center; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 1110; border-top:1px solid #ddd;}
 .am-modal-active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
 .am-modal-out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
 .am-share-footer { padding: 10px; background:#fff;}
@@ -45,11 +45,12 @@
 .cpxqLine{border-bottom:1px solid #f3f3f3;overflow:hidden; padding-bottom:20px;}
 .xqLeft{width:87%; float:left;}
 .xqPic{width:70px; height:70px; float:left;}
-.xqPic .img{width:100%;}
+.xqPic .img{width:100%;height:80px;}
 .posRel{position:relative;}
 .titPice{width:65%; float:left; margin-left:20px;}
 .titPice .span{width:100%; float:left; text-align:left;}
-.titPice .cpxqTitA{font-size:18px; color:#666; height:30px; line-height:30px;}
+.titPice .cpxqTitA{font-size:.8rem;
+color:#666; }
 .titPice .jgLineA{font-size:25px; color:#e37f42; height:30px; line-height:30px;}
 .clooseBnt{width:20px; height:20px; float:right; cursor:pointer;}
 .clooseBnt .img{width:100%;}

@@ -59,7 +59,7 @@ bgf3f3f3{background:#f3f3f3;}
 .settle_box .total_amount .dt {font-weight: initial;}
 .settle_box .settle_btn{ float:right; width:33%; background:#ff900d; color:#fff; padding:17px 0; text-align:center;font-size: 0.8rem;}
 #confirm_cart1 {display: none;}
-.select .pitch_on{ background:url(../img/s_goods_pitch.png) no-repeat center center #ff900d;border:solid 1px #ff900d; background-size:22px 22px; }
+.select .pitch_on{ background: #ff900d;border:solid 1px #ff900d; background-size:22px 22px; }
 .account_info .li{ overflow: hidden;position: relative; border-bottom:solid 1px #eee; padding: 0 4%;line-height: 45px; }
 .account_info .li .info_name{color:#9a9a9a;float: left; display:inline-block;margin-right: 5%;color: #333; font-size: 0.7rem;}
 /****************购物车空*****************/

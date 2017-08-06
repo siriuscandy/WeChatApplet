@@ -3,7 +3,32 @@
 var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsCateList";
 var userId = getApp().globalData.USERID;
 var isindex=0;
-
+var carturl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCartList";
+var getcarthasList = function (that) {
+  wx.request({
+    url: carturl,
+    data: {
+      pageNum: 0,
+      pageSize: 2,
+      userId: userId,
+    },
+    success: function (res) {
+      var plist = res.data.list;
+      if (res.data.list.length == 0) {
+        that.setData({
+          hasgoods: false
+        });
+      } else {
+        that.setData({
+          hasgoods: true
+        });
+      }
+      that.setData({
+        prolist: plist
+      });
+    }
+  });
+}
 var getList = function (that) {
   wx.request({
     url: url,
@@ -28,6 +53,7 @@ Page({
   data: {
     list:[],
     tab: 2,
+    hasgoods:false,
   },
 
   /**
@@ -36,6 +62,7 @@ Page({
   onLoad: function (options) {
     
     getList(this);
+    getcarthasList(this);
   },
 
   /**

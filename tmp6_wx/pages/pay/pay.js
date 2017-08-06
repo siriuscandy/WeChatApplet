@@ -43,10 +43,12 @@ var gopaysubmit = function (that, openId) {
         'openid': getApp().globalData.openId,
         'memberId': getApp().globalData.memberId,
         'userId': userId,
+        'goodsId':that.data.onegoodsId,
         'address': JSON.stringify(that.data.addressdata),
-        'total_fee': that.data.totalprice,
+        'total_fee': that.data.totalprice.toString(),
         'list': JSON.stringify(that.data.gopaylist),        
-        
+        'attach': '',
+        'body': '',
       },
       success: function (res) {
         var pay = res.data
@@ -75,7 +77,8 @@ Page({
     addressdata:"",
     num:1,
     totalprice:0,
-    gopaylist:[]
+    gopaylist:[],
+    onegoodsId:''
   },
   pay: function (param) {
     console.log("支付")
@@ -140,6 +143,7 @@ Page({
           goods: res.data,
           totalprice: totalprice,
           gopaylist: list,
+          onegoodsId: list[0].goodsId
         });
       }
     })

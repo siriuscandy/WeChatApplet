@@ -1,6 +1,7 @@
 // spList.js
 
 var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCartList";
+var delurl = 'https://v.tixaapp.com/WeChatApplet/goodsAPI/deleteCartByID'
 var userId = getApp().globalData.USERID;
 var pageNum = 0;
 var pageSize = 15;
@@ -16,12 +17,22 @@ var getList = function (that) {
     },
     success: function (res) {
       var plist = res.data.list;
+      if(res.data.list.length==0){
+        that.setData({
+          hasgoods: false
+        });
+      }else{
+        that.setData({
+          hasgoods: true
+        });
+      }
       that.setData({
         prolist: plist
       });
     }
   });
 }
+
 
 Page({
 
@@ -33,7 +44,9 @@ Page({
     tab: 4,
     cateName:"",
     allselected:false,
-    totalprice:0
+    totalprice:0,
+    isedit:false,
+    hasgoods:true,
   },
 
   /**
@@ -42,6 +55,52 @@ Page({
   onLoad: function (options) {
     
     getList(this);
+    
+  },
+  edit:function(){
+    var isedit = !this.data.isedit;
+    this.setData({
+      isedit: isedit
+    })
+  },
+  //删除事件
+  del: function (e) {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '是否删除？',
+      success: function (res) {
+        if (res.confirm) {
+         
+          var index = parseInt(e.currentTarget.dataset.index);
+          //原始的icon状态
+          var id = that.data.prolist[index].id;
+          wx.request({
+            url: delurl,
+            data: {
+              cartId: id,
+
+            },
+            success: function (res) {
+              that.data.prolist.splice(e.currentTarget.dataset.index, 1)
+              that.setData({
+                prolist: that.data.prolist
+              })
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+            }
+          });
+        }else if (res.cancel) {
+        console.log('用户点击取消')
+      }
+        
+       
+      }
+    })
+    
   },
   bindCheckbox: function (e) {
     /*绑定点击事件，将checkbox样式改变为选中与非选中*/

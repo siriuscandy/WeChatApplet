@@ -36,9 +36,13 @@ App({
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      data: { 'js_code': code },
+      data: { 
+        'js_code': code,
+        'userId':userId
+       },
       success: function (res) {
         var openId = res.data.openid;
+        var prepay_id = res.data.prepay_id;
 
         //  that.xiadan(openId);
         that.getUserInfo();
@@ -48,75 +52,7 @@ App({
       }
     })
   },
-  //下单
-  xiadan: function (openId) {
-    var that = this;
-    wx.request({
-      url: 'https://v.tixaapp.com/WeChatApplet/app/xiadan',
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        'openid': openId,
-        'total_fee': '1',
-        'body': '支付测试',
-        'attach': '真假酒水'
-      },
-      success: function (res) {
-        var pay = res.data
-        //发起支付
-        var timeStamp = pay[0].timeStamp;
-        var packages = pay[0].package;
-        var paySign = pay[0].paySign;
-        var nonceStr = pay[0].nonceStr;
-        var param = { "timeStamp": timeStamp, "package": packages, "paySign": paySign, "signType": "MD5", "nonceStr": nonceStr };
-        that.pay(param)
-
-      }
-    })
-  },
-  // 支付
-  pay: function (param) {
-    console.log("支付")
-    console.log(param)
-    wx.requestPayment({
-      timeStamp: param.timeStamp,
-      nonceStr: param.nonceStr,
-      package: param.package,
-      signType: param.signType,
-      paySign: param.paySign,
-      success: function (res) {
-        // success
-        wx.navigateBack({
-          delta: 1, // 回退前 delta(默认为1) 页面
-          success: function (res) {
-            wx.showToast({
-              title: '支付成功',
-              icon: 'success',
-              duration: 2000
-            })
-          },
-          fail: function () {
-            // fail
-            console.log('失败1');
-          },
-          complete: function () {
-            // complete
-            console.log('完成1');
-          }
-        })
-      },
-      fail: function (res) {
-        // fail
-        console.log('失败2');
-      },
-      complete: function () {
-        // complete
-        console.log('完成2');
-      }
-    })
-  },
+  
 
   //小程序显示出来的时候触发
   onShow: function () {

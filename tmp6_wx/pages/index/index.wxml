@@ -6,7 +6,7 @@
             autoplay="true" interval="3000" duration="300">  
             <block wx:for="{{banner}}">  
             <swiper-item>  
-              <navigator url="../productDdetails/productDdetails?goodsId={{item.id}}" hover-class="navigator-hover">  
+              <navigator url="../productDetails/productDetails?goodsId={{item.id}}" hover-class="navigator-hover">  
                 <image src="{{item.cover}}" class="img" width="350" height="150"/>  
               </navigator>   
             </swiper-item>  
@@ -21,7 +21,7 @@
             <view class="mui-table-view-cell mui-media mui-col-sm-3 " wx:for="{{CateList}}" wx:if="{{index<4}}">
                 <navigator url="../productlist/pdList?cateId={{item.id}}&cateName={{item.name}}">
                     <view class="aui-cell-img"><image class="img" src="{{item.logo}}" alt=""/></view>
-                    <view class="mui-media-body">{{item.name}}</view>
+                    <view class="mui-media-body ">{{item.name}}</view>
                 </navigator>
             </view>
             
@@ -39,24 +39,13 @@
     <view class="aui-list t-line">
         <view class="h2">{{firstClass.name}}</view>
         <view class="mui-table-view mui-grid-view" style="display: flex;flex-direction: row;">
-            <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list2}}" >
+            <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list1}}" >
                 <navigator url="../productDetails/productDetails?goodsId={{item.id}}">
                     <image class="mui-media-object imgbg" src="{{item.cover}}" style="height:95px"/>
-                    <view class="mui-media-body">{{item.name}}</view>
+                    <view class="mui-media-body indexname">{{item.name}}</view>
                 </navigator>
             </view>
-            <!-- <view class="mui-table-view-cell mui-media mui-col-xs-3a">
-                <a href="#">
-                    <image class="mui-media-object" src="/img/pic1.jpg"/>
-                    <view class="mui-media-body">网红新品搭</view>
-                </a>
-            </view>
-            <view class="mui-table-view-cell mui-media mui-col-xs-3a">
-                <a href="#">
-                    <image class="mui-media-object" src="/img/pic1.jpg"/>
-                    <view class="mui-media-body">仙女穿搭术</view>
-                </a>
-            </view>		 -->
+          
         </view>
     </view>
     <view class="devider t-line"></view>
@@ -65,60 +54,15 @@
         <view class="h2">{{secondClass.name}}</view>
         <view class="ul mui-table-view mui-grid-view">
             <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list2}}" >
-                <navigator url="../productDetails/productDetails?goods={{item.id}}">
+                <navigator url="../productDetails/productDetails?goodsId={{item.id}}">
                     <image class="mui-media-object" src="{{item.cover}}" style="height:95px"/>
-                    <view class="mui-media-body">{{item.name}}</view>
+                    <view class="mui-media-body indexname" >{{item.name}}</view>
                 </navigator>
             </view>
-            <!-- <view class="mui-table-view-cell mui-media mui-col-xs-3a">
-                <a href="#">
-                    <image class="mui-media-object" src="/img/pic1.jpg"/>
-                    <view class="mui-media-body">连衣裙</view>
-                </a>
-            </view>
-            <view class="mui-table-view-cell mui-media mui-col-xs-3a">
-                <a href="#">
-                    <image class="mui-media-object" src="/img/pic1.jpg"/>
-                    <view class="mui-media-body">时尚美</view>
-                </a>
-            </view>
-            <view class="mui-table-view-cell mui-media mui-col-xs-3a">
-                <a href="#">
-                    <image class="mui-media-object" src="/img/pic1.jpg"/>
-                    <view class="mui-media-body">上镜装</view>
-                </a>
-            </view>
-            <view class="mui-table-view-cell mui-media mui-col-xs-3a">
-                <a href="#">
-                    <image class="mui-media-object" src="/img/pic1.jpg"/>
-                    <view class="mui-media-body">显瘦装</view>
-                </a>
-            </view>
-            <view class="mui-table-view-cell mui-media mui-col-xs-3a">
-                <a href="#">
-                    <image class="mui-media-object" src="/img/pic1.jpg"/>
-                    <view class="mui-media-body">混搭界</view>
-                </a>
-            </view> -->
+           
         </view>
         <view class="devider t-line"></view>
         <include src="/pages/template/footer.wxml"/>
-        <!-- <view style="height:50px"></view>
-        <view class="mui-bar mui-bar-tab">
-            <view class="t-line">
-                <navigator url="index.html" class="aui-tab-item mui-active">
-                    <image src="/img/icon1-7a.png" class="mui-icon iconHover mui-icon-home"></image>
-                    <view class="mui-tab-label">首页</view>
-                </navigator>
-                <a href="spList.html" class="aui-tab-item" >
-                    <image src="/img/icon1-6.png" class="mui-icon mui-icon-extra mui-icon-extra-class"></image>
-                    <view class="mui-tab-label">购物</view>
-                </a>
-                <navigator class="aui-tab-item" url="/pages/order/order">
-                    <image src="/img/icon1-9.png" class="mui-icon mui-icon-extra mui-icon-extra-people"></image>
-                    <view class="mui-tab-label">我的</view>
-                </navigator>
-            </view>
-        </view> -->
+        
     </view>
 </view>

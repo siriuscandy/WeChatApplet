@@ -8,3 +8,11 @@
 	max-width: 80px;
 	height: 80px
 }
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-object{
+  width: 80%!important;
+}
+.indexname {
+  width: 60%!important;
+  margin:0 auto;
+
+}

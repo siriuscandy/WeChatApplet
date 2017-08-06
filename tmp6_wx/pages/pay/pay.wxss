@@ -1,7 +1,9 @@
 
-.ddztLine{height:90px; background:#515151;padding:20px;}
-.ddztLine .em{width:50px; height:60px; float:left;}
-.ddztLine .em .img{width:100%; height: 55px}
+.ddztLine{height:20px; background:#515151;padding:20px;}
+.ddztLine .em{width:50px; height:30px; float:left;}
+.ddztLine .em .img{width:25px;
+height:25px;
+}
 .ddxqRight{width:78%; float:left; margin-left:4%;}
 .ddxqRight .span{width:100%; float:left; height:25px; line-height:25px; font-size:13px; color:#ccc; overflow:hidden;}
 .shdzLine{height:45px; line-height:45px; background:#fff;font-size:16px; color:#333;}
@@ -16,7 +18,7 @@
 .fhLine .li .xzHover{background:url(../img/icon3-1a.png) no-repeat; background-size:100%;}
 .xqLineA{padding:15px; border-bottom:1px solid #dfdfdf; overflow:hidden;}
 .xqLineLeft{width:80%; float:left;}
-.xqLineLeft .titPice{width:60%;}
+.xqLineLeft .titPice{width:60%;font-size:.8rem}
 .slRight{width:20%; float:right; height:30px; line-height:30px; font-size:16px; color:#333; margin-top:15%; text-align:right;}
 .qtxxLineA{padding:15px;}
 .yhjxz{height:45px; line-height:45px; font-size:16px; color:#666; overflow:hidden;border-bottom:1px solid #dfdfdf;}

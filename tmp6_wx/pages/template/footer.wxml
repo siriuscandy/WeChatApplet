@@ -7,10 +7,11 @@
         </navigator>
         <navigator url="/pages/spList/spList" class="aui-tab-item{{tab==2?' mui-active':''}}" >
             <image src="/img/icon1-6{{tab==2?'a':''}}.png" class="mui-icon mui-icon-extra mui-icon-extra-class"></image>
-            <view class="mui-tab-label">购物</view>
+            <view class="mui-tab-label">分类</view>
         </navigator>
         <navigator url="/pages/cart/cart" class="aui-tab-item{{tab==4?' mui-active':''}}" >
             <image src="/img/icon1-5{{tab==4?'':''}}.png" class="mui-icon mui-icon-extra mui-icon-extra-class"></image>
+            <view class="redR {{hasgoods==true?' hasgoods':''}}"></view>
             <view class="mui-tab-label">购物车</view>
         </navigator>
         <navigator class="aui-tab-item{{tab==3?' mui-active':''}}" url="/pages/me/me">

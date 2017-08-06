@@ -6,7 +6,32 @@ var bannerUrl = '/goodsAPI/goodsListByName';
 var CateListUrl = '/goodsAPI/getGoodsCateList';
 var newslistUrl = '/api/showDetailListByZnameAndUid'; //首页资讯
 var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
-
+var carturl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCartList";
+var getcarthasList = function (that) {
+  wx.request({
+    url: carturl,
+    data: {
+      pageNum: 0,
+      pageSize: 2,
+      userId: userId,
+    },
+    success: function (res) {
+      var plist = res.data.list;
+      if (res.data.list.length == 0) {
+        that.setData({
+          hasgoods: false
+        });
+      } else {
+        that.setData({
+          hasgoods: true
+        });
+      }
+      that.setData({
+        prolist: plist
+      });
+    }
+  });
+}
 var imgUrls = [
   {
     id: '0',
@@ -158,6 +183,7 @@ Page({
     firstClass: {},
     secondClass: {},
     homenews: {},
+    hasgoods:false,
     // listCLDP:[],
     
     
@@ -168,7 +194,7 @@ Page({
   onShow: function () {
     GetList(this);
     getBanner(this);
-    
+    getcarthasList(this);
     gethomeNews(this);
   }
 })
