@@ -117,6 +117,11 @@ Page({
     }
     
   },
+  gocart:function(){
+    wx.switchTab({
+      url: '/pages/cart/cart'
+    })
+  },
   bindMinus: function () {
     var num = this.data.num;
     // 如果大于1时，才可以减  

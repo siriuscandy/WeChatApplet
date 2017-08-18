@@ -1,7 +1,11 @@
 <import src="/pages/template/comment.wxml"/>
 <!--productDetails.wxml-->
 <view class="content posRel">
-    	<view class="gwcBnt"><navigator url="../cart/cart" class="bugIcon"><image class="img" src="/img/icon1-5.png"/></navigator></view>
+    	<view class="gwcBnt">
+      <view bindtap="gocart"  class="bugIcon">
+        <image class="img" src="/img/icon1-5.png"/>
+      </view>
+      </view>
     	<view class="cpPic"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{goods.cover}}"/></view>
         <view class="aui-nav xqTitle">
             <view class="titLine">
