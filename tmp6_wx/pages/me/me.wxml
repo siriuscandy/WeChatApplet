@@ -18,5 +18,5 @@
             <view class="li"><navigator class="a" url="../about/about"><image src="/img/ico11.png" class="em gywmIcon"></image>关于我们</navigator></view>
         </view>
     </view>
-    <include src="/pages/template/footer.wxml"/>
+    <!-- <include src="/pages/template/footer.wxml"/> -->
 </view>

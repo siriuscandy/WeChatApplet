@@ -11,5 +11,5 @@
               </view> 
             </view>
       </view>
-      <include src="/pages/template/footer.wxml"/>
+      <!-- <include src="/pages/template/footer.wxml"/> -->
   </view>

@@ -45,7 +45,7 @@ define([ 'jquery', 'knockout', 'text!pages/release/ylym/ylym.html','dialogmin','
             render: "canvas", //也可以替换为table
             width: 160,
             height: 160,
-            text: Iframe_url
+            text: 'http://v.tixaapp.com'+Iframe_url
         });
         $(".header").hide();
         $(".bjHeader").show();

@@ -45,7 +45,7 @@ bgf3f3f3{background:#f3f3f3;}
 .icon_img { height: 20px;}
 /*结账*/
 .settle_box_h{ height:60px;}
-.settle_box{ background:#fff; position:fixed; left:0px; bottom:65px; overflow:hidden; z-index:2;width: 100%;padding:0 0 0 4%;border-top: solid 1px #e6e6e6;} 
+.settle_box{ background:#fff; position:fixed; left:0px; bottom:0; overflow:hidden; z-index:2;width: 100%;padding:0 0 0 4%;border-top: solid 1px #e6e6e6;} 
 .settle_box .all_check,.settle_box .total_amount{ float:left;}
 .settle_box .all_check{ width:17%;margin-bottom:0;margin-top: 15px}
 .settle_box .all_check .dd{ color:#999999; font-size:12px;}

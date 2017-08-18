@@ -70,7 +70,7 @@ em{font-style:normal;}
 .aui-list.gdsz h2 em{background:url(../img/icon2.jpg) no-repeat; background-size:100%;}
 .gdszLine{background:#fff;}
 .gdszLine li{border-bottom:2px solid #e1e1e1;}
-.mui-media-object{line-height: 92px;max-width: 92px;height: 92px;}
+.mui-media-object{line-height: 92px;max-width: 92px;height: 92px; min-height:30px;}
 .mui-pull-left {margin-right: 10px;float: left;}
 .mui-media-body {overflow: hidden;}
 .lineTitle{font-size:16px; margin-top:10px;}

@@ -44,7 +44,7 @@ define([ 'jquery', 'knockout', 'text!pages/release/scym/scym.html','dialogmin','
             });
             up.on( 'uploadSuccess', function( file, res ) {
                 if(res.fileName != '-1'){  // -1  表示文件太大，没有上传
-                    $(".img-responsive").attr("src",res.fileName);
+                    $(".img-responsive").attr("src",'http://v.tixaapp.com/WeChatApplet'+res.fileName);
 
                 }
             });

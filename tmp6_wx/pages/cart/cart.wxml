@@ -1,4 +1,4 @@
-<view class="t-line">
+<scroll-view class="t-line">
   <view class="commodity_box">
 			<view class="commodity_list">
 				<!--店名信息-->
@@ -30,7 +30,7 @@
 				</view>
 			</view>
 	</view>
-</view>
+</scroll-view>
 
 <view class="settle_box">
     	<view class="dl all_check select">
@@ -50,4 +50,4 @@
        
         <view class="a settle_btn" bindtap="bindgopay" >付款</view>
   </view>    
- <include src="/pages/template/footer.wxml"/>
+ <!-- <include src="/pages/template/footer.wxml"/> -->
