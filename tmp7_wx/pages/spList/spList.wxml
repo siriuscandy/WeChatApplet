@@ -1,0 +1,15 @@
+<view class="content bgfff">
+        <!--商品分类-->
+  <view class="aui-week t-line">
+          <view class="h2"><view class="span">商品分类</view></view>
+          <view class="mui-table-view mui-grid-view">
+              <view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{list}}">
+                  <navigator open-type="redirect" url="../productlist/pdList?cateId={{item.id}}&cateName={{item.name}}">
+                      <image class="mui-media-object" src="{{item.logo}}"/>
+                      <view class="mui-media-body">{{item.name}}</view>
+                  </navigator>
+              </view> 
+            </view>
+      </view>
+      <!-- <include src="/pages/template/footer.wxml"/> -->
+  </view>

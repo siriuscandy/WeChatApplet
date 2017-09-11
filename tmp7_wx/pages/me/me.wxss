@@ -1,0 +1,14 @@
+/* me.wxss */
+.yhdltx{background:#666; overflow:hidden; height:200px;}
+.yhPic{width:100px; margin:10% 0 0 37%;  overflow:hidden;}
+.yhPic .span{width:100px; height:100px;  float:left; background-size:100%; border-radius:50%;} 
+.yhPic .span .image{width:92px; height:92px;margin:3px 0 0 4px; float:left;border-radius:50%;} 
+.yhPic .p{width:100%; float:left; margin-top:10px; font-size:16px; color:#fff; text-align:center;}
+.yhLine{background:#fff; padding-top:20px;}
+
+.myLine{padding-top:20px; overflow:hidden;}
+.myLine .li{display:block; height:40px; font-size:15px; color:#333; border-bottom:1px solid #e5e5e5; line-height:40px; cursor:pointer;}
+.myLine .li .em{width:18px; height:23px; float:left; margin:10px 10px 0 5%; background-size:100%;}
+.myLine .li .a{color:#333;display:block;height:40px;}
+.myLine .li .yhjIcon{width:18px; height:20px; float:left; margin:15px 10px 0 5%; background-size:100%;}
+.myLine .li .gywmIcon{width:18px; height:20px; float:left; margin:12px 10px 0 5%; background-size:100%;}

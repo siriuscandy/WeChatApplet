@@ -1,0 +1,53 @@
+<scroll-view class="t-line">
+  <view class="commodity_box">
+			<view class="commodity_list">
+				<!--店名信息-->
+				<view class="tite_tim select">
+					
+					<view class="span"><view class="i"><image class="icon_img img" src="/img/icon.jpg" /></view>购物车</view>
+                    <view class="a rig_shai" id="rem_s"  style="margin-right: 2%;position: absolute; top: 5px; right: 3%;"bindtap="edit" >编辑</view>
+					<view class="clear"></view>
+				</view>
+				<!--商品-->
+				<view class="ul" class="commodity_list_term">
+					<view class="li select {{isedit ? 'swipeleft' : ''}}" wx:for="{{prolist}}">
+						<icon class="em" wx:if="{{item.selected}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+   <icon class="em" wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+						<image class="img" src="https://v.tixaapp.com/WeChatApplet/{{item.goodsCover}}" />
+						<view class="div_center">
+							<view class="h4">{{item.goodsName}}</view>
+							<view class="p now_value">
+                <view class="i">￥</view>
+                <view class="b qu_su">{{item.unitPrice}}</view>
+              </view>
+						</view>
+						<view class="div_right wcbj">
+							X <view class="zi span">{{item.goodsnumber}}</view>
+						</view>
+            <view class="scBnt"  bindtap="del" data-index="{{index}}">删除</view>
+					</view>
+					
+				</view>
+			</view>
+	</view>
+</scroll-view>
+
+<view class="settle_box">
+    	<view class="dl all_check select">
+        	<view class="dt">
+           <icon class="span" wx:if="{{allselected}}" type="success_circle" size="20" bindtap="allbindCheckbox" />
+   <icon class="span" wx:else type="circle" size="20" bindtap="allbindCheckbox" />
+            <view class="p">全选</view>
+          </view>
+        </view>
+        <view class="dl total_amount">
+        	<view class="dt">合计：
+          <view class="p" id="total_price">¥<view class="b">{{totalprice}}</view>
+          </view>
+          </view>
+          <view class="dd">不含运费</view>
+        </view>
+       
+        <view class="a settle_btn" bindtap="bindgopay" >付款</view>
+  </view>    
+ <!-- <include src="/pages/template/footer.wxml"/> -->

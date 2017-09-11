@@ -1,0 +1,25 @@
+<view class="content heighAoto">
+    	<view class="addressCon">
+        	<view class="li" wx:for="{{list}}">
+            	<view class="dzxmLine" data-hi="{{item}}" bindtap="choseaddress">
+                	<view class="nameLine"><view class="span">{{item.consignee}}</view><view class="p">1870000000</view></view>
+                    <view class="xxdz">{{item.detailedAddress}}</view>
+                </view>
+                <view class="czLine">
+                	<view class="mrdz mrdzA">
+                  <view class="em" wx:if="{{item.status==0}}"></view>
+                  <icon wx:if="{{item.status==1}}" type="success" size="20" color="orange"/>
+                  默认地址</view>
+                    <view class="sccz">
+<navigator url="../addNewdz/addNewdz?addressId={{item.id}}">
+                    	<view class="span"><view class="em"><image class="img" src="/img/icon3-3.png" style="height:18px"/></view>编辑</view>
+</navigator>
+                        <view class="span"><view class="em"><image class="img" src="/img/icon3-4.png" style="height:18px"/></view>删除</view>
+                    </view>
+                </view>
+            </view>
+            
+            
+        </view>
+        <view class="adddzBnt" bindtap="addaddress"> 添加新地址</view>
+    </view>

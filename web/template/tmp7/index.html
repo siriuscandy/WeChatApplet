@@ -3,61 +3,85 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-<title>家具电商</title>
+<title>麦朵尔</title>
 <link rel="stylesheet" href="css/mui.min.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 	<div class="content">
-    	<div class="adLine">
-            <div class="swiper-container" id="swiper-container">
-                <div class="swiper-wrapper" data-bind="foreach: data.banner()">
-                    <div class="swiper-slide"  data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
-                        <img  data-bind="attr:{'src':cover}"/>
-                    </div>
+    	<!--banner start-->
+    	<div class="swiper-container" id="swiper-container">
+			<div class="swiper-wrapper" data-bind="foreach: data.banner()">
+				<div class="swiper-slide"  data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
+					<img  data-bind="attr:{'src':cover}"/>
+				</div>
 
-                </div>
-                <div class="swiper-pagination pagination1"></div>
-            </div>
-        </div>
-        <div class="aui-list t-line">
-            <ul class="mui-table-view mui-grid-view"  data-bind="foreach: data.list()">
+			</div>
+			<div class="swiper-pagination pagination1"></div>
+		</div>
+    	<!--banner end-->
+		<div class="aui-list t-line">
+		<ul class="mui-table-view mui-grid-view" data-bind="foreach: data.attrs()">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="visible:$index()<3,if:$index()<3,attr:{'data-id':id}">
+				<a href="javascript:;" data-bind="attr:{'class':'aui-cell-img logo'+id}">
+					<img data-bind="attr:{'src':logo},click:function(){$parent.changeImg(logo,'logo'+id,id)}"  class="mui-media-object" src="img/icon.jpg">
+				</a>
+			</li>
+					
+         </ul>
+	</div>
+        <!--新品发布-->
+		<div class="aui-week t-line">
+            <h2><div class="zTitle" data-bind="attr:{'class':'tmp7Class name'+data.firstClass().id,'data-id':data.firstClass().id},text:data.firstClass().name,click:function(){changeText(data.firstClass().name,'name'+data.firstClass().id)}"></div><div class="fTitle">/ NEW PRODUCT </div><div class="moreBnt"><img src="img/icon2.png"></div></h2>
+            <ul class="mui-table-view mui-grid-view" data-bind="foreach: data.list1()">
                 <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
-                    <a href="#">
-                        <img class="mui-media-object" data-bind="attr:{'src':images}">
-                        <div class="mui-media-body ljxqBnt" >了解详细</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="aboutUsLine">
-        	<div class="aboutUsCon">
-            	<h1 class="abusTitle">
-                	<span>About us</span><br>
-                    关于我们
-                </h1>
-                <div class="abusCon">
-                	宜家家居是来自瑞典的全球知名家具和家居零售商,互为和谐的产品系列在功能和风格上可谓种类繁多。
-                </div>
-            </div>
-        </div>
-        <!--产品列表-->
-        <div class="aui-list t-line">
-            <h2 class="titleLine"><span>来自IKEA FURNITURE MALL</span>产品列表</h2>
-            <ul class="mui-table-view mui-grid-view cpLine" data-bind="foreach: data.list3()">
-                <li class="mui-table-view-cell mui-media mui-col-xs-6" data-bind="attr:{'data-id':goodsId},click:function(){$parent.goDetail(goodsId)}">
-                    <a href="page.html">
-                        <img class="mui-media-object" data-bind="attr:{'src':images}">
-                        <div class="cpxq">
-                            <div class="mui-media-body" style="text-align: left" data-bind="text:name"></div>
-                            <div class="mui-media-body jgPice">￥ <d data-bind="text:price"></d></div>
+                    <a href="#" >
+                        <img class="mui-media-object" data-bind="attr:{'src':cover}">
+                        <div class="mui-media-body" data-bind="text:name">饶家驹麦朵尔黄铜压制版</div>
+                        <div class="mui-media-body jgPice">
+                        	<div class="jgL"><div class="jqfh">¥</div><span data-bind="text:price"></span></div>
                         </div>
                     </a>
                 </li>
-
+                	
              </ul>
         </div>
+        <div class="devider t-line"></div>
+        <!--百家姓系列-->
+		<div class="aui-week t-line">
+            <h2><div class="zTitle" data-bind="attr:{'class':'tmp7Class name'+data.secondClass().id,'data-id':data.secondClass().id},text:data.secondClass().name,click:function(){changeText(data.secondClass().name,'name'+data.secondClass().id)}" >百家姓系列</div><div class="fTitle">/ FAMILY NAMES </div><div class="moreBnt"><img src="img/icon2.png"></div></h2>
+            <ul class="mui-table-view mui-grid-view" data-bind="foreach: data.list2()">
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
+                    <a href="#" >
+                        <img class="mui-media-object" data-bind="attr:{'src':cover}">
+                        <div class="mui-media-body" data-bind="text:name">饶家驹麦朵尔黄铜压制版</div>
+                        <div class="mui-media-body jgPice">
+                        	<div class="jgL"><div class="jqfh">¥</div><span data-bind="text:price"></span></div>
+                        </div>
+                    </a>
+                </li>
+                	
+             </ul>
+        </div>
+        <div class="devider t-line"></div>
+        <!--会员专享-->
+		<div class="aui-week t-line">
+            <h2><div class="zTitle" data-bind="attr:{'class':'tmp7Class name'+data.thirdClass().id,'data-id':data.thirdClass().id},text:data.thirdClass().name,click:function(){changeText(data.thirdClass().name,'name'+data.thirdClass().id)}" >会员专享</div><div class="fTitle">/ MEMBER ZONE </div><div class="moreBnt"><img src="img/icon2.png"></div></h2>
+            <ul class="mui-table-view mui-grid-view" data-bind="foreach: data.list3()">
+                <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
+                    <a href="#" >
+                        <img class="mui-media-object" data-bind="attr:{'src':cover}">
+                        <div class="mui-media-body" data-bind="text:name">饶家驹麦朵尔黄铜压制版</div>
+                        <div class="mui-media-body jgPice">
+                        	<div class="jgL"><div class="jqfh">¥</div><span data-bind="text:price"></span></div>
+                        </div>
+                    </a>
+                </li>
+                	
+             </ul>
+        </div>
+        <div class="devider t-line"></div>
         <div style="height:50px"></div>
         <nav class="mui-bar mui-bar-tab">
             <div class="t-line">
@@ -67,7 +91,7 @@
                 </a>
                 <a data-bind="click:function(){goProList()}" class="aui-tab-item " >
                     <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
-                    <span class="mui-tab-label">购物</span>
+                    <span class="mui-tab-label">分类</span>
                 </a>
                 <a data-bind="click:function(){goOrder()}" class="aui-tab-item" >
                     <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
@@ -80,11 +104,32 @@
             </div>
         </nav>
     </div>
-<script src="/web/js/unit.js"></script>
-<script src="/web/trd/requirejs/require.js"></script>
-<script src="/web/js/require.config.js"></script>
-<script src="js/index.js"></script>
-<script src="js/mui.min.js"></script>
+    <div id="GoupdateModule" data-bind="click:GoupdateModule" style="position:absolute;z-index:0; height:1px;width:1px;visibility: hidden;"></div>
 
+<script src="js/mui.min.js"></script>
+<script src="../../js/unit.js"></script>
+<script src="../../trd/requirejs/require.js"></script>
+<script src="../../js/require.config.js"></script>
+<script src="js/index.js"></script>
+<script type="text/javascript" charset="utf-8">
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+    var slider = mui("#slider");
+    document.getElementById("switch").addEventListener('toggle', function(e) {
+        if (e.detail.isActive) {
+            slider.slider({
+                interval: 5000
+            });
+        } else {
+            slider.slider({
+                interval: 0
+            });
+        }
+    });
+</script>
+<script>
+    mui.init();
+</script>
 </body>
 </html>

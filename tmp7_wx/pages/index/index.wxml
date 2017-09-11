@@ -1,0 +1,81 @@
+<!--index.wxml-->
+<scroll-view class="content" >
+
+ 
+        <swiper indicator-dots="true"  
+            autoplay="true" interval="3000" duration="300">  
+            <block wx:for="{{banner}}">  
+            <swiper-item>  
+              <navigator url="../productDetails/productDetails?goodsId={{item.id}}" hover-class="navigator-hover">  
+                <image src="{{item.cover}}" class="img" width="350" height="150"/>  
+              </navigator>   
+            </swiper-item>  
+              </block>  
+        </swiper>  
+        
+ 
+    <!--banner end-->
+    <view class="aui-list t-line">
+		<view class="mui-table-view mui-grid-view">
+			<view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{CateList}}" wx:if="{{index<3}}">
+				<navigator url="../productlist/pdList?cateId={{item.id}}&cateName={{item.name}}">
+                    <view class="mui-media-object"><image class="img" src="{{item.logo}}" alt=""/></view>
+        </navigator>
+			</view>
+				
+         </view>
+	</view>
+    
+    <!--新品发布-->
+		<view class="aui-week t-line">
+            <view class="h2"><view class="zTitle">{{firstClass.name}}</view><view class="fTitle">/ NEW PRODUCT </view><view class="moreBnt"><image class="img" src="../../img/icon2.png" /></view></view>
+            <view class="mui-table-view mui-grid-view">
+                <view wx:for="{{list1}}" class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <navigator class="a" url="../productDetails/productDetails?goodsId={{item.id}}">
+                        <image class="img" class="mui-media-object" src="{{item.cover}}" style="height:95px" />
+                        <view class="mui-media-body">{{item.name}}</view>
+                        <view class="mui-media-body jgPice">
+                        	<view class="jgL"><view class="jqfh">¥</view>{{item.price}}</view>
+                        </view>
+                    </navigator>
+                </view>
+                
+             </view>
+        </view>
+        <view class="devider t-line"></view>
+    <!--百家姓系列-->
+		<view class="aui-week t-line">
+            <view class="h2"><view class="zTitle">{{secondClass.name}}</view><view class="fTitle">/ FAMILY NAMEST </view><view class="moreBnt"><image class="img" src="../../img/icon2.png" /></view></view>
+            <view class="mui-table-view mui-grid-view">
+                <view wx:for="{{list2}}" class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <navigator class="a" url="../productDetails/productDetails?goodsId={{item.id}}">
+                        <image class="img" class="mui-media-object" src="{{item.cover}}" style="height:95px" />
+                        <view class="mui-media-body">{{item.name}}</view>
+                        <view class="mui-media-body jgPice">
+                        	<view class="jgL"><view class="jqfh">¥</view>{{item.price}}</view>
+                        </view>
+                    </navigator>
+                </view>
+                
+             </view>
+        </view>
+        <view class="devider t-line"></view>
+        <!--新品发布-->
+		<view class="aui-week t-line">
+            <view class="h2"><view class="zTitle">{{thirdClass.name}}</view><view class="fTitle">/ MEMBER ZONE </view><view class="moreBnt"><image class="img" src="../../img/icon2.png" /></view></view>
+            <view class="mui-table-view mui-grid-view">
+                <view wx:for="{{list3}}" class="mui-table-view-cell mui-media mui-col-xs-3a">
+                    <navigator class="a" url="../productDetails/productDetails?goodsId={{item.id}}">
+                        <image class="img"g class="mui-media-object" src="{{item.cover}}" style="height:95px" />
+                        <view class="mui-media-body">{{item.name}}</view>
+                        <view class="mui-media-body jgPice">
+                        	<view class="jgL"><view class="jqfh">¥</view>{{item.price}}</view>
+                        </view>
+                    </navigator>
+                </view>
+                
+             </view>
+        </view>
+        <view class="devider t-line"></view>
+    
+</scroll-view>

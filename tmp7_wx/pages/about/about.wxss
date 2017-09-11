@@ -1,0 +1,6 @@
+/* about.wxss */
+.aboutUsTitle{height:40px; line-height:40px; font-size:16px; color:#333; border-bottom:1px solid #d4d4d4;}
+.aboutUsTitle .span{height:40px; border-bottom:2px solid #333; width:auto; float:left; margin-left:5%;}
+.xxLine{padding:5%;}
+.xxLine .h1{font-size:18px; color:#333; font-weight:normal;}
+.xqConA .p{font-size:14px; line-height:20px; color:#666; margin:10px 0;}

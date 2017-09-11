@@ -1,68 +1,49 @@
 
 require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 ], function($, ko,dialogmin,ajaxCom) {
-  var bannerUrl  =  '/goodsAPI/goodsList';
-  var listUrl  =  '/goodsAPI/goodsList2';
-  var list3Url  =  '/goodsAPI/goodsList3';
-  var attrsUrl = '/userModule/getUserModuleDetail';
+  var getgoodslistUrl  =  '/goodsAPI/goodsList';
+  var bannerUrl  =  '/goodsAPI/goodsListByName';
+  var attrsUrl = '/goodsAPI/getGoodsCateList';
+  var listUrl  =  '/api/showDetailListByZnameAndUid'; //首页资讯
+  var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+  var UpdataUrl = '/goodsAPI/updateGoodsCate';//修改
   var viewModel = {
     data : {
       banner : ko.observableArray([]),
-      list : ko.observableArray([]),
+      list1 : ko.observableArray([]),
+      list2 : ko.observableArray([]),
       list3 : ko.observableArray([]),
       attrs:ko.observable({}),
-      firstClass:ko.observable(""),
-      secondClass:ko.observable(""),
+      firstClass:ko.observable({}),
+      secondClass:ko.observable({}),
+      thirdClass:ko.observable({}),
+      homenews:ko.observable({}),
     },
 
   };
-   viewModel.goIndex = function(){
+  viewModel.goIndex = function(){
       window.location.href = "../tmp7/index.html";
   };
   viewModel.goProList = function(){
-      window.location.href = "../product/spList.html?tmp=7";
+    if(GetQueryString("isedit")){
+      window.location.href = "../product/spList.html?tmp=7&isedit=true&userid="+viewModel.userId;
+
+      }else{
+      window.location.href = "../product/spList.html?tmp=7&userid="+viewModel.userId;
+      }
   };
   viewModel.goOrder = function(){
-      window.location.href = "../product/myOrder.html?tmp=7";
+      window.location.href = "../product/myOrder.html?tmp=7&userid="+viewModel.userId;
   };
   viewModel.goME = function(){
-      window.location.href = "../product/me.html?tmp=7";
+      window.location.href = "../product/me.html?tmp=7&userid="+viewModel.userId;
   };
-  viewModel.getlist = function(){
-    var queryData = {
-      pagesize: 3,     //page size ÿҳ��ʾ����
-      pageNum: 0,    //page num ��ǰҳ��
-      classId: "list",   //page num ��ǰҳ��
-      userid:viewModel.userId
-    };
-    ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
-      viewModel.data.list(res.list);
 
-    },function(error){
-
-      dialogmin("�������");
-    })
-  };
-  viewModel.getlist3 = function(){
-    var queryData = {
-      pagesize: 4,     //page size ÿҳ��ʾ����
-      pageNum: 0,    //page num ��ǰҳ��
-      classId: "list3",   //page num ��ǰҳ��
-      userid:viewModel.userId
-    };
-    ajaxCom.Loadajax('GET',list3Url,queryData,function(res){
-      viewModel.data.list3(res.list);
-
-    },function(error){
-
-      dialogmin("�������");
-    })
-  };
   viewModel.getbanner = function(){
     var queryData = {
-      pagesize: 4,     //page size ÿҳ��ʾ����
+      pageSize: 4,     //page size ÿҳ��ʾ����
       pageNum: 0,    //page num ��ǰҳ��
-      classId: "banner",   //page num ��ǰҳ��
+      name: "banner",   //page num ��ǰҳ��
       userid:viewModel.userId
     };
     ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
@@ -75,52 +56,162 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       });
     },function(error){
 
-      dialogmin("�������");
+      dialogmin("网络错误");
+    })
+  };
+  viewModel.getGoodsList1 = function(Id){
+    var queryData = {
+      pageSize: 3,     //page size ÿҳ��ʾ����
+      pageNum: 0,    //page num ��ǰҳ��
+      cateId: Id,   //page num ��ǰҳ��
+      userid:viewModel.userId
+    };
+    ajaxCom.Loadajax('GET',getgoodslistUrl,queryData,function(res){
+      viewModel.data.list1(res.list);
+      
+    },function(error){
+
+      dialogmin("网络错误");
+    })
+  };
+  viewModel.getGoodsList2 = function(Id){
+    var queryData = {
+      pageSize: 3,     //page size ÿҳ��ʾ����
+      pageNum: 0,    //page num ��ǰҳ��
+      cateId: Id,   //page num ��ǰҳ��
+      userid:viewModel.userId
+    };
+    ajaxCom.Loadajax('GET',getgoodslistUrl,queryData,function(res){
+      viewModel.data.list2(res.list);
+     
+    },function(error){
+
+      dialogmin("网络错误");
+    })
+  };
+  viewModel.getGoodsList3 = function(Id){
+    var queryData = {
+      pageSize: 3,     //page size ÿҳ��ʾ����
+      pageNum: 0,    //page num ��ǰҳ��
+      cateId: Id,   //page num ��ǰҳ��
+      userid:viewModel.userId
+    };
+    ajaxCom.Loadajax('GET',getgoodslistUrl,queryData,function(res){
+      viewModel.data.list3(res.list);
+     
+    },function(error){
+
+      dialogmin("网络错误");
     })
   };
   viewModel.getattrs = function(){
     var queryData = {
-      userModuleId:viewModel.userModuleId
+      userModuleId:viewModel.userModuleId,
+      isIndex:1,
+      userId:viewModel.userId
     };
     ajaxCom.Loadajax('GET',attrsUrl,queryData,function(res){
-      viewModel.data.attrs(res.attrs);
-      viewModel.data.secondClass(res.attrs.secondClass);
-      viewModel.data.firstClass(res.attrs.firstClass);
-      console.log(viewModel.data.attrs())
+      viewModel.data.attrs(res.list);
+      viewModel.data.secondClass(res.list[4]);
+      viewModel.data.firstClass(res.list[5]);
+      viewModel.data.thirdClass(res.list[6]);
+      viewModel.getbanner();
+      viewModel.getGoodsList1(res.list[4].id)
+      viewModel.getGoodsList2(res.list[5].id)
+      viewModel.getGoodsList3(res.list[6].id)
     },function(error){
 
-      dialogmin("�������");
+      dialogmin("网络错误");
     })
   };
+ viewModel.GoupdateModule =function(){
+        var  UParray = [];
+        $(".aui-nav ul").find("li").each(function(e){
+            var list1data = {
+                "name":$(this).find(".mui-media-body").html(),
+                "logo":$(this).find("img").attr("src"),
+                "id":$(this).attr("data-id"),
+            }
+            if(e<4){
+            UParray.push(list1data)
+
+            }
+        })
+        $(".tmp7Class").each(function(e){
+            var list1data = {
+              "name":$(this).html(),
+              "logo":'',
+              "id":$(this).attr("data-id"),
+            } 
+            UParray.push(list1data)
+        })
+        var updataD = {
+          attrs:UParray
+        }
+        $.ajax({
+            type : 'post',
+            dataType : 'json',
+            data:{
+              attrs:JSON.stringify(updataD)
+            },
+            url :$ctx+ UpdataUrl,
+            success : function(res) {
+                if(res){
+                    dialogmin("保存成功")
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
+    }
+  viewModel.getuserInfo = function(){
+        $.ajax({
+            type : 'get',
+            dataType : 'json',
+            url :$ctx+ GetUrl+'?userModuleId='+GetQueryString("uid"),
+            success : function(res) {
+                if(res){
+                   viewModel.userId = res.data.list.userId;
+                   viewModel.applyName = res.data.list.applyName;
+                   viewModel.applyDescription = res.data.list.applyDescription;
+                   document.title = viewModel.applyName
+                   $("head").append("<meta content='"+viewModel.applyDescription+"' name='description'/>")
+                   $(".weixinLOGO").append("<img src='"+res.data.list.logo+"' >")
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
+    };
+  
+   viewModel.changeImg =function(i,id,cateId){
+        if(GetQueryString("isedit")){
+            $(".picLine",parent.document).find("img").attr("src",i).attr("data-id",id);
+
+        }else{
+           window.location.href = '../product/flList.html?tmp=7&cateId='+cateId;
+        }
+    }
+    viewModel.changeText =function(i,id,cateId){
+        if(GetQueryString("isedit")){
+            $(".xgtxt",parent.document).val(i).attr("data-id",id);
+           
+        }else{
+           window.location.href = '../product/flList.html?tmp=7&cateId='+cateId;
+        }
+    }
   viewModel.goDetail = function(id){
-    window.location.href = "../product/productDetails.html?goodsId="+id+"&tmp="+GetQueryString("tmp");;
+    window.location.href = "../product/productDetails.html?goodsId="+id+"&tmp=7";
   };
   viewModel.goList = function(id,name){
-    window.location.href = "../product/flList.html?tmp=6&cateId=" + id+"&catename="+name;
+    window.location.href = "../product/flList.html?tmp=7&cateId="+id+"&catename="+name;
   };
   viewModel.load=function(){
-    viewModel.getbanner();
+    viewModel.userModuleId = GetQueryString('uid');
+    viewModel.getuserInfo();
     viewModel.getattrs();
-    viewModel.getlist();
-    viewModel.getlist3();
-    $(function(){
-      var $div_li =$(".tuxx span");
-      $div_li.click(function(){
-        $(this).addClass("dq_hover")            //��ǰ<li>Ԫ�ظ���
-            .siblings().removeClass("dq_hover");  //ȥ������ͬ��<li>Ԫ�صĸ���
-        var index =  $div_li.index(this);  // ��ȡ��ǰ�����<li>Ԫ�� �� ȫ��liԪ���е�������
-        $("div.tb_nr_A > div")   	//ѡȡ�ӽڵ㡣��ѡȡ�ӽڵ�Ļ������������������滹��div
-            .eq(index).show()   //��ʾ <li>Ԫ�ض�Ӧ��<div>Ԫ��
-            .siblings().hide(); //������������ͬ����<div>Ԫ��
-      }).hover(function(){
-        $(this).addClass("hover");
-      },function(){
-        $(this).removeClass("hover");
-      });
-      var tbWidth = $(".xxsj").width();
-      $("#tb_tub2").width(tbWidth);
-      $("#tb_tubpie").width(tbWidth);
-    })
   }
 
   viewModel.load();

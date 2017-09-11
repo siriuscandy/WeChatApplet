@@ -1,0 +1,15 @@
+<!--about.wxml-->
+<view class="content bgfff">
+  <view class="aboutUsCon">
+      <view class="aboutUsTitle"><view class="span">门店信息</view></view>
+        <view class="xxLine">
+          <view class="h1">{{aboutus.dname}}</view>
+            <view class="xqConA">
+              <view class="p">{{aboutus.content}}</view>
+                <view class="p"><image class="img" src="{{aboutus.fpic}}"/></view>
+                <!--<view class="p">中国广东省深圳市福田区</view>-->
+            </view>
+        </view>
+    </view>
+    <view class="fbBnt">联系我们</view>
+</view>

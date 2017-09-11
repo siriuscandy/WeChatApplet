@@ -1,31 +1,34 @@
 
 require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 ], function($, ko,dialogmin,ajaxCom) {
-  var bannerUrl  =  '/goodsAPI/goodsList';
-  var listUrl  =  '/goodsAPI/goodsList2';
-  var list3Url  =  '/goodsAPI/goodsList3';
-  var attrsUrl = '/userModule/gettmp8';
+    var getgoodslistUrl  =  '/goodsAPI/goodsList';
+   var bannerUrl  =  '/goodsAPI/goodsListByName';
+  var attrsUrl = '/goodsAPI/getGoodsCateList';
+  var listUrl  =  '/api/showDetailListByZnameAndUid'; //首页资讯
+  var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+  var UpdataUrl = '/goodsAPI/updateGoodsCate';//修改
   var viewModel = {
     data : {
       banner : ko.observableArray([]),
       list : ko.observableArray([]),
       list3 : ko.observableArray([]),
       attrs:ko.observable({}),
-      bannerMid:ko.observable(""),
+      firstClass:ko.observable(""),
+      secondClass:ko.observable(""),
     },
 
   };
    viewModel.goIndex = function(){
-      window.location.href = "../tmp8/index.html";
+      window.location.href = "../tmp7/index.html";
   };
   viewModel.goProList = function(){
-      window.location.href = "../product/spList.html?tmp=8";
+      window.location.href = "../product/spList.html?tmp=7";
   };
   viewModel.goOrder = function(){
-      window.location.href = "../product/myOrder.html?tmp=8";
+      window.location.href = "../product/myOrder.html?tmp=7";
   };
   viewModel.goME = function(){
-      window.location.href = "../product/me.html?tmp=8";
+      window.location.href = "../product/me.html?tmp=7";
   };
   viewModel.getlist = function(){
     var queryData = {
@@ -39,33 +42,39 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 
     },function(error){
 
-      dialogmin("网络错误");
+      dialogmin("�������");
     })
   };
-  viewModel.getlist3 = function(){
-    var queryData = {
-      pagesize: 4,     //page size ÿҳ��ʾ����
-      pageNum: 0,    //page num ��ǰҳ��
-      classId: "list3",   //page num ��ǰҳ��
-      userid:viewModel.userId
+   viewModel.getuserInfo = function(){
+        $.ajax({
+            type : 'get',
+            dataType : 'json',
+            url :$ctx+ GetUrl+'?userModuleId='+GetQueryString("uid"),
+            success : function(res) {
+                if(res){
+                   viewModel.userId = res.data.list.userId;
+                   viewModel.applyName = res.data.list.applyName;
+                   viewModel.applyDescription = res.data.list.applyDescription;
+                   document.title = viewModel.applyName
+                   $("head").append("<meta content='"+viewModel.applyDescription+"' name='description'/>")
+                   $(".weixinLOGO").append("<img src='"+res.data.list.logo+"' >")
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
     };
-    ajaxCom.Loadajax('GET',list3Url,queryData,function(res){
-      viewModel.data.list3(res.list);
-
-    },function(error){
-
-      dialogmin("网络错误");
-    })
-  };
   viewModel.getbanner = function(){
     var queryData = {
-      pagesize: 4,     //page size ÿҳ��ʾ����
+      pageSize: 7,     //page size ÿҳ��ʾ����
       pageNum: 0,    //page num ��ǰҳ��
-      classId: "banner",   //page num ��ǰҳ��
+      name: "banner",   //page num ��ǰҳ��
       userid:viewModel.userId
     };
     ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
-      viewModel.data.banner(res.list);
+      viewModel.data.banner(res.list.slice(0,4));
+      viewModel.data.list(res.list.slice(4,7));
       var swiper = new Swiper('#swiper-container', {
         autoplay:3000,
         pagination: '.pagination1',
@@ -79,12 +88,14 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
   };
   viewModel.getattrs = function(){
     var queryData = {
-      userModuleId:viewModel.userModuleId
+      userModuleId:viewModel.userModuleId,
+      isIndex:1,
+      userId:viewModel.userId
     };
     ajaxCom.Loadajax('GET',attrsUrl,queryData,function(res){
-      viewModel.data.attrs(res.attrs);
-      viewModel.data.bannerMid(res.attrs.banner);
-      console.log(viewModel.data.attrs())
+      viewModel.data.firstClass(res.list[5]);
+      viewModel.getbanner();
+      viewModel.getGoodsList(res.list[0].id)
     },function(error){
 
       dialogmin("网络错误");
@@ -97,10 +108,9 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
     window.location.href = "../product/flList.html?tmp=6&cateId=" + id+"&catename="+name;
   };
   viewModel.load=function(){
-    viewModel.getbanner();
+    viewModel.getuserInfo();
     viewModel.getattrs();
-    viewModel.getlist();
-    viewModel.getlist3();
+    
     $(function(){
       var $div_li =$(".tuxx span");
       $div_li.click(function(){

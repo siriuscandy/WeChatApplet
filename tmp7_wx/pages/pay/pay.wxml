@@ -1,0 +1,70 @@
+<view class="content posRel">
+    	<view class="ddztLine">
+        	<view class="em"><image class="img" src="/img/icon3-2.png" /></view>
+            <view class="ddxqRight">
+            	<view class="span">订单状态：提交订单</view>
+                <!--<view class="span">订单号：5911730917ef9895247089</view>-->
+            </view>
+        </view>
+        <view class="devider t-line"></view>
+         <view class="shdzLine addressDIV"  wx:if="{{!addresshidden}}">
+            	<view class="address_nameLine" >
+                <view class="address">{{addressdata.userName}}</view>
+                <view class="address">{{addressdata.telNumber}}</view>
+                <view class="address">{{addressdata.provinceName}}／{{addressdata.cityName}}／{{addressdata.countyName}}／{{addressdata.detailInfo}}</view>
+              </view>
+              <view class="p">></view>
+          </view>
+         <!--<navigator open-type="redirect" url="../addressList/addressList">-->
+          <view wx:if="{{addresshidden}}" class="shdzLine" bindtap="addaddress">
+                <view class="span">请选择地址</view>
+                  <view class="p">></view>
+          </view>
+          <!--</navigator>   -->
+        
+        <view class="devider t-line"></view>
+        <!--<view class="aui-nav xqTitle">
+            <view class="fhLine">
+            	<view class="li">
+                	<view class="span wxzf"><image class="img" src="/img/wxzf.png" /></view>
+                    <view class="p xzHover"></view>
+                </view>
+                <view class="li">
+                	<view class="span zfb"><image class="img" src="/img/zfb.png" /></view>
+                    <view class="p"></view>
+                </view>
+            </view>
+        </view>-->
+    	<view class="devider t-line"></view>
+        <view class="aui-nav">
+            <view class="xqLineA" wx:for="{{goods}}">
+            	<view class="xqLineLeft">
+                	<view class="xqPic"><image class="img" src="{{item.goodsCover}}" style="width:70px;height:70px"/></view>
+                    <view class="titPice">
+                            <view class="span cpxqTitA">{{item.goodsName}}</view>
+                            <view class="span jgLineA">￥ {{item.unitPrice}}  </view>
+                        </view>
+                </view>
+                <view class="slRight">X{{item.goodsnumber}}</view>
+            </view>
+            <view class="qtxxLineA">
+            	<!--<view class="yhjxz">
+                	<a class="a" href="couponList.html">
+                    	<view class="span">店铺优惠</view>
+                        <view class="p">使用优惠券 ></view>
+                    </a>
+                </view>-->
+                <view class="qtxxLineB">
+                	<view class="li"><view class="span">商品金额</view><view class="p">￥{{totalprice}}</view></view>
+                    <view class="li"><view class="span">运费</view><view class="p">￥0.00</view></view>
+                </view>
+            </view>
+        </view>
+        <view style="height:50px"></view>
+        <view class="mui-bar mui-bar-tab buyBar">
+            <view class="jezj">
+            	<view class="span">应付金额:<view class="em">￥ {{totalprice}}</view> </view>
+                <view class="fkBnt" bindtap="gopay">去付款</view>
+            </view>
+        </view>
+    </view>

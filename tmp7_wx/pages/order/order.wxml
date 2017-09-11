@@ -1,0 +1,25 @@
+<import src="/pages/template/order.wxml"/>
+<view class="content bgf3">
+    	<view class="nr_tjhd_con">
+        	<view class="tuxx">
+                	<view class="span{{status==-10 ? ' dq_hover' : ''}}" data-status="-10" bindtap="changeTab">全部</view>
+                    <view class="span{{status==0 ? ' dq_hover' : ''}}" data-status="0" bindtap="changeTab">待付款</view>
+                    <view class="span{{status==1 ? ' dq_hover' : ''}}" data-status="1" bindtap="changeTab">待收货</view>
+                    <view class="span{{status==2 ? ' dq_hover' : ''}}" data-status="2" bindtap="changeTab">待评价</view>
+                </view>
+                <view class="tb_nr_A">
+                	<view class="tb_nr_a" wx:if="{{status==-10}}">
+                        <template is="order" data="{{list: list}}"></template>
+                    </view>
+                    <view class="tb_nr_a" wx:if="{{status==0}}">
+                    	<template is="order" data="{{list: list}}"></template>
+                    </view>
+                    <view class="tb_nr_a" wx:if="{{status==1}}">
+                    	<template is="order" data="{{list: list}}"></template>
+                    </view>
+                    <view class="tb_nr_a" wx:if="{{status==2}}">
+                    	<template is="order" data="{{list: list}}"></template>
+                    </view>
+                </view>
+        </view>
+    </view>

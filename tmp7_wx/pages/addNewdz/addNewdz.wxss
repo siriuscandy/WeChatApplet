@@ -1,0 +1,12 @@
+.dzLineA{padding:5%; display:block;}
+.dzLineA .li{border-bottom:1px solid #f3f3f3; display:block; font-size:16px; color:#333; line-height:40px; overflow:hidden;}
+.dzLineA .li .dzxqK{height:50px; line-height:50px; font-size:14px; color:#666; padding:0; border:0; margin-bottom:0;}
+.dzLineA .li .span{width:25%; float:left; font-size:14px; color:#666; line-height:50px;}
+.dzLineA .li .p{width:70%; float:left; margin-left:5%; margin-bottom:0;}
+.dzLineA .li .szdz{width:40%;}
+.content-block{width:70%; float:left;margin-left:5%;}
+.content-block .input{border:0; margin-top:5px; font-size:14px; padding:0; margin-bottom:0; }
+.dzLineA .li:last-child{border-bottom:0;}
+.dzLineA .li .kqBnt{width:auto; float:right;padding-top: 9px;}
+.chk_3 {display: none;}
+.fbBnt{margin:5%; height:35px; text-align:center; line-height:35px; font-size:15px; color:#fff; background:#ff6c00; border-radius:5px; cursor:pointer;}

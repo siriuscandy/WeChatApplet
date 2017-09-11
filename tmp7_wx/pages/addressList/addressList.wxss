@@ -1,0 +1,17 @@
+.addressCon .li{padding-top:10px; display:block; }
+.dzxmLine{padding:3%; border-bottom:1px solid #f0f0f0;background:#fff;}
+.nameLine{height:35px; line-height:35px; font-size:15px; color:#333;}
+.nameLine .span{width:auto; float:left;}
+.nameLine .p{width:auto; float:right;}
+.xxdz{line-height:25px; font-size:14px; color:#666;}
+.czLine{padding:10px 0; overflow:hidden;line-height:18px;background:#fff;}
+.mrdz{width:100px; float:left; margin-left:3%; font-size:14px; color:#666;}
+.mrdz .em{width:18px; height:18px; float:left; border-radius:50%; border:1px solid #6a6a6a; margin-right:10px;}
+.sccz{width:120px; float:right; margin-right:10px;}
+.sccz .span{font-size:14px; color:#666; width:auto; float:left; margin-left:10px;}
+.sccz .span .em{width:15px; height:18px; float:left; margin-right:5px;}
+.mrdz.mrdzA{color:#ff702a;}
+/*.mrdz.mrdzA .em{border:0; background:url(../img/icon3-5.png) no-repeat; background-size:100%;}*/
+.adddzBnt{height:45px; text-align:center; line-height:45px; background:#ff702a; font-size:15px; color:#fff; margin-top:20px;}
+.adddzBnt .a{color:#fff; display:block; height:45px;}
+.content.heighAoto{height:auto;}
