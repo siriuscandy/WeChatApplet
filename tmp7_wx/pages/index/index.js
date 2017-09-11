@@ -2,7 +2,7 @@
 //获取分类列表
 var $ctx = "https://v.tixaapp.com/WeChatApplet";
 var getgoodslistUrl = '/goodsAPI/goodsList';
-var bannerUrl = '/goodsAPI/goodsListByName';
+var bannerUrl = '/adAPI/adList';
 var CateListUrl = '/goodsAPI/getGoodsCateList';
 var newslistUrl = '/api/showDetailListByZnameAndUid'; //首页资讯
 var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
@@ -86,7 +86,7 @@ var getBanner = function (that) {
     data: {
       pageNum: 0,
       pageSize: 4,
-      name: "banner",
+      relationId: "0",
       userId: userId
     },
     success: function (res) {

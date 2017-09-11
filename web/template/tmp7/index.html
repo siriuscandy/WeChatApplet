@@ -13,8 +13,8 @@
     	<!--banner start-->
     	<div class="swiper-container" id="swiper-container">
 			<div class="swiper-wrapper" data-bind="foreach: data.banner()">
-				<div class="swiper-slide"  data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
-					<img  data-bind="attr:{'src':cover}"/>
+				<div class="swiper-slide"  data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(cateId)}">
+					<img  data-bind="attr:{'src':image}"/>
 				</div>
 
 			</div>
@@ -33,7 +33,7 @@
 	</div>
         <!--新品发布-->
 		<div class="aui-week t-line">
-            <h2><div class="zTitle" data-bind="attr:{'class':'tmp7Class name'+data.firstClass().id,'data-id':data.firstClass().id},text:data.firstClass().name,click:function(){changeText(data.firstClass().name,'name'+data.firstClass().id)}"></div><div class="fTitle">/ NEW PRODUCT </div><div class="moreBnt"><img src="img/icon2.png"></div></h2>
+            <h2><div class="zTitle" data-bind="attr:{'class':'tmp7Class zTitle name'+data.firstClass().id,'data-id':data.firstClass().id},text:data.firstClass().name,click:function(){changeText(data.firstClass().name,'name'+data.firstClass().id)}"></div><div class="fTitle">/ NEW PRODUCT </div><div class="moreBnt"><img src="img/icon2.png"></div></h2>
             <ul class="mui-table-view mui-grid-view" data-bind="foreach: data.list1()">
                 <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
                     <a href="#" >
@@ -50,7 +50,7 @@
         <div class="devider t-line"></div>
         <!--百家姓系列-->
 		<div class="aui-week t-line">
-            <h2><div class="zTitle" data-bind="attr:{'class':'tmp7Class name'+data.secondClass().id,'data-id':data.secondClass().id},text:data.secondClass().name,click:function(){changeText(data.secondClass().name,'name'+data.secondClass().id)}" >百家姓系列</div><div class="fTitle">/ FAMILY NAMES </div><div class="moreBnt"><img src="img/icon2.png"></div></h2>
+            <h2><div class="zTitle" data-bind="attr:{'class':'tmp7Class zTitle name'+data.secondClass().id,'data-id':data.secondClass().id},text:data.secondClass().name,click:function(){changeText(data.secondClass().name,'name'+data.secondClass().id)}" >百家姓系列</div><div class="fTitle">/ FAMILY NAMES </div><div class="moreBnt"><img src="img/icon2.png"></div></h2>
             <ul class="mui-table-view mui-grid-view" data-bind="foreach: data.list2()">
                 <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
                     <a href="#" >
@@ -67,7 +67,7 @@
         <div class="devider t-line"></div>
         <!--会员专享-->
 		<div class="aui-week t-line">
-            <h2><div class="zTitle" data-bind="attr:{'class':'tmp7Class name'+data.thirdClass().id,'data-id':data.thirdClass().id},text:data.thirdClass().name,click:function(){changeText(data.thirdClass().name,'name'+data.thirdClass().id)}" >会员专享</div><div class="fTitle">/ MEMBER ZONE </div><div class="moreBnt"><img src="img/icon2.png"></div></h2>
+            <h2><div class="zTitle" data-bind="attr:{'class':'tmp7Class zTitle name'+data.thirdClass().id,'data-id':data.thirdClass().id},text:data.thirdClass().name,click:function(){changeText(data.thirdClass().name,'name'+data.thirdClass().id)}" >会员专享</div><div class="fTitle">/ MEMBER ZONE </div><div class="moreBnt"><img src="img/icon2.png"></div></h2>
             <ul class="mui-table-view mui-grid-view" data-bind="foreach: data.list3()">
                 <li class="mui-table-view-cell mui-media mui-col-xs-3a" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
                     <a href="#" >

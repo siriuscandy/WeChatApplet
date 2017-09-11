@@ -2,7 +2,7 @@
 require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
 ], function($, ko,dialogmin,ajaxCom) {
   var getgoodslistUrl  =  '/goodsAPI/goodsList';
-  var bannerUrl  =  '/goodsAPI/goodsListByName';
+  var bannerUrl  =  '/adAPI/adList';
   var attrsUrl = '/goodsAPI/getGoodsCateList';
   var listUrl  =  '/api/showDetailListByZnameAndUid'; //首页资讯
   var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
@@ -43,7 +43,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
     var queryData = {
       pageSize: 4,     //page size ÿҳ��ʾ����
       pageNum: 0,    //page num ��ǰҳ��
-      name: "banner",   //page num ��ǰҳ��
+      relationId: "0",   //page num ��ǰҳ��
       userid:viewModel.userId
     };
     ajaxCom.Loadajax('GET',bannerUrl,queryData,function(res){
@@ -111,14 +111,20 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
       userId:viewModel.userId
     };
     ajaxCom.Loadajax('GET',attrsUrl,queryData,function(res){
-      viewModel.data.attrs(res.list);
-      viewModel.data.secondClass(res.list[4]);
-      viewModel.data.firstClass(res.list[5]);
-      viewModel.data.thirdClass(res.list[6]);
+      var arraylist =res.list;
+      for(var i=0;i<arraylist.length;i++){
+        if(arraylist[i].logo==null || res.list[i].logo==''){
+          arraylist[i].logo = 'img/icon1.jpg'
+        }
+      }
+      viewModel.data.attrs(arraylist);
+      viewModel.data.secondClass(arraylist[4]);
+      viewModel.data.firstClass(arraylist[5]);
+      viewModel.data.thirdClass(arraylist[6]);
       viewModel.getbanner();
-      viewModel.getGoodsList1(res.list[4].id)
-      viewModel.getGoodsList2(res.list[5].id)
-      viewModel.getGoodsList3(res.list[6].id)
+      viewModel.getGoodsList1(arraylist[4].id)
+      viewModel.getGoodsList2(arraylist[5].id)
+      viewModel.getGoodsList3(arraylist[6].id)
     },function(error){
 
       dialogmin("网络错误");
@@ -203,7 +209,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
         }
     }
   viewModel.goDetail = function(id){
-    window.location.href = "../product/productDetails.html?goodsId="+id+"&tmp=7";
+    window.location.href = "../product/flList.html?cateId="+id+"&tmp=7";
   };
   viewModel.goList = function(id,name){
     window.location.href = "../product/flList.html?tmp=7&cateId="+id+"&catename="+name;

@@ -6,8 +6,8 @@
             autoplay="true" interval="3000" duration="300">  
             <block wx:for="{{banner}}">  
             <swiper-item>  
-              <navigator url="../productDetails/productDetails?goodsId={{item.id}}" hover-class="navigator-hover">  
-                <image src="{{item.cover}}" class="img" width="350" height="150"/>  
+              <navigator url="../productlist/pdList?cateId={{item.cateId}}" hover-class="navigator-hover">  
+                <image src="{{item.image}}" class="img" width="350" height="150"/>  
               </navigator>   
             </swiper-item>  
               </block>  
