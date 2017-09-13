@@ -48,7 +48,7 @@ define([ 'jquery', 'knockout', 'text!pages/product/edit/edit.html','dialogmin',
             });
             up.on( 'uploadSuccess', function( file, res ) {
                 if(res.fileName != '-1'){  // -1  表示文件太大，没有上传
-                    $(".img-responsive").attr("src",res.fileName);
+                    $(".img-responsive").attr("src",'/WeChatApplet/'+res.fileName);
                     var ClassImg = $(".img-responsive").attr("data-id");
                     viewModel.temIframe.find("."+ClassImg).find("img").attr("src",res.fileName);
                 }

@@ -44,7 +44,7 @@ define([ 'jquery', 'knockout', 'text!pages/release/scym/scym.html','dialogmin','
             });
             up.on( 'uploadSuccess', function( file, res ) {
                 if(res.fileName != '-1'){  // -1  表示文件太大，没有上传
-                    $(".img-responsive").attr("src",'http://v.tixaapp.com/WeChatApplet'+res.fileName);
+                    $(".img-responsive").attr("src",'/WeChatApplet'+res.fileName);
 
                 }
             });
@@ -128,7 +128,7 @@ define([ 'jquery', 'knockout', 'text!pages/release/scym/scym.html','dialogmin','
         viewModel.userModuleId = parm[2];
         viewModel.load();
         viewModel.UpdateLogo();
-        var Iframe_url = 'http://v.tixaapp.com/WeChatApplet/web/template/tmp'+viewModel.id+'/index.html?uid='+viewModel.userModuleId;
+        var Iframe_url = '/WeChatApplet/web/template/tmp'+viewModel.id+'/index.html?uid='+viewModel.userModuleId;
         $("iframe").attr("src",Iframe_url);
         $(".header").hide();
         $(".bjHeader").show();

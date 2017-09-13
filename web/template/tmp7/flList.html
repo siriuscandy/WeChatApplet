@@ -3,391 +3,280 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-<title>天下新闻</title>
-<link rel="stylesheet" href="css/mui.min.css">
+<title>分类列表</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/mui.min.css">
+
 </head>
 
 <body>
+    <div class="weixinLOGO" style="display:none"></div>
 	<div class="content">
     	<div class="find_nav">
-    <div class="find_nav_left">
-        <div class="find_nav_list" id="pagenavi1">
-            <ul>
+            <div class="find_nav_left">
+                <div class="find_nav_list" id="pagenavi1">
+                    <ul data-bind="foreach: CateId">
+                        <li data-bind="css:{'active':$index()==0}"><a href="#"  data-bind="text:name,attr:{'data-id':id}">要闻</a></li>
+                        
+                    </ul>
         
-                <li><a href="#" class="active">鲜花订阅</a></li>
-                <li><a href="#">保洁保养</a></li>
-                <li><a href="#">保姆月嫂</a></li>
-                <li><a href="#">上门推拿</a></li>
-                <li class="sideline"></li>
-            </ul>
-
+                </div>
+            </div>
         </div>
-    </div>
-</div>
         <div id="slider1" class="swipe">
-              <ul class="box01_list">
-                <li class="li_list">
-                	<div class="mui-table-view mui-grid-view">
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
+        <ul class="box01_list" data-bind="foreach:ArtList">
+        <li class="li_list" data-bind="foreach:list">
+            <div class="mui-table-view mui-grid-view">
+                <div class="mui-table-view-cell mui-media mui-col-xs-6" data-bind="attr:{'data-id':id},click:function(){$parent.goDetail(id)}">
+                    <a href="javascript:;">
+                        <img class="mui-media-object" data-bind="attr:{'src':cover}">
+                        <div class="mui-media-body" data-bind="text:name"></div>
+                        <div class="mui-media-body jgPice">
+                            <div class="jgL"><div class="jqfh">¥</div><span data-bind="text:price"></span></div>
                         </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>	
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>	
-                     </div>
-                </li>
-                <li class="li_list">
-                	<div class="mui-table-view mui-grid-view">
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">保洁保养-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>	
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>	
-                     </div>
-                </li>
-                <li class="li_list">
-                	<div class="mui-table-view mui-grid-view">
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">保姆月嫂-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>	
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>	
-                     </div>
-                </li>
-                <li class="li_list">
-                	<div class="mui-table-view mui-grid-view">
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门推拿-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>	
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mui-table-view-cell mui-media mui-col-xs-6">
-                            <a href="page.html">
-                                <img class="mui-media-object" src="img/pic1.jpg">
-                                <div class="mui-media-body">上门保洁-房间彻底清理</div>
-                                <div class="mui-media-body jgPice">
-                                    <div class="jgL"><div class="jqfh">¥</div>800</div>
-                                </div>
-                            </a>
-                        </div>	
-                     </div>
-                </li>
-              </ul>
-        
+                    </a>
+                </div>
             </div>
-        <div style="height:50px"></div>
-        <nav class="mui-bar mui-bar-tab">
-            <div class="t-line">
-                <a href="index.html" class="aui-tab-item">
-                    <span class="mui-icon iconHover mui-icon-home"></span>
-                    <span class="mui-tab-label">首页</span>
-                </a>
-                <a href="flList.html" class="aui-tab-item mui-active" >
-                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
-                    <span class="mui-tab-label">分类</span>
-                </a>
-                <a class="aui-tab-item" href="#">
-                    <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
-                    <span class="mui-tab-label">订单</span>
-                </a>
-                <a class="aui-tab-item" href="#">
-                    <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
-                    <span class="mui-tab-label">我的</span>
-                </a>
-            </div>
-        </nav>
+        </li>
+        </ul>
+        </div>
+          
+               
     </div>
-    
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/touchslider.js"></script>
-<script type="text/javascript">
-$(".find_nav_list").css("left",0);
 
-$(".find_nav_list li").each(function(){
-		$(".sideline").css({left:0});
-		$(".find_nav_list li").eq(0).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
-});
-var nav_w=$(".find_nav_list li").first().width();
-$(".sideline").width(nav_w);
-$(".find_nav_list li").on('click', function(){
-	nav_w=$(this).width();
-	$(".sideline").stop(true);
-	$(".sideline").animate({left:$(this).position().left},300);
-	$(".sideline").animate({width:nav_w});
-	$(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
-	var fn_w = ($(".find_nav").width() - nav_w) / 2;
-	var fnl_l;
-	var fnl_x = parseInt($(this).position().left);
-	if (fnl_x <= fn_w) {
-		fnl_l = 0;
-	} else if (fn_w - fnl_x <= flb_w - fl_w) {
-		fnl_l = flb_w - fl_w;
-	} else {
-		fnl_l = fn_w - fnl_x;
-	}
-	$(".find_nav_list").animate({
-		"left" : fnl_l
-	}, 300);
-	
-});
-var fl_w=$(".find_nav_list").width();
-var flb_w=$(".find_nav_left").width();
-$(".find_nav_list").on('touchstart', function (e) {
-	var touch1 = e.originalEvent.targetTouches[0];
-	x1 = touch1.pageX;
-	y1 = touch1.pageY;
-	ty_left = parseInt($(this).css("left"));
-});
-$(".find_nav_list").on('touchmove', function (e) {
-	var touch2 = e.originalEvent.targetTouches[0];
-	var x2 = touch2.pageX;
-	var y2 = touch2.pageY;
-	if(ty_left + x2 - x1>=0){
-		$(this).css("left", 0);
-	}else if(ty_left + x2 - x1<=flb_w-fl_w){
-		$(this).css("left", flb_w-fl_w);
-	}else{
-		$(this).css("left", ty_left + x2 - x1);
-	}
-	if(Math.abs(y2-y1)>0){
-		e.preventDefault();
-	}
-});
-
-
-for(n=1;n<9;n++){
-	var page='pagenavi'+n;
-	var mslide='slider'+n;
-	var mtitle='emtitle'+n;
-	arrdiv = 'arrdiv' + n;
-	var as=document.getElementById(page).getElementsByTagName('a');
-	var tt=new TouchSlider({id:mslide,'auto':'-1',fx:'ease-out',direction:'left',speed:600,timeout:5000,'before':function(index){
-		var as=document.getElementById(this.page).getElementsByTagName('a');
-		as[this.p].className='';
-		this.p=index;
-		
-		fnl_x =  parseInt($(".find_nav_list li").eq(this.p).position().left);
-		
-		nav_w=$(".find_nav_list li").eq(this.p).width();
-		$(".sideline").stop(true);
-		$(".sideline").animate({left:$(".find_nav_list li").eq(this.p).position().left},300);
-		$(".sideline").animate({width:nav_w},100);
-		$(".find_nav_list li").eq(this.p).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
-		var fn_w = ($(".find_nav").width() - nav_w) / 2;
-		var fnl_l;
-		if (fnl_x <= fn_w) {
-			fnl_l = 0;
-		} else if (fn_w - fnl_x <= flb_w - fl_w) {
-			fnl_l = flb_w - fl_w;
-		} else {
-			fnl_l = fn_w - fnl_x;
-		}
-		$(".find_nav_list").animate({
-			"left" : fnl_l
-		}, 300);
-	}});
-	tt.page = page;
-	tt.p = 0;
-	//console.dir(tt); console.dir(tt.__proto__);
-
-	for(var i=0;i<as.length;i++){
-		(function(){
-			var j=i;
-			as[j].tt = tt;
-			as[j].onclick=function(){
-				this.tt.slide(j);
-				return false;
-			}
-		})();
-	}
-}
+<script>
+window.$ctx = "/WeChatApplet";
 </script>
+<script src="/WeChatApplet/web/trd/requirejs/require.js"></script>
+<script src="/WeChatApplet/web/js/require.config.js"></script>
+<script>
+
+require([ 'jquery', 'knockout','dialogmin','ajaxCom','bootstrap','uui'
+], function($, ko,dialogmin,ajaxCom,bootstrap,uui) {
+    var getCateIdUrl = '/goodsAPI/getGoodsCateList';
+    var listUrl  =  '/goodsAPI/goodsList';
+    var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
+    
+    var viewModel = {
+        data : {
+            content : ko.observableArray([]),
+            totalPages : ko.observable(),
+            number : ko.observable(),
+            totalElements : ko.observable()
+        },
+        setData : function(res) {
+            this.data.content(res.list);
+            this.data.totalPages(res.pages);
+            this.data.number(res.pageNum);
+            this.data.totalElements(res.total);
+        },
+        CateId:ko.observable(),
+        ArtList:ko.observable([]),
+        loadnum:0,
+        isLoadbasic:false
+        
+    };
+    viewModel.getUserIdload = function(){
+        
+        $.ajax({
+            type : 'get',
+            dataType : 'json',
+            url :$ctx+ GetUrl+'?userModuleId='+GetQueryString("uid"),
+            success : function(res) {
+                if(res){
+                   viewModel.userId = res.data.list.userId;
+                   viewModel.applyName = res.data.list.applyName;
+                   viewModel.applyDescription = res.data.list.applyDescription;
+                   document.title = viewModel.applyName
+                   $("head").append("<meta content='"+viewModel.applyDescription+"' name='description'/>")
+                   $(".weixinLOGO").append("<img src='"+res.data.list.logo+"' >")
+                  
+                   viewModel.getCateId();
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                //dialogmin("调用服务报错!!");
+            }
+        });
+    };
+   viewModel.getCateId =function(){
+        var queryData = {
+            pageSize: 20,     //page size 每页显示条数
+            pageNum:0,    //page num 当前页数
+            uid: viewModel.userId,
+           
+            
+        };
+       ajaxCom.Loadajax('GET',getCateIdUrl,queryData,function(res){
+            viewModel.CateId(res.data.list);
+            viewModel.arrayList = [];
+           setTimeout(function(){
+               $(".find_nav_list li").each(function(e){
+                   var id = $(this).find("a").attr("data-id");
+                   viewModel.load(1,id)
+               });
+           },500)
+           
+       })
+   }
+    
+    viewModel.load = function(pageIndex,Zid){
+
+        var queryData = {
+            pageSize: 20,     //page size 每页显示条数
+            pageNum: 0,    //page num 当前页数
+            cateId: Zid,   //page num ��ǰҳ��
+            userid:viewModel.userId
+        };
+        
+        ajaxCom.Loadajax('GET',listUrl,queryData,function(res){
+            viewModel.loadnum =   viewModel.loadnum+1
+            if($(".find_nav_list li").length == viewModel.loadnum) {
+                viewModel.isLoadbasic =true;
+            }
+            
+            viewModel.arrayList.push(res.data)
+            viewModel.ArtList(viewModel.arrayList)
+            if(viewModel.isLoadbasic==true){
+                setTimeout(function(){viewModel.basicFun();},300)
+                
+            }
+                
+            },function(error){
+            
+                dialogmin("网络错误");
+        })
+    }
+    viewModel.basicFun =function(){
+        $(".find_nav_list").css("left",0);
+
+        $(".find_nav_list li").each(function(){
+                $(".sideline").css({left:0});
+                $(".find_nav_list li").eq(0).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+        });
+        var nav_w=$(".find_nav_list li").first().width();
+        $(".sideline").width(nav_w);
+        
+        $(".find_nav_list li").on('click', function(){
+            
+            nav_w=$(this).width();
+            $(".sideline").stop(true);
+            $(".sideline").animate({left:$(this).position().left},300);
+            $(".sideline").animate({width:nav_w});
+            $(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+            var fn_w = ($(".find_nav").width() - nav_w) / 2;
+            var fnl_l;
+            var fnl_x = parseInt($(this).position().left);
+            if (fnl_x <= fn_w) {
+                fnl_l = 0;
+            } else if (fn_w - fnl_x <= flb_w - fl_w) {
+                fnl_l = flb_w - fl_w;
+            } else {
+                fnl_l = fn_w - fnl_x;
+            }
+            $(".find_nav_list").animate({
+                "left" : fnl_l
+            }, 300);
+            
+        });
+        var fl_w=$(".find_nav_list").width();
+        var flb_w=$(".find_nav_left").width();
+        $(".find_nav_list").on('touchstart', function (e) {
+            var touch1 = e.originalEvent.targetTouches[0];
+            x1 = touch1.pageX;
+            y1 = touch1.pageY;
+            ty_left = parseInt($(this).css("left"));
+        });
+        $(".find_nav_list").on('touchmove', function (e) {
+            var touch2 = e.originalEvent.targetTouches[0];
+            var x2 = touch2.pageX;
+            var y2 = touch2.pageY;
+            if(ty_left + x2 - x1>=0){
+                $(this).css("left", 0);
+            }else if(ty_left + x2 - x1<=flb_w-fl_w){
+                $(this).css("left", flb_w-fl_w);
+            }else{
+                $(this).css("left", ty_left + x2 - x1);
+            }
+            if(Math.abs(y2-y1)>0){
+                e.preventDefault();
+            }
+        });
+
+
+            var n=1;
+            var page='pagenavi'+n;
+            var mslide='slider'+n;
+            var mtitle='emtitle'+n;
+            arrdiv = 'arrdiv' + n;
+            var as=document.getElementById(page).getElementsByTagName('a');
+            var tt=new TouchSlider({id:mslide,'auto':'-1',fx:'ease-out',direction:'left',speed:600,timeout:5000,'before':function(index){
+                var as=document.getElementById(this.page).getElementsByTagName('a');
+                as[this.p].className='';
+                this.p=index;
+                
+                fnl_x =  parseInt($(".find_nav_list li").eq(this.p).position().left);
+                
+                nav_w=$(".find_nav_list li").eq(this.p).width();
+                $(".sideline").stop(true);
+                $(".sideline").animate({left:$(".find_nav_list li").eq(this.p).position().left},300);
+                $(".sideline").animate({width:nav_w},100);
+                $(".find_nav_list li").eq(this.p).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+                var fn_w = ($(".find_nav").width() - nav_w) / 2;
+                var fnl_l;
+                if (fnl_x <= fn_w) {
+                    fnl_l = 0;
+                } else if (fn_w - fnl_x <= flb_w - fl_w) {
+                    fnl_l = flb_w - fl_w;
+                } else {
+                    fnl_l = fn_w - fnl_x;
+                }
+                $(".find_nav_list").animate({
+                    "left" : fnl_l
+                }, 300);
+            }});
+            tt.page = page;
+            tt.p = 0;
+            //console.dir(tt); console.dir(tt.__proto__);
+
+            for(var i=0;i<as.length;i++){
+                (function(){
+                    var j=i;
+                    as[j].tt = tt;
+                    as[j].onclick=function(){
+                        this.tt.slide(j);
+                        return false;
+                    }
+                })();
+            }
+                     
+    }
+    //viewModel.data(res);
+    viewModel.getUserIdload();
+    viewModel.goDetail = function(id){
+    window.location.href = "../product/flList.html?cateId="+id+"&tmp=7";
+  };
+    viewModel.checknum = function(num){
+        if(num % 2 ===0){
+            return 2
+        }else{
+            return 1
+        }
+    }
+    ko.applyBindings(viewModel);
+         
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    };
+
+})
+</script>
+
 </body>
 </html>
