@@ -118,13 +118,13 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
         }
       }
       viewModel.data.attrs(arraylist);
-      viewModel.data.secondClass(arraylist[4]);
-      viewModel.data.firstClass(arraylist[5]);
-      viewModel.data.thirdClass(arraylist[6]);
+      viewModel.data.secondClass(arraylist[3]);
+      viewModel.data.firstClass(arraylist[4]);
+      viewModel.data.thirdClass(arraylist[5]);
       viewModel.getbanner();
-      viewModel.getGoodsList1(arraylist[4].id)
-      viewModel.getGoodsList2(arraylist[5].id)
-      viewModel.getGoodsList3(arraylist[6].id)
+      viewModel.getGoodsList1(arraylist[3].id)
+      viewModel.getGoodsList2(arraylist[4].id)
+      viewModel.getGoodsList3(arraylist[5].id)
     },function(error){
 
       dialogmin("网络错误");
