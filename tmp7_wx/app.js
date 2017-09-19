@@ -1,5 +1,7 @@
 //app.js
 var userId = 134;
+//var $ctx = 'https://v.tixaapp.com/WeChatApplet';
+var $ctx = 'http://vchengx.cn/WeChatApplet';
 App({
   //当程序初始化的时候执行这个方法
   onLaunch: function () {
@@ -31,7 +33,7 @@ App({
   getOpenId: function (code) {
     var that = this;
     wx.request({
-      url: 'https://v.tixaapp.com/WeChatApplet/app/getData',
+      url: $ctx +'/app/getData',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -81,7 +83,7 @@ App({
 
           if (that.globalData.openId != null) {
             wx.request({
-              url: 'https://v.tixaapp.com/WeChatApplet/memberAPI/addMember',//上线的话必须是https，没有appId的本地请求貌似不受影响  
+              url: $ctx + '/memberAPI/addMember',//上线的话必须是https，没有appId的本地请求貌似不受影响  
               data: {
                 openid: that.globalData.openId,
                 name: 'test',
@@ -135,7 +137,7 @@ App({
     openId: null,
     memberId: null,
     USERID:userId,
-    CTX:'https://v.tixaapp.com/WeChatApplet',
+    CTX:$ctx,
   }
 
 })
