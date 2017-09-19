@@ -1,5 +1,5 @@
 //app.js
-var userId = 127;
+var userId = 134;
 App({
   //当程序初始化的时候执行这个方法
   onLaunch: function () {
@@ -135,6 +135,7 @@ App({
     openId: null,
     memberId: null,
     USERID:userId,
+    CTX:'https://v.tixaapp.com/WeChatApplet',
   }
 
 })

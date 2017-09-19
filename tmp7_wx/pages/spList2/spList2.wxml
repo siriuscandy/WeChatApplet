@@ -1,0 +1,28 @@
+<!--index.wxml-->
+<view class="bg">
+    <view class="swiper-tab">  
+        <view wx:for-item="itemName" class="swiper-tab-list {{currentTab==idx ? 'on' : ''}}" data-current="{{idx}}" bindtap="swichNav" wx:for="{{CateIdList}}" wx:for-index="idx" id="{{itemName.id}}" data-page="{{idx+1}}">{{itemName.name}}</view>  
+        <!--<view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">娱乐</view>  
+        <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">科技</view>  
+        <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">财经</view> 
+        <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">体育</view> -->
+    </view>   
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight * NowPageNUMd}}px" bindchange="bindChange">  
+    <!-- 我是哈哈 -->  
+    <swiper-item wx:for="{{CateIdList}}">  
+      <view class="swipe_li">
+         <view class="box01_list">
+             <view class="li_list" wx:for-index="idix" wx:for="{{articList}}" wx:for-item="List">
+                  <navigator open-type="redirect" url="../productlist/pdList?cateId={{List.id}}&cateName={{List.name}}">
+                      <image class="mui-media-object" src="{{List.logo}}"/>
+                      <view class="mui-media-body">{{List.name}}</view>
+                  </navigator>
+              </view> 
+         </view>
+      </view>  
+
+    </swiper-item>  
+    <!-- 我是呵呵 -->  
+   
+</swiper>  

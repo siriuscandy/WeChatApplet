@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/order/order",
     "pages/me/me",
+    "pages/spList2/spList2",
     "pages/spList/spList",
     "pages/productDetails/productDetails",
     "pages/couponList/couponList",
@@ -33,7 +34,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/spList/spList",
+        "pagePath": "pages/spList2/spList2",
         "iconPath": "/img/icon1-8.png",
         "selectedIconPath": "/img/icon1-8a.png",
         "text": "分类"
