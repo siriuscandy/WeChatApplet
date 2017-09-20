@@ -1,6 +1,6 @@
 // order.js
-
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getOrderList";
+var $ctx = getApp().globalData.CTX;
+var url = $ctx+"/goodsAPI/getOrderList";
 var userId = getApp().globalData.USERID;
 var status=-10;
 var pageNum = 0;

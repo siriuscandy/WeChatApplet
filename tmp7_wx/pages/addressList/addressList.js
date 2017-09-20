@@ -1,6 +1,6 @@
 // spList.js
-
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getAddressList";
+var $ctx = getApp().globalData.CTX;
+var url = $ctx +"/goodsAPI/getAddressList";
 var userId = 95;
 var pageNum = 0;
 var pageSize = 15;

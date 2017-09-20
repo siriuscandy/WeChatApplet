@@ -1,12 +1,12 @@
 //index.js
 //获取分类列表
-var $ctx = "https://v.tixaapp.com/WeChatApplet";
+var $ctx = getApp().globalData.CTX;
 var getgoodslistUrl = '/goodsAPI/goodsList';
 var bannerUrl = '/adAPI/adList';
 var CateListUrl = '/goodsAPI/getGoodsCateList';
 var newslistUrl = '/api/showDetailListByZnameAndUid'; //首页资讯
 var GetUrl = '/userModule/getUserModuleDetail'; //获取信息
-var carturl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCartList";
+var carturl = $ctx +"/goodsAPI/getCartList";
 var getcarthasList = function (that) {
   wx.request({
     url: carturl,
@@ -64,14 +64,14 @@ var GetList = function (that) {
     success: function (res) {
      // console.info(res);
       var list = res.data.list;
-      list1Id = list[4].id;
-      list2Id = list[5].id;
-      list3Id = list[6].id;
+      list1Id = list[3].id;
+      list2Id = list[4].id;
+      list3Id = list[5].id;
       that.setData({
         CateList: list,
-        firstClass: list[4],
-        secondClass: list[5],
-        thirdClass: list[6],
+        firstClass: list[3],
+        secondClass: list[4],
+        thirdClass: list[5],
       });
       getlist1(that);
       getlist2(that);
@@ -158,7 +158,7 @@ var getlist3 = function (that) {
 
 // var GetIndexCLDP = function (that) {
 //   wx.request({
-//     url: "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsCateList",
+//     url: "https://vchengx.cn/WeChatApplet/goodsAPI/getGoodsCateList",
 //     data: {
 //       pageNum: pageNum,
 //       pageSize: pageSize,

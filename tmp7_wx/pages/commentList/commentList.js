@@ -1,6 +1,6 @@
 // commentList.js
-
-var commentUrl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCommentList";
+var $ctx = getApp().globalData.CTX;
+var commentUrl = $ctx +"/goodsAPI/getCommentList";
 var pageNum = 0;
 var pageSize = 10;
 var goodsId = 1;

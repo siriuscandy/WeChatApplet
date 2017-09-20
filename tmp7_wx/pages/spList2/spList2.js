@@ -6,7 +6,7 @@ var isindex=0;
 var getCateIdUrl = '/goodsAPI/getGoodsCateList';
 var listUrl  =  '/goodsAPI/goodsList';
 var NowZid=0;
-var NowPageNUM = 1;
+var NowPageNUM = 0;
 Page({
   data: {
     CateIdList:[],
@@ -15,7 +15,7 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
-    NowPageNUMd:1
+    NowPageNUMd:0
   },
   onLoad: function () {
     var that = this;
@@ -93,7 +93,8 @@ Page({
        data: {
          pageSize: '10',
          pageNum: '0',
-         uid:userId
+         userId:userId,
+         isIndex:-1
        },
        header: {
          'content-type': 'application/json'
@@ -104,11 +105,11 @@ Page({
          that.setData({
            CateIdList: List
          })
-         that.GetarticList(1, List[0].id,userId)
+         that.GetarticList(0, List[0].id,userId)
          for(var i=0;i<List.length;i++){
            wx.setStorage({
              key: String(List[i].id),
-             data: "1"
+             data: "0"
            })
          }
        }
@@ -146,7 +147,7 @@ Page({
         pageSize: '5',
         pageNum: pgNUm,
         cateId: zid,
-        userid: userId
+        userId: userId
       },
       header: {
         'content-type': 'application/json'

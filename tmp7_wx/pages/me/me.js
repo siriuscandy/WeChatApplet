@@ -1,5 +1,6 @@
 // me.js
-var carturl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCartList";
+var $ctx = getApp().globalData.CTX;
+var carturl = $ctx +"/goodsAPI/getCartList";
 var userId = getApp().globalData.USERID;
 
 var getcarthasList = function (that) {

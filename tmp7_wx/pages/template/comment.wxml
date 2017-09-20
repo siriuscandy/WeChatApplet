@@ -7,7 +7,7 @@
           </view>
           <view class="p plxq">{{item.content}}</view>
           <view class="picList">
-            <view class="span"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{item.images}}"/></view>
+            <view class="span"><image class="img" src="https://vchengx.cn/WeChatApplet/{{item.images}}"/></view>
           </view>
       </view>
   </view>

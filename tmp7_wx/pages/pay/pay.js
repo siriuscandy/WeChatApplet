@@ -1,8 +1,8 @@
 // me.js
 var goodsData="";
-
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsDetail";
-var submmiturl = "https://v.tixaapp.com/WeChatApplet/app/xiadan"
+var $ctx = getApp().globalData.CTX;
+var url = $ctx+"/goodsAPI/getGoodsDetail";
+var submmiturl = $ctx+"/app/xiadan"
 var goodsId = 0;
 var userId = getApp().globalData.USERID;
 

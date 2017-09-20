@@ -11,7 +11,7 @@
           </view>
           <view class="cpxqLineA">
             <view class="cppictxt">
-                <view class="span"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{item.cover}}"/></view>
+                <view class="span"><image class="img" src="https://vchengx.cn/WeChatApplet/{{item.cover}}"/></view>
                   <view class="p">{{item.name}}</view>
               </view>
               <view class="jgsl">￥ {{item.price}}<br/>x{{item.number}}</view>

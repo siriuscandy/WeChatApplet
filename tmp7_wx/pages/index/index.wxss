@@ -145,8 +145,11 @@ em{font-style:normal;}*/
     pointer-events: none;
 }
 .swipe{ padding:70px 0 0 0;}
-
-
+.navimg { width:100px;
+height:45px;
+}
+.padding10 {padding:0 10px!important}
+.padding10 .mui-col-xs-3a { width:30%;}
 
 
 

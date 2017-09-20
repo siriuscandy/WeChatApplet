@@ -1,7 +1,7 @@
 //app.js
 var userId = 134;
 //var $ctx = 'https://v.tixaapp.com/WeChatApplet';
-var $ctx = 'http://vchengx.cn/WeChatApplet';
+var $ctx = 'https://vchengx.cn/WeChatApplet';
 App({
   //当程序初始化的时候执行这个方法
   onLaunch: function () {

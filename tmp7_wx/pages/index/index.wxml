@@ -19,7 +19,7 @@
 		<view class="mui-table-view mui-grid-view">
 			<view class="mui-table-view-cell mui-media mui-col-xs-3a" wx:for="{{CateList}}" wx:if="{{index<3}}">
 				<navigator url="../productlist/pdList?cateId={{item.id}}&cateName={{item.name}}">
-                    <view class="mui-media-object"><image class="img" src="{{item.logo}}" alt=""/></view>
+                    <view class="mui-media-object"><image class="img navimg" src="{{item.logo}}"  alt=""/></view>
         </navigator>
 			</view>
 				
@@ -29,7 +29,7 @@
     <!--新品发布-->
 		<view class="aui-week t-line">
             <view class="h2"><view class="zTitle">{{firstClass.name}}</view><view class="fTitle">/ NEW PRODUCT </view><view class="moreBnt"><image class="img" src="../../img/icon2.png" /></view></view>
-            <view class="mui-table-view mui-grid-view">
+            <view class="mui-table-view mui-grid-view padding10">
                 <view wx:for="{{list1}}" class="mui-table-view-cell mui-media mui-col-xs-3a">
                     <navigator class="a" url="../productDetails/productDetails?goodsId={{item.id}}">
                         <image class="img" class="mui-media-object" src="{{item.cover}}" style="height:95px" />
@@ -46,7 +46,7 @@
     <!--百家姓系列-->
 		<view class="aui-week t-line">
             <view class="h2"><view class="zTitle">{{secondClass.name}}</view><view class="fTitle">/ FAMILY NAMEST </view><view class="moreBnt"><image class="img" src="../../img/icon2.png" /></view></view>
-            <view class="mui-table-view mui-grid-view">
+            <view class="mui-table-view mui-grid-view padding10">
                 <view wx:for="{{list2}}" class="mui-table-view-cell mui-media mui-col-xs-3a">
                     <navigator class="a" url="../productDetails/productDetails?goodsId={{item.id}}">
                         <image class="img" class="mui-media-object" src="{{item.cover}}" style="height:95px" />
@@ -63,7 +63,7 @@
         <!--新品发布-->
 		<view class="aui-week t-line">
             <view class="h2"><view class="zTitle">{{thirdClass.name}}</view><view class="fTitle">/ MEMBER ZONE </view><view class="moreBnt"><image class="img" src="../../img/icon2.png" /></view></view>
-            <view class="mui-table-view mui-grid-view">
+            <view class="mui-table-view mui-grid-view padding10">
                 <view wx:for="{{list3}}" class="mui-table-view-cell mui-media mui-col-xs-3a">
                     <navigator class="a" url="../productDetails/productDetails?goodsId={{item.id}}">
                         <image class="img"g class="mui-media-object" src="{{item.cover}}" style="height:95px" />

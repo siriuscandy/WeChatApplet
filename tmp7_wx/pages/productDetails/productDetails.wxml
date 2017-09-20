@@ -6,7 +6,7 @@
         <image class="img" src="/img/icon1-5.png"/>
       </view>
       </view>
-    	<view class="cpPic"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{goods.cover}}"/></view>
+    	<view class="cpPic"><image class="img" src="https://vchengx.cn/WeChatApplet/{{goods.cover}}"/></view>
         <view class="aui-nav xqTitle">
             <view class="titLine">
             	<view class="titTxt">{{goods.name}}</view>
@@ -30,7 +30,7 @@
             <template is="comment" data="{{list:comments}}"></template>
             <view class="cpplTitle cpxqTitle">产品详情</view>
             <view class="cpxqCon">
-            	<view class="span" wx:for="{{imgs}}" wx:if="{{item != ''}}"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{item}}"/></view>
+            	<view class="span" wx:for="{{imgs}}" wx:if="{{item != ''}}"><image class="img" src="https://vchengx.cn/WeChatApplet/{{item}}"/></view>
                 <!-- <view class="span"><img class="img" src="img/pic1-1.jpg"/></view> -->
             </view>
         </view>
@@ -46,7 +46,7 @@
           <view class="cpxx">
                 <view class="cpxqLine">
                     <view class="xqLeft">
-                        <view class="xqPic"><image class="img" src="https://v.tixaapp.com/WeChatApplet/{{goods.cover}}"/></view>
+                        <view class="xqPic"><image class="img" src="https://vchengx.cn/WeChatApplet/{{goods.cover}}"/></view>
                         <view class="titPice">
                             <view class="span cpxqTitA">{{goods.name}}</view>
                             <view class="span jgLineA">￥ {{goods.price}}  </view>

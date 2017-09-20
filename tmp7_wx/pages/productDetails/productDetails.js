@@ -1,9 +1,10 @@
 // productDetails.js
-
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsDetail";
-var addcart = "https://v.tixaapp.com/WeChatApplet/goodsAPI/addCart"
+var $ctx = getApp().globalData.CTX;
+var url = $ctx+"goodsAPI/getGoodsDetail";
+var addcart = $ctx +"/goodsAPI/addCart"
 var goodsId = 0;
 var userId = getApp().globalData.USERID;
+var commentUrl = $ctx+"/goodsAPI/getCommentList";
 
 var getDetail = function (that) {
   wx.request({
@@ -54,7 +55,6 @@ var gobuyFUN = function (that) {
     url: "../pay/pay"
   })
 }
-var commentUrl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCommentList";
 var pageNum = 0;
 var pageSize=3;
 var getCommentList = function (that) {

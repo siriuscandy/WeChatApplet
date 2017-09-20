@@ -132,7 +132,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','bootstrap','uui'
             
         };
        ajaxCom.Loadajax('GET',getCateIdUrl,queryData,function(res){
-            viewModel.CateId(res.data.list);
+            viewModel.CateId(res.list);
             viewModel.arrayList = [];
            setTimeout(function(){
                $(".find_nav_list li").each(function(e){
@@ -159,7 +159,7 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','bootstrap','uui'
                 viewModel.isLoadbasic =true;
             }
             
-            viewModel.arrayList.push(res.data)
+            viewModel.arrayList.push(res.list)
             viewModel.ArtList(viewModel.arrayList)
             if(viewModel.isLoadbasic==true){
                 setTimeout(function(){viewModel.basicFun();},300)

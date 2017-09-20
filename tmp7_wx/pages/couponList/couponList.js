@@ -1,6 +1,6 @@
 // couponList.js
-
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCouponList";
+var $ctx = getApp().globalData.CTX;
+var url = $ctx +"/goodsAPI/getCouponList";
 var userId = 1;
 var isUse = 0;
 var pageNum = 0;

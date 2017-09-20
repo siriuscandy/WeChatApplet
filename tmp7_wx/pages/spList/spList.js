@@ -1,9 +1,9 @@
 // spList.js
-
-var url = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getGoodsCateList";
+var $ctx = getApp().globalData.CTX;
+var url = $ctx+"/goodsAPI/getGoodsCateList";
 var userId = getApp().globalData.USERID;
 var isindex=0;
-var carturl = "https://v.tixaapp.com/WeChatApplet/goodsAPI/getCartList";
+var carturl = $ctx+"/goodsAPI/getCartList";
 var getcarthasList = function (that) {
   wx.request({
     url: carturl,

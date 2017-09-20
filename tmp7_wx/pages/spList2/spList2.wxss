@@ -19,7 +19,7 @@
     }  
 .swiper-tab-list{  font-size: 30rpx;  
     display: inline-block;  
-    width: 18.33%;  
+    width: 80px;  
     color: #777777;  
 }  
 .on{ 
@@ -87,7 +87,7 @@
     pointer-events: none;
 }
 .swipe_li{ padding:0px 0 0 0; overflow:hidden;height: 100%;}
-.li_list{ width:100%; float:left; height:100%;}
+.li_list{ width:45%; float:left; margin:10px 0 0 2.5%}
 
 .newsLineA{padding:10px; border-bottom:1px solid #efefef;}
 .newsTitA{line-height:35px; height:35px; overflow:hidden; font-size:16px; color:#333;}
@@ -130,3 +130,5 @@ overflow:hidden;
 .aui-h-cn_span:nth-child(3) {padding-right: 0;}
 
 
+.li_list .mui-media-object { width:100%;height:145px;}
+.price { color:#c6964a}

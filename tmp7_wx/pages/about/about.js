@@ -1,5 +1,6 @@
 // about.js
-var url = "https://v.tixaapp.com/WeChatApplet/api/showDetailListByZnameAndUid"
+var $ctx = getApp().globalData.CTX;
+var url = $ctx +"/api/showDetailListByZnameAndUid"
 var userId = getApp().globalData.USERID;
 var pageNum = 1;
 var pageSize = 1;
