@@ -24,12 +24,20 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','swiper'
   viewModel.goIndex = function(){
       window.location.href = "../tmp7/index.html";
   };
+  // viewModel.goProList = function(){
+  //   if(GetQueryString("isedit")){
+  //     window.location.href = "../product/spList.html?tmp=7&isedit=true&userid="+viewModel.userId;
+
+  //     }else{
+  //     window.location.href = "../product/spList.html?tmp=7&userid="+viewModel.userId;
+  //     }
+  // };
   viewModel.goProList = function(){
     if(GetQueryString("isedit")){
-      window.location.href = "../product/spList.html?tmp=7&isedit=true&userid="+viewModel.userId;
+      window.location.href = "flList.html?tmp=7&isedit=true&userid="+viewModel.userId;
 
       }else{
-      window.location.href = "../product/spList.html?tmp=7&userid="+viewModel.userId;
+      window.location.href = "flList.html?tmp=7&userid="+viewModel.userId;
       }
   };
   viewModel.goOrder = function(){

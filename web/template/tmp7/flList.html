@@ -40,7 +40,28 @@
         </li>
         </ul>
         </div>
-          
+          <div class="devider t-line"></div>
+        <div style="height:50px"></div>
+        <nav class="mui-bar mui-bar-tab">
+            <div class="t-line">
+                <a data-bind="click:function(){goIndex()}" class="aui-tab-item mui-active">
+                    <span class="mui-icon iconHover mui-icon-home"></span>
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a data-bind="click:function(){goProList()}" class="aui-tab-item " >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                    <span class="mui-tab-label">分类</span>
+                </a>
+                <a data-bind="click:function(){goOrder()}" class="aui-tab-item" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+                    <span class="mui-tab-label">订单</span>
+                </a>
+                <a data-bind="click:function(){goME()}" class="aui-tab-item" >
+                    <span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </div>
+        </nav>
                
     </div>
 
@@ -258,6 +279,23 @@ require([ 'jquery', 'knockout','dialogmin','ajaxCom','bootstrap','uui'
     viewModel.getUserIdload();
     viewModel.goDetail = function(id){
     window.location.href = "../product/flList.html?cateId="+id+"&tmp=7";
+  };
+  viewModel.goIndex = function(){
+      window.location.href = "../tmp7/index.html";
+  };
+  viewModel.goProList = function(){
+    if(GetQueryString("isedit")){
+      window.location.href = "flList.html?tmp=7&isedit=true&userid="+viewModel.userId;
+
+      }else{
+      window.location.href = "flList.html?tmp=7&userid="+viewModel.userId;
+      }
+  };
+  viewModel.goOrder = function(){
+      window.location.href = "../product/myOrder.html?tmp=7&userid="+viewModel.userId;
+  };
+  viewModel.goME = function(){
+      window.location.href = "../product/me.html?tmp=7&userid="+viewModel.userId;
   };
     viewModel.checknum = function(num){
         if(num % 2 ===0){
